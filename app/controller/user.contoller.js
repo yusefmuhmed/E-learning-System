@@ -4,6 +4,7 @@ const fs = require("fs")
 const upload = require("../middleware/fileUpload.middleware")
 const multer = require("multer")
 class User{
+    
     static register = async(req,res) => {
         try{
             if(req.body.password.length<6) throw new Error("password must be more than 6")
@@ -19,12 +20,15 @@ class User{
         try{
             const userData = await userModel.loginUser(req.body.email, req.body.password)
             const token = await userData.generateToken()
-            myHelper.resHandler(res, 200, true, {user:userData, token}, "user added successfully")
+            myHelper.resHandler(res, 200, true, {user:userData, token}, "user logged in successfully")
         }
         catch(e){
             myHelper.resHandler(res, 500, false, e, e.message)
         }
     }
+
+
+
     static allUsers = async(req,res) => {
         try{
             const users = await userModel.find()
