@@ -1,56 +1,169 @@
 {
-    "info": {
-        "_postman_id": "240678fd-7b9e-4c99-afd5-c920f1e9de28",
-        "name": "E-Learning-System",
-        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-    },
-    "item": [{
-            "name": "Users",
-            "item": [{
-                "name": "register user",
-                "request": {
-                    "method": "POST",
-                    "header": [],
-                    "url": {
-                        "raw": "{{baseUrl}}user/register",
-                        "host": [
-                            "{{baseUrl}}user"
-                        ],
-                        "path": [
-                            "register"
-                        ]
-                    }
-                },
-                "response": []
-            }]
-        },
-        {
-            "name": "Posts",
-            "item": []
-        }
-    ],
-    "event": [{
-            "listen": "prerequest",
-            "script": {
-                "type": "text/javascript",
-                "exec": [
-                    ""
-                ]
-            }
-        },
-        {
-            "listen": "test",
-            "script": {
-                "type": "text/javascript",
-                "exec": [
-                    ""
-                ]
-            }
-        }
-    ],
-    "variable": [{
-        "key": "baseUrl",
-        "value": "http://localhost:3000/api/",
-        "type": "default"
-    }]
+	"info": {
+		"_postman_id": "f5d08833-2db4-4b4c-8d32-b8661fe0f9e1",
+		"name": "E-Learning-System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18749940"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fName\":\"Youssef\",\r\n    \"lName\":\"Mohamed ahmed\",\r\n    \"email\":\"mohamed2811@outlook.com\",\r\n    \"password\":\"1234567\",\r\n    \"roleName\":\"student\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}user/register",
+							"host": [
+								"{{baseUrl}}user"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fName\":\"Youssef\",\r\n    \"lName\":\"Mohamed ahmed\",\r\n    \"email\":\"mohamed2811@outlook.com\",\r\n    \"password\":\"1234567\",\r\n    \"roleName\":\"student\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}user/login",
+							"host": [
+								"{{baseUrl}}user"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload image",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDYzZTkxOWI5YzI4ZjQ3OWJhODBiN2UiLCJpYXQiOjE2ODQyNjk0Mjh9.SyJlZjSbo4C6A_cUx4rum1Vys6y7HQ-Ex9s4E75K73M",
+								"type": "text"
+							},
+							{
+								"key": "email",
+								"value": "mohamed2811@outlook.com",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "password",
+								"value": "1234567",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "path",
+								"value": "D:\\Projects\\E-Learning-System\\E-learning-System\\images",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "originalname",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "mohamed2811@outlook.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234567",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "img",
+									"type": "file",
+									"src": "/D:/Projects/E-Learning-System/E-learning-System/images.jpeg"
+								},
+								{
+									"key": "authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDYzZTkxOWI5YzI4ZjQ3OWJhODBiN2UiLCJpYXQiOjE2ODQyNjk0Mjh9.SyJlZjSbo4C6A_cUx4rum1Vys6y7HQ-Ex9s4E75K73M",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}user/profileImg",
+							"host": [
+								"{{baseUrl}}user"
+							],
+							"path": [
+								"profileImg"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/",
+			"type": "default"
+		}
+	]
 }
