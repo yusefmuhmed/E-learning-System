@@ -135,6 +135,61 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "add governorate & schools",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"governorate_name_ar\":\"القاهره\",\r\n    \"governorate_name_en\":\"Cairo\",\r\n    \"schools\":[\r\n        {\"schoolName\":\"السعيديه\"},\r\n        {\"schoolName\":\"الخديويه\"}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}school/addGovernorate",
+							"host": [
+								"{{baseUrl}}school"
+							],
+							"path": [
+								"addGovernorate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all governorate and schools",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}school/getAllGovernorate",
+							"host": [
+								"{{baseUrl}}school"
+							],
+							"path": [
+								"getAllGovernorate"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

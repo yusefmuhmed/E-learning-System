@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, "../uploads")))
 const userRoutes = require("../routes/user.routes")
 const postRoutes = require("../routes/post.routes")
 const projectRoutes = require("../routes/project.routes")
-const schoolRoutes = require("../routes/school.routes")
+const schoolRoutes = require("../routes/school.routes.js")
 
 
 app.use("/api/user/", userRoutes)
