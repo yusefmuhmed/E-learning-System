@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const validator = require("validator")
 const bcryptjs = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-    // const User = mongoose.model("User", {
+
 const userSchema = mongoose.Schema({
     fName: {
         type: String,
@@ -66,8 +66,8 @@ const userSchema = mongoose.Schema({
 }, {
     timestamps: true
 })
-userSchema.virtual("myPosts", {
-    ref: "Post",
+userSchema.virtual("mySchool", {
+    ref: "School",
     localField: "_id",
     foreignField: "userId"
 })

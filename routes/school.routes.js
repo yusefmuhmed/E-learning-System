@@ -9,5 +9,8 @@ router.get("/getAllGovernorate/", School.getAllGovernorate)
 
 router.post("/addGovernorate/", School.addGovernorate)
 
+router.get("/getSchool/:id", School.getSchool)
+
+
 
 module.exports = router

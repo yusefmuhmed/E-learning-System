@@ -3,28 +3,26 @@ const mongoose = require("mongoose")
 const schoolSchema = mongoose.Schema({
 
 
-    governorate_name_ar:{
+    governorate_name_ar: {
         type: String,
         unique: true,
-        trim:true,
-        required:true,
+        trim: true,
+        required: true,
     },
 
-    governorate_name_en:{
+    governorate_name_en: {
         type: String,
         unique: true,
-        trim:true,
-        required:true,
+        trim: true,
+        required: true,
     },
 
-    schools:[
-        {
-        schoolName:{
-        type: String,
-        trim:true,
-}
-}
-]
+    schools: [{
+        schoolName: {
+            type: String,
+            trim: true,
+        }
+    }]
 
 
 
