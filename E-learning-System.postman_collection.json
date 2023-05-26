@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"fName\":\"Youssef\",\r\n    \"lName\":\"Mohamed ahmed\",\r\n    \"email\":\"mohamed2811@outlook.com\",\r\n    \"password\":\"1234567\",\r\n    \"roleName\":\"student\"\r\n}",
+							"raw": "{\r\n    \"fName\":\"Youssef\",\r\n    \"lName\":\"Mohamed ahmed\",\r\n    \"email\":\"mohamesd.28s11@outlook.com\",\r\n    \"password\":\"1234567\",\r\n    \"roleName\":\"student\",\r\n    \"image\":\"abcd\",\r\n    \"class\":\"الاول الابتدائي\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -143,7 +143,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"governorate_name_ar\":\"القاهره\",\r\n    \"governorate_name_en\":\"Cairo\",\r\n    \"schools\":[\r\n        {\"schoolName\":\"السعيديه\"},\r\n        {\"schoolName\":\"الخديويه\"}\r\n    ]\r\n}",
+							"raw": "{\r\n    \"governorate_name_ar\":\"الجيزه\",\r\n    \"governorate_name_en\":\"Giza\",\r\n    \"schools\":[\r\n        {\"schoolName\":\"السعيديه\"},\r\n        {\"schoolName\":\"الخديويه\"}\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -186,6 +186,36 @@
 							],
 							"path": [
 								"getAllGovernorate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get school",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    \r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}school/getSchool/646bbdeee123f6d1471293b7",
+							"host": [
+								"{{baseUrl}}school"
+							],
+							"path": [
+								"getSchool",
+								"646bbdeee123f6d1471293b7"
 							]
 						}
 					},

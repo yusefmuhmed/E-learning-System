@@ -32,10 +32,9 @@ const userSchema = mongoose.Schema({
             }
         }
     },
-    status: {
-        type: Boolean,
-        default: true
-    },
+
+    class: { type: String, enum: ["الاول الابتدائي", "الثاني الابتدائي", "الثالث الابتدائي","الرابع الابتدائي","الخامس الابتدائي","السادس الابتدائي","الاول الاعدادي","الثاني الاعدادي","الثالث الاعدادي","الاول الثانوي","الثاني الثانوي","الثالث الثانوي"], required: true },
+
     image: {
         type: String,
         trim: true
