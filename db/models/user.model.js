@@ -33,7 +33,7 @@ const userSchema = mongoose.Schema({
         }
     },
 
-    class: { type: String, enum: ["الاول الابتدائي", "الثاني الابتدائي", "الثالث الابتدائي","الرابع الابتدائي","الخامس الابتدائي","السادس الابتدائي","الاول الاعدادي","الثاني الاعدادي","الثالث الاعدادي","الاول الثانوي","الثاني الثانوي","الثالث الثانوي"], required: true },
+    class: { type: String, enum: ["الاول الابتدائي", "الثاني الابتدائي", "الثالث الابتدائي","الرابع الابتدائي","الخامس الابتدائي","السادس الابتدائي","الاول الاعدادي","الثاني الاعدادي","الثالث الاعدادي","الاول الثانوي","الثاني الثانوي","الثالث الثانوي"]},
 
     image: {
         type: String,
@@ -42,7 +42,6 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         trim: true,
-        minLength: 5,
         required: true,
         // match: ''
     },
@@ -56,7 +55,7 @@ const userSchema = mongoose.Schema({
 
 
 
-    roleName: { type: String, ref: "Role", enum: ["student", "admin", "teacher"], required: true },
+    roleName: { type: String, ref: "Role", enum: ["student", "parent", "teacher"], required: true },
 
 
     tokens: [{
