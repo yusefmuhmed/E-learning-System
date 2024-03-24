@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f5d08833-2db4-4b4c-8d32-b8661fe0f9e1",
+		"_postman_id": "92b78588-3466-4a66-9294-fea070fe85e0",
 		"name": "E-Learning-System",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "18749940"
@@ -135,93 +135,16 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "add governorate & schools",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"governorate_name_ar\":\"الجيزه\",\r\n    \"governorate_name_en\":\"Giza\",\r\n    \"schools\":[\r\n        {\"schoolName\":\"السعيديه\"},\r\n        {\"schoolName\":\"الخديويه\"}\r\n    ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}school/addGovernorate",
-							"host": [
-								"{{baseUrl}}school"
-							],
-							"path": [
-								"addGovernorate"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get all governorate and schools",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}school/getAllGovernorate",
-							"host": [
-								"{{baseUrl}}school"
-							],
-							"path": [
-								"getAllGovernorate"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get school",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "    \r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}school/getSchool/646bbdeee123f6d1471293b7",
-							"host": [
-								"{{baseUrl}}school"
-							],
-							"path": [
-								"getSchool",
-								"646bbdeee123f6d1471293b7"
-							]
-						}
-					},
-					"response": []
 				}
 			]
+		},
+		{
+			"name": "Student",
+			"item": []
+		},
+		{
+			"name": "Teacher",
+			"item": []
 		}
 	],
 	"event": [
