@@ -2,7 +2,6 @@ const router = require("express").Router()
 const User = require('../app/controller/user.contoller')
 const { auth } = require("../app/middleware/auth.middleware")
 const upload = require("../app/middleware/fileUpload.middleware")
-const Role = require('../app/controller/role.controller')
     //auth
 router.post("/register", User.register)
 router.post("/login", User.login)
@@ -35,6 +34,6 @@ router.patch("/profileImg", auth, upload.single("img"), User.uploadImage)
 router.patch("/profileImg1", auth, upload.single("img"), User.uploadImage1)
 router.patch("/profileImg2", auth, User.uploadImage2)
 
-router.post("/insertRole", auth, Role.insertRole)
+
 
 module.exports = router
