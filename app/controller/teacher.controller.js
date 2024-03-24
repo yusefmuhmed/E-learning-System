@@ -1,16 +1,16 @@
-const userModel = require("../../db/models/user.model")
+const teacherModel = require("../../db/models/teacher.model")
 const myHelper = require("../../app/helper")
 const fs = require("fs")
 const upload = require("../middleware/fileUpload.middleware")
 const multer = require("multer")
-class User{
+class Teacher{
     
     static register = async(req,res) => {
         try{
             if(req.body.password.length<6) throw new Error("password must be more than 6")
-            const userData = new userModel(req.body)
-            await userData.save()
-            myHelper.resHandler(res, 200, true, userData, "user added successfully")
+            const teacherData = new teacherModel(req.body)
+            await teacherData.save()
+            myHelper.resHandler(res, 200, true, teacherData, "teacher added successfully")
         }
         catch(e){
             myHelper.resHandler(res, 500, false, e, e.message)
@@ -18,57 +18,46 @@ class User{
     }
     static login = async(req,res) => {
         try{
-            const userData = await userModel.loginUser(req.body.email, req.body.password)
-            const token = await userData.generateToken()
-            myHelper.resHandler(res, 200, true, {user:userData, token}, "user logged in successfully")
+            const teacherData = await teacherModel.loginTeacher(req.body.username, req.body.password)
+            const token = await teacherData.generateToken()
+            myHelper.resHandler(res, 200, true, {teacher:teacherData, token}, "teacher logged in successfully")
         }
         catch(e){
             myHelper.resHandler(res, 500, false, e, e.message)
         }
     }
 
-
-
-    static allUsers = async(req,res) => {
+    static allTeachers = async(req,res) => {
         try{
-            const users = await userModel.find()
-            myHelper.resHandler(res, 200, true, users, "users fetched")
+            const teachers = await teacherModel.find()
+            myHelper.resHandler(res, 200, true, teachers, "teachers fetched")
         }
         catch(e){
             myHelper.resHandler(res, 500, false, e, e.message)
         }
     }
+    
     static profile = (req,res)=>{
-        myHelper.resHandler(res, 200, true,{user: req.user},"user profile fetched")
+        myHelper.resHandler(res, 200, true,{teacher: req.teacher},"teacher profile fetched")
     }
     static logOut = async(req,res)=>{
         try{
-            //req.user , req.token
-            req.user.tokens = req.user.tokens.filter(
+            //req.teacher , req.token
+            req.teacher.tokens = req.teacher.tokens.filter(
                 t => t.token != req.token 
             )
-            await req.user.save()
+            await req.teacher.save()
             myHelper.resHandler(res, 200, true,null,"logged out")
         }
         catch(e){
             myHelper.resHandler(res, 500, false, e, e.message)
         }
     }
-    static logOutAll = async(req,res)=>{
-        try{
-            //req.user , req.token
-            req.user.tokens = []
-            await req.user.save()
-            myHelper.resHandler(res, 200, true,null,"logged out")
-        }
-        catch(e){
-            myHelper.resHandler(res, 500, false, e, e.message)
-        }
-    }
+    
     static getSingle = async(req, res)=>{
         try{
-            const user = await userModel.findById(req.params.id)
-            myHelper.resHandler(res, 200, true,user,"logged out")
+            const teacher = await teacherModel.findById(req.params.id)
+            myHelper.resHandler(res, 200, true,teacher,"logged out")
         }
         catch(e){
             myHelper.resHandler(res, 500, false, e, e.message)
@@ -77,41 +66,30 @@ class User{
     static changeStatus = async(req,res)=>{
         try
         {
-            let user = req.user
+            let teacher = req.teacher
             if(!req.query.current || req.query.current=="0") 
-                user = await userModel.findById(req.body._id)
+                teacher = await teacherModel.findById(req.body._id)
             
-            if(req.query.activate=="1")  user.status=true
-            else user.status = false
-            await user.save()
-            myHelper.resHandler(res, 200, true, user, "updated")
+            if(req.query.activate=="1")  teacher.status=true
+            else teacher.status = false
+            await teacher.save()
+            myHelper.resHandler(res, 200, true, teacher, "updated")
 
         }
         catch(e){
             myHelper.resHandler(res, 500, false, e, e.message)
         }
     }
-    static addAddr = async(req,res)=>{
-        try{
-            if(!req.user.addresses) req.user.addresses=[]
-            req.user.addresses.push(req.body)
-            await req.user.save()
-            myHelper.resHandler(res, 200, true, req.user, "updated")
-
-        }
-        catch(e){
-            myHelper.resHandler(res, 500, false, e, e.message)
-        }
-    }
+    
     static uploadImage = async(req, res) =>{
         try{
-            // if(!req.file) throw new Error("no file found")
+            
             const ext = req.file.originalname.split(".").pop()
             const newName = "uploads/"+Date.now()+"testApp."+ext
             fs.renameSync(req.file.path, newName)
-            req.user.image = newName
-            await req.user.save()
-            myHelper.resHandler(res, 200, true, req.user, "updated")
+            req.teacher.image = newName
+            await req.teacher.save()
+            myHelper.resHandler(res, 200, true, req.teacher, "updated")
         }
         catch(e){
             myHelper.resHandler(res, 500, false, e, e.message)
@@ -119,9 +97,9 @@ class User{
     }
     static uploadImage1 = async(req, res) =>{
         try{
-            req.user.image = req.file.path
-            await req.user.save()
-            myHelper.resHandler(res, 200, true, req.user, "updated")
+            req.teacher.image = req.file.path
+            await req.teacher.save()
+            myHelper.resHandler(res, 200, true, req.teacher, "updated")
         }
         catch(e){
             myHelper.resHandler(res, 500, false, e, e.message)
@@ -145,4 +123,4 @@ class User{
         }
     }
 }
-module.exports = User
+module.exports = Teacher

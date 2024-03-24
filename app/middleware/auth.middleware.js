@@ -1,16 +1,16 @@
-const userModel = require("../../db/models/user.model")
+const studentModel = require("../../db/models/student.model")
 const myHelper = require("../../app/helper")
 const jwt = require("jsonwebtoken")
 const auth = async(req, res, next) => {
     try{
         const token = req.header("Authorization").replace("Bearer ", "")
         const decodedToken = jwt.verify(token, process.env.tokenPass)
-        const userData = await userModel.findOne({
+        const studentData = await studentModel.findOne({
             _id: decodedToken._id,
             "tokens.token": token
         })
-        if(!userData) throw new Error("invalid token")
-        req.user = userData
+        if(!studentData) throw new Error("invalid token")
+        req.user = studentData
         req.token = token
         next()
     }
