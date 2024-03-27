@@ -94,11 +94,11 @@ class Teacher {
   static uploadImage = async (req, res) => {
     try {
       const ext = req.file.originalname.split(".").pop();
-      const newName = "uploads/" + req.teacher._id  + ext;
+      const newName = "uploads/" + req.teacher._id+"."+ext;
       fs.renameSync(req.file.path, newName);
       req.teacher.image = newName;
       await req.teacher.save();
-      myHelper.resHandler(res, 200, true, req.teacher, "updated");
+      myHelper.resHandler(res, 200, true, newName, "updated");
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
