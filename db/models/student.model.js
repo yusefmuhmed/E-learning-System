@@ -21,6 +21,13 @@ const studentSchema = mongoose.Schema(
       maxLength: 20,
       required: true,
     },
+    username: {
+      type: String,
+      trim: true,
+      lowercase: true,
+      required: true,
+      unique: true,
+    },
     email: {
       type: String,
       trim: true,
@@ -67,6 +74,11 @@ const studentSchema = mongoose.Schema(
           throw new Error("invalid number");
       },
     },
+    teachersIDs: [
+      {
+        teacherID: { type: String, trim: true },
+      },
+    ],
     tokens: [
       {
         token: { type: String, required: true },
@@ -78,16 +90,18 @@ const studentSchema = mongoose.Schema(
   }
 );
 
-
 studentSchema.pre("save", async function () {
   if (this.isModified("password")) {
     this.password = await bcryptjs.hash(this.password, 8);
   }
 });
-studentSchema.statics.loginUser = async (email, password) => {
-  const studentData = await User.findOne({ email });
-  if (!studentData) throw new Error("invalid email");
-  const validatePassword = await bcryptjs.compare(password, studentData.password);
+studentSchema.statics.loginStudent = async (username, password) => {
+  const studentData = await Student.findOne({ username });
+  if (!studentData) throw new Error("invalid username");
+  const validatePassword = await bcryptjs.compare(
+    password,
+    studentData.password
+  );
   if (!validatePassword) throw new Error("invalid password");
   return studentData;
 };

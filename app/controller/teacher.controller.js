@@ -76,20 +76,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-  static changeStatus = async (req, res) => {
-    try {
-      let teacher = req.teacher;
-      if (!req.query.current || req.query.current == "0")
-        teacher = await teacherModel.findById(req.body._id);
-
-      if (req.query.activate == "1") teacher.status = true;
-      else teacher.status = false;
-      await teacher.save();
-      myHelper.resHandler(res, 200, true, teacher, "updated");
-    } catch (e) {
-      myHelper.resHandler(res, 500, false, e, e.message);
-    }
-  };
 
   static uploadImage = async (req, res) => {
     try {

@@ -7,16 +7,16 @@
 	},
 	"item": [
 		{
-			"name": "Users",
+			"name": "Teacher",
 			"item": [
 				{
-					"name": "register user",
+					"name": "register",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"fName\":\"Youssef\",\r\n    \"lName\":\"Mohamed ahmed\",\r\n    \"email\":\"mohamesd.28s11@outlook.com\",\r\n    \"password\":\"1234567\",\r\n    \"roleName\":\"student\",\r\n    \"image\":\"abcd\",\r\n    \"class\":\"الاول الابتدائي\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"jennifer\",\r\n    \"lastName\": \"smith\",\r\n    \"email\": \"jennifer.smith@example.com\",\r\n    \"username\": \"jennysmith\",\r\n    \"classes\": [\r\n        {\r\n            \"class\": \"الثاني الابتدائي\"\r\n        },\r\n        {\r\n            \"class\": \"الثالث الابتدائي\"\r\n        }\r\n    ],\r\n    \"password\": \"SecurePass123\",\r\n    \"phoneNum\": \"+201234567890\",\r\n    \"introVideoLink\": \"https://www.youtube.com/jennysmith_intro\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,9 +24,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}user/register",
+							"raw": "{{baseUrl}}teacher/register",
 							"host": [
-								"{{baseUrl}}user"
+								"{{baseUrl}}teacher"
 							],
 							"path": [
 								"register"
@@ -36,13 +36,13 @@
 					"response": []
 				},
 				{
-					"name": "login user",
+					"name": "login",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"fName\":\"Youssef\",\r\n    \"lName\":\"Mohamed ahmed\",\r\n    \"email\":\"mohamed2811@outlook.com\",\r\n    \"password\":\"1234567\",\r\n    \"roleName\":\"student\"\r\n}",
+							"raw": "{\r\n    \"username\": \"jennysmith\",\r\n    \"password\": \"SecurePass123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -50,9 +50,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}user/login",
+							"raw": "{{baseUrl}}teacher/login",
 							"host": [
-								"{{baseUrl}}user"
+								"{{baseUrl}}teacher"
 							],
 							"path": [
 								"login"
@@ -62,75 +62,151 @@
 					"response": []
 				},
 				{
-					"name": "upload image",
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0OWViMDFlN2Q5Y2I2MGYxNzE5ZDEiLCJpYXQiOjE3MTE1NzkwMjF9.BsbtyGck0HYoIqworhgpjYaM2ttd5AX4uvt2P--gcUQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}teacher/logout",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "myProfile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0OWViMDFlN2Q5Y2I2MGYxNzE5ZDEiLCJpYXQiOjE3MTE1Nzk2OTV9.5SU-Y8XBbhuw_mmZoQ5pc4ZcAUh2nysEikdBHGzzF2c",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}teacher/me",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resetPassword",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getSpecificTeacher",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0OWViMDFlN2Q5Y2I2MGYxNzE5ZDEiLCJpYXQiOjE3MTE1Nzk2OTV9.5SU-Y8XBbhuw_mmZoQ5pc4ZcAUh2nysEikdBHGzzF2c",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}teacher/single/66049eb01e7d9cb60f1719d1",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								"single",
+								"66049eb01e7d9cb60f1719d1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllTeachers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0OWViMDFlN2Q5Y2I2MGYxNzE5ZDEiLCJpYXQiOjE3MTE1Nzk2OTV9.5SU-Y8XBbhuw_mmZoQ5pc4ZcAUh2nysEikdBHGzzF2c",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}teacher/",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "uploadProfileImage",
 					"request": {
 						"method": "PATCH",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDYzZTkxOWI5YzI4ZjQ3OWJhODBiN2UiLCJpYXQiOjE2ODQyNjk0Mjh9.SyJlZjSbo4C6A_cUx4rum1Vys6y7HQ-Ex9s4E75K73M",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0OWViMDFlN2Q5Y2I2MGYxNzE5ZDEiLCJpYXQiOjE3MTE1Nzk2OTV9.5SU-Y8XBbhuw_mmZoQ5pc4ZcAUh2nysEikdBHGzzF2c",
 								"type": "text"
-							},
-							{
-								"key": "email",
-								"value": "mohamed2811@outlook.com",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "password",
-								"value": "1234567",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "path",
-								"value": "D:\\Projects\\E-Learning-System\\E-learning-System\\images",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "originalname",
-								"value": "",
-								"type": "text",
-								"disabled": true
 							}
 						],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "email",
-									"value": "mohamed2811@outlook.com",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "password",
-									"value": "1234567",
-									"type": "text",
-									"disabled": true
-								},
-								{
 									"key": "img",
 									"type": "file",
-									"src": "/D:/Projects/E-Learning-System/E-learning-System/images.jpeg"
-								},
-								{
-									"key": "authorization",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDYzZTkxOWI5YzI4ZjQ3OWJhODBiN2UiLCJpYXQiOjE2ODQyNjk0Mjh9.SyJlZjSbo4C6A_cUx4rum1Vys6y7HQ-Ex9s4E75K73M",
-									"type": "text",
-									"disabled": true
+									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{baseUrl}}user/profileImg",
+							"raw": "{{baseUrl}}teacher/profileImg",
 							"host": [
-								"{{baseUrl}}user"
+								"{{baseUrl}}teacher"
 							],
 							"path": [
 								"profileImg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMyStudents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}teacher/getMyStudents",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								"getMyStudents"
 							]
 						}
 					},
@@ -139,12 +215,189 @@
 			]
 		},
 		{
-			"name": "Student",
-			"item": []
-		},
-		{
-			"name": "Teacher",
-			"item": []
+			"name": "Students",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"jennifer\",\r\n    \"lastName\": \"smith\",\r\n    \"email\": \"jennifer.smith@example.com\",\r\n    \"username\": \"jennysmith\",\r\n    \"class\": \"الثاني الابتدائي\",\r\n    \"password\": \"SecurePass123\",\r\n    \"phoneNum\": \"+201234567890\",\r\n    \"introVideoLink\": \"https://www.youtube.com/jennysmith_intro\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}student/register",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"jennysmith\",\r\n    \"password\": \"SecurePass123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}student/login",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0YWFkMzY2ZmVjNTdiODc3MDY1NDUiLCJpYXQiOjE3MTE1ODIwMjh9.0G2HM8lv329tsyHaT5BDK9NVKrTJx8kCPjCzjTys90A",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}student/logout",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "myProfile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0YWFkMzY2ZmVjNTdiODc3MDY1NDUiLCJpYXQiOjE3MTE1ODIwMDZ9.BkYzyZ1FCJ6Y9X0qSVuZHM7d3H_4mlQtOdangM2cDNQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}student/me",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resetPassword",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getSpecificStudent",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0YWFkMzY2ZmVjNTdiODc3MDY1NDUiLCJpYXQiOjE3MTE1ODIwMDZ9.BkYzyZ1FCJ6Y9X0qSVuZHM7d3H_4mlQtOdangM2cDNQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}student/single/6604aad366fec57b87706545",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"single",
+								"6604aad366fec57b87706545"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "uploadProfileImage",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0YWFkMzY2ZmVjNTdiODc3MDY1NDUiLCJpYXQiOjE3MTE1ODIwMDZ9.BkYzyZ1FCJ6Y9X0qSVuZHM7d3H_4mlQtOdangM2cDNQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "img",
+									"type": "file",
+									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}student/profileImg",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"profileImg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMyTeachers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}student/getMyTeachers",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"getMyTeachers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [

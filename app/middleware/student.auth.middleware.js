@@ -10,7 +10,7 @@ const auth = async(req, res, next) => {
             "tokens.token": token
         })
         if(!studentData) throw new Error("invalid token")
-        req.user = studentData
+        req.student = studentData
         req.token = token
         next()
     }
