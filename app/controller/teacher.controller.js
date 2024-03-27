@@ -71,7 +71,7 @@ class Teacher {
   static getSingle = async (req, res) => {
     try {
       const teacher = await teacherModel.findById(req.params.id);
-      myHelper.resHandler(res, 200, true, teacher, "logged out");
+      myHelper.resHandler(res, 200, true, teacher, "single teacher fetched");
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
