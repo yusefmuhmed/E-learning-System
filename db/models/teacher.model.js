@@ -110,7 +110,7 @@ teacherSchema.pre("save", async function () {
   }
 });
 teacherSchema.statics.loginTeacher = async (username, password) => {
-  const teacherData = await User.findOne({ username });
+  const teacherData = await Teacher.findOne({ username });
   if (!teacherData) throw new Error("invalid username");
   const validatePassword = await bcryptjs.compare(
     password,

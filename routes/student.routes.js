@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const Student = require('../app/controller/student.controller')
-const { auth } = require("../app/middleware/auth.middleware")
+const { auth } = require("../app/middleware/student.auth.middleware")
 const upload = require("../app/middleware/fileUpload.middleware")
     //auth
 // router.post("/register", User.register)
