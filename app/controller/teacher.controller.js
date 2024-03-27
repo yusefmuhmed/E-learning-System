@@ -94,7 +94,7 @@ class Teacher {
   static uploadImage = async (req, res) => {
     try {
       const ext = req.file.originalname.split(".").pop();
-      const newName = "uploads/" + Date.now() + "testApp." + ext;
+      const newName = "uploads/" + req.teacher._id  + ext;
       fs.renameSync(req.file.path, newName);
       req.teacher.image = newName;
       await req.teacher.save();
