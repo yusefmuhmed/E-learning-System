@@ -74,6 +74,10 @@ const studentSchema = mongoose.Schema(
           throw new Error("invalid number");
       },
     },
+    OTP: {
+      type: String,
+      trim: true,
+    },
     teachersIDs: [
       {
         teacherID: { type: String, trim: true },

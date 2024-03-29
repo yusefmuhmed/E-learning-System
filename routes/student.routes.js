@@ -7,11 +7,16 @@ router.post("/register", Student.register);
 router.post("/login", Student.login);
 router.post("/logout", auth, Student.logOut);
 
-router.post("/me", auth, Student.profile);
+router.post("/resetPassword", Student.resetPassword);
+router.post("/verifyOTP", Student.verifyOTP);
+router.post("/updateInfo/:id", Student.updateInfo);
 
+router.post("/me", auth, Student.profile);
+router.get("/single/:id", auth, Student.getSingle);
 router.get("/", auth, Student.allStudents);
 
-router.get("/single/:id", auth, Student.getSingle);
+router.get("/classes", auth, Student.getListOfClasses);
+router.get("/subjects", auth, Student.getListOfSubjects);
 
 router.patch("/profileImg", auth, upload.single("img"), Student.uploadImage);
 
