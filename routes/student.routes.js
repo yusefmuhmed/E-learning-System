@@ -15,9 +15,10 @@ router.post("/me", auth, Student.profile);
 router.get("/single/:id", auth, Student.getSingle);
 router.get("/", auth, Student.allStudents);
 
+router.patch("/profileImg", auth, upload.single("img"), Student.uploadImage);
+
 router.get("/classes", auth, Student.getListOfClasses);
 router.get("/subjects", auth, Student.getListOfSubjects);
 
-router.patch("/profileImg", auth, upload.single("img"), Student.uploadImage);
 
 module.exports = router;

@@ -44,20 +44,8 @@ const teacherSchema = mongoose.Schema(
       {
         class: {
           type: String,
-          enum: [
-            "الاول الابتدائي",
-            "الثاني الابتدائي",
-            "الثالث الابتدائي",
-            "الرابع الابتدائي",
-            "الخامس الابتدائي",
-            "السادس الابتدائي",
-            "الاول الاعدادي",
-            "الثاني الاعدادي",
-            "الثالث الاعدادي",
-            "الاول الثانوي",
-            "الثاني الثانوي",
-            "الثالث الثانوي",
-          ],
+          trim: true,
+          required: true,
         },
       },
     ],
@@ -85,6 +73,19 @@ const teacherSchema = mongoose.Schema(
     tokens: [
       {
         token: { type: String, required: true },
+      },
+    ],
+    OTP: {
+      type: String,
+      trim: true,
+    },
+    subjects: [
+      {
+        subject: {
+          type: String,
+          trim: true,
+          required: true,
+        },
       },
     ],
     studentsIDs: [

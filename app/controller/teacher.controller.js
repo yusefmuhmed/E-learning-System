@@ -1,6 +1,7 @@
 const teacherModel = require("../../db/models/teacher.model");
 const myHelper = require("../../app/helper");
 const fs = require("fs");
+const bcryptjs = require("bcryptjs");
 class Teacher {
   static register = async (req, res) => {
     try {
@@ -80,11 +81,104 @@ class Teacher {
   static uploadImage = async (req, res) => {
     try {
       const ext = req.file.originalname.split(".").pop();
-      const newName = "uploads/" + req.teacher._id+"."+ext;
+      const newName = "uploads/" + req.teacher._id + "." + ext;
       fs.renameSync(req.file.path, newName);
       req.teacher.image = newName;
       await req.teacher.save();
       myHelper.resHandler(res, 200, true, newName, "updated");
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+
+  static resetPassword = async (req, res) => {
+    try {
+      const teacher = await teacherModel.findOne({ email: req.body.email });
+      if (!teacher) {
+        return myHelper.resHandler(
+          res,
+          404,
+          false,
+          "Email not found",
+          "Email not found in the system"
+        );
+      } else {
+        const result = await myHelper.emailHandler(req.body.email);
+        if (result.apiStatus) {
+          teacher.OTP = result.otp;
+          await teacher.save();
+          myHelper.resHandler(
+            res,
+            200,
+            true,
+            req.body.email,
+            "Email sent successfully"
+          );
+        } else {
+          {
+            myHelper.resHandler(res, 500, false, e, e.message);
+          }
+        }
+      }
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+  static verifyOTP = async (req, res) => {
+    try {
+      const teacher = await teacherModel.findOne({ email: req.body.email });
+      if (!teacher) {
+        return myHelper.resHandler(
+          res,
+          404,
+          false,
+          "Email not found",
+          "Email not found in the system"
+        );
+      }
+
+      if (req.body.otp === teacher.OTP) {
+        return myHelper.resHandler(
+          res,
+          200,
+          true,
+          "",
+          "OTP verified successfully"
+        );
+      } else {
+        return myHelper.resHandler(res, 400, false, "", "OTP not correct");
+      }
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+  static updateInfo = async (req, res) => {
+    try {
+      if (req.body.password) {
+        req.body.password = await bcryptjs.hash(req.body.password, 8);
+      }
+
+      const teacher = await teacherModel.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+      );
+      if (!teacher) {
+        return myHelper.resHandler(
+          res,
+          404,
+          false,
+          "Teacher not found",
+          "Teacher not found with the provided ID"
+        );
+      }
+      myHelper.resHandler(
+        res,
+        200,
+        true,
+        teacher,
+        "Teacher information updated successfully"
+      );
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
