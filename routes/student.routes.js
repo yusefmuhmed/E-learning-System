@@ -17,8 +17,8 @@ router.get("/", auth, Student.allStudents);
 
 router.patch("/profileImg", auth, upload.single("img"), Student.uploadImage);
 
-router.get("/classes", auth, Student.getListOfClasses);
-router.get("/subjects", auth, Student.getListOfSubjects);
+router.get("/classes", Student.getListOfClasses);
+router.get("/subjects", Student.getListOfSubjects);
 
 
 module.exports = router;
