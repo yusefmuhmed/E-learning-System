@@ -110,14 +110,14 @@ class Student_Teacher {
       const query = {};
 
       if (subject || studentClass) {
-        query.$or = [];
+        query.$and = [];
 
         if (subject) {
-          query.$or.push({ "subjects.subject": subject });
+          query.$and.push({ "subjects.subject": subject });
         }
 
         if (studentClass) {
-          query.$or.push({ "classes.class": studentClass });
+          query.$and.push({ "classes.class": studentClass });
         }
       }
 
