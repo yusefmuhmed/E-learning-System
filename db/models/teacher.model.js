@@ -90,8 +90,9 @@ const teacherSchema = mongoose.Schema(
     ],
     studentsIDs: [
       {
-        studentID: { type: String, trim: true },
-      },
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Student'
+      }
     ],
     requestsFromStudents: [
       {
@@ -128,7 +129,6 @@ teacherSchema.methods.toJSON = function () {
 };
 teacherSchema.methods.generateToken = async function () {
   const teacherData = this;
-  console.log("test ", process.env.tokenPass);
   const token = jwt.sign({ _id: teacherData._id }, process.env.tokenPass);
   teacherData.tokens = teacherData.tokens.concat({ token });
   await teacherData.save();

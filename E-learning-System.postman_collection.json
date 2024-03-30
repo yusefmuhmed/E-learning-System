@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"jennifer\",\r\n    \"lastName\": \"smith\",\r\n    \"email\": \"jennifer.smith@example.com\",\r\n    \"username\": \"jennysmith\",\r\n    \"classes\": [\r\n        {\r\n            \"class\": \"الثاني الابتدائي\"\r\n        },\r\n        {\r\n            \"class\": \"الثالث الابتدائي\"\r\n        }\r\n    ],\r\n    \"password\": \"SecurePass123\",\r\n    \"phoneNum\": \"+201234567890\",\r\n    \"introVideoLink\": \"https://www.youtube.com/jennysmith_intro\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"jennifer\",\r\n    \"lastName\": \"smith\",\r\n    \"email\": \"mas3oud@gmail.com\",\r\n    \"username\": \"jennysmith12\",\r\n    \"classes\": [\r\n        {\r\n            \"class\": \"الثاني الابتدائي\"\r\n        },\r\n        {\r\n            \"class\": \"الثالث الابتدائي\"\r\n        }\r\n    ],\r\n    \"password\": \"SecurePass123\",\r\n    \"phoneNum\": \"+201234567890\",\r\n    \"introVideoLink\": \"https://www.youtube.com/jennysmith_intro\",\r\n    \"subjects\": [\r\n        {\r\n            \"subject\": \"science\"\r\n        },\r\n        {\r\n            \"subject\": \"math\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -42,7 +42,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"jennysmith\",\r\n    \"password\": \"SecurePass123\"\r\n}",
+							"raw": "{\r\n    \"username\": \"jennysmith12\",\r\n    \"password\": \"SecurePass123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -140,7 +140,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"yusefmuhmed6766@gmail.com\",\r\n    \"otp\":\"RTtz8M\"\r\n}",
+							"raw": "{\r\n    \"email\":\"yusefmuhmed6766@gmail.com\",\r\n    \"otp\":\"EhtS3Z\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -174,13 +174,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}teacher/updateInfo/660592fe8f3a5b02bbfcef35",
+							"raw": "{{baseUrl}}teacher/updateInfo/6606bb3eb876d1b32de18240",
 							"host": [
 								"{{baseUrl}}teacher"
 							],
 							"path": [
 								"updateInfo",
-								"660592fe8f3a5b02bbfcef35"
+								"6606bb3eb876d1b32de18240"
 							]
 						}
 					},
@@ -268,9 +268,27 @@
 				},
 				{
 					"name": "getMyStudents",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA4NzhkMjk2OGQwMTlkMjRjOTg5NmMiLCJpYXQiOjE3MTE4MzE1NDd9.XEcLyRjytwfXxFgctcW4wcp3LC2VQ_cLfYbpsbuEG4U",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"teacherId\":\"660878d2968d019d24c9896c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{baseUrl}}teacher/getMyStudents",
 							"host": [
@@ -321,7 +339,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"yusefmuhmed6766\",\r\n    \"password\": \"SecurePass123\"\r\n}",
+							"raw": "{\r\n    \"username\": \"yusefmuhmed6766\",\r\n    \"password\": \"Pp123456+\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -475,6 +493,38 @@
 					"response": []
 				},
 				{
+					"name": "addStudentToTeacher'sStudents",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTE4MzEyODF9.JppZxU5xypSbzh8YBMJED5CvpoSdjOcNdOlpSDoGRW4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentId\":\"660592fe8f3a5b02bbfcef35\",\r\n    \"teacherId\":\"660878d2968d019d24c9896c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}student/addStudentToTeacher",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"addStudentToTeacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "getSpecificStudent",
 					"request": {
 						"method": "GET",
@@ -504,11 +554,6 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTE2Njk1MTl9.EEuM8Loy85NIAmP3ZhXiTyfGQ7WNMw3Q_Ni2TPFZerY",
-								"type": "text"
-							},
-							{
 								"key": "locale",
 								"value": "ar",
 								"type": "text"
@@ -531,11 +576,6 @@
 					"request": {
 						"method": "GET",
 						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTE2Njk1MTl9.EEuM8Loy85NIAmP3ZhXiTyfGQ7WNMw3Q_Ni2TPFZerY",
-								"type": "text"
-							},
 							{
 								"key": "locale",
 								"value": "en",
@@ -589,9 +629,27 @@
 				},
 				{
 					"name": "getMyTeachers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTE4MzEyODF9.JppZxU5xypSbzh8YBMJED5CvpoSdjOcNdOlpSDoGRW4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"studentId\":\"660592fe8f3a5b02bbfcef35\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{baseUrl}}student/getMyTeachers",
 							"host": [
