@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"jennifer\",\r\n    \"lastName\": \"smith\",\r\n    \"email\": \"mas3oud@gmail.com\",\r\n    \"username\": \"jennysmith12\",\r\n    \"classes\": [\r\n        {\r\n            \"class\": \"الثاني الابتدائي\"\r\n        },\r\n        {\r\n            \"class\": \"الثالث الابتدائي\"\r\n        }\r\n    ],\r\n    \"password\": \"SecurePass123\",\r\n    \"phoneNum\": \"+201234567890\",\r\n    \"introVideoLink\": \"https://www.youtube.com/jennysmith_intro\",\r\n    \"subjects\": [\r\n        {\r\n            \"subject\": \"science\"\r\n        },\r\n        {\r\n            \"subject\": \"math\"\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"firstName\": \"jennifer\",\r\n    \"lastName\": \"smith\",\r\n    \"email\": \"mas3o3ud1222@gmail.com\",\r\n    \"username\": \"jennysmith122212\",\r\n    \"classes\": [\r\n        {\r\n            \"class\": \"الثالث الابتدائي\"\r\n        },\r\n        {\r\n            \"class\": \"third primary\"\r\n        }\r\n    ],\r\n    \"password\": \"SecurePass123\",\r\n    \"phoneNum\": \"+201234567890\",\r\n    \"introVideoLink\": \"https://www.youtube.com/jennysmith_intro\",\r\n    \"subjects\": [\r\n        {\r\n            \"subject\": \"arabic\"\r\n        },\r\n        {\r\n            \"subject\": \"لغه عربيه\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -162,7 +162,7 @@
 				{
 					"name": "updateInfo",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -468,7 +468,7 @@
 				{
 					"name": "updateInfo",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -519,6 +519,38 @@
 							],
 							"path": [
 								"addStudentToTeacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Teachers By Subject And Classes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTE4MzUyNTh9.FqCsJpzQVTkwDc2S-apc68CjEGY--edwwF1j06wNrjM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"subject\": \"math\",\r\n    \"class\": \"الثالث الابتدائي\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}student/filterTeachersBySubjectAndClasses",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"filterTeachersBySubjectAndClasses"
 							]
 						}
 					},

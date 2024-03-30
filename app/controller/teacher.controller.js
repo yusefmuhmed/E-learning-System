@@ -38,7 +38,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-
   static allTeachers = async (req, res) => {
     try {
       const teachers = await teacherModel.find();
@@ -47,7 +46,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-
   static profile = (req, res) => {
     myHelper.resHandler(
       res,
@@ -68,7 +66,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-
   static getSingle = async (req, res) => {
     try {
       const teacher = await teacherModel.findById(req.params.id);
@@ -77,7 +74,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-
   static uploadImage = async (req, res) => {
     try {
       const ext = req.file.originalname.split(".").pop();
@@ -90,7 +86,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-
   static resetPassword = async (req, res) => {
     try {
       const teacher = await teacherModel.findOne({ email: req.body.email });

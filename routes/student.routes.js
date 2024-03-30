@@ -11,7 +11,7 @@ router.post("/logout", auth, Student.logOut);
 
 router.post("/resetPassword", Student.resetPassword);
 router.post("/verifyOTP", Student.verifyOTP);
-router.post("/updateInfo/:id", Student.updateInfo);
+router.put("/updateInfo/:id", Student.updateInfo);
 
 router.post("/me", auth, Student.profile);
 router.get("/single/:id", auth, Student.getSingle);
@@ -19,6 +19,7 @@ router.get("/", auth, Student.allStudents);
 router.get("/getMyTeachers", StudentAndTeacher.getMyTeachers);
 
 router.post("/addStudentToTeacher", auth, StudentAndTeacher.addStudentToTeacherArray);
+router.post("/filterTeachersBySubjectAndClasses", auth,StudentAndTeacher.filterBySubjectAndClass);
 
 router.patch("/profileImg", auth, upload.single("img"), Student.uploadImage);
 

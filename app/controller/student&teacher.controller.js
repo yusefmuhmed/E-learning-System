@@ -102,6 +102,45 @@ class Student_Teacher {
       myHelper.resHandler(res, 404, false, "Data not found", e.message);
     }
   };
+
+  static filterBySubjectAndClass = async (req, res) => {
+    try {
+      const { subject, class: studentClass } = req.body;
+
+      const query = {};
+
+      if (subject || studentClass) {
+        query.$or = [];
+
+        if (subject) {
+          query.$or.push({ "subjects.subject": subject });
+        }
+
+        if (studentClass) {
+          query.$or.push({ "classes.class": studentClass });
+        }
+      }
+
+      const teachers = await teacherModel.find(query, {
+        firstName: 1,
+        lastName: 1,
+        username: 1,
+        classes: 1,
+        subjects: 1,
+        _id: 1,
+      });
+
+      myHelper.resHandler(
+        res,
+        200,
+        true,
+        teachers,
+        "Teachers filtered successfully"
+      );
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
 }
 
 module.exports = Student_Teacher;
