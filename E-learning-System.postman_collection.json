@@ -160,6 +160,60 @@
 					"response": []
 				},
 				{
+					"name": "approveStudent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"yusefmuhmed6766@gmail.com\",\r\n    \"otp\":\"EhtS3Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}teacher/approveStudent/",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								"approveStudent",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "declineStudent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"yusefmuhmed6766@gmail.com\",\r\n    \"otp\":\"EhtS3Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}teacher/declineStudent/",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								"declineStudent",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "updateInfo",
 					"request": {
 						"method": "PUT",
@@ -296,6 +350,41 @@
 							],
 							"path": [
 								"getMyStudents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRequestedStudent",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA4NzhkMjk2OGQwMTlkMjRjOTg5NmMiLCJpYXQiOjE3MTE4MzE1NDd9.XEcLyRjytwfXxFgctcW4wcp3LC2VQ_cLfYbpsbuEG4U",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"teacherId\":\"660878d2968d019d24c9896c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}teacher/getRequestedStudent",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								"getRequestedStudent"
 							]
 						}
 					},
@@ -557,6 +646,30 @@
 					"response": []
 				},
 				{
+					"name": "sendConnectToTeacher",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTIwMDU0NzZ9.2BbeRrpnJUBHHT2J9nhHFOstPoy4wU-RiOaSbP7hKTo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}student/sendConnectToTeacher/660878d2968d019d24c9896c",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"sendConnectToTeacher",
+								"660878d2968d019d24c9896c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "getSpecificStudent",
 					"request": {
 						"method": "GET",
@@ -689,6 +802,29 @@
 							],
 							"path": [
 								"getMyTeachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPendingTeachers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTE4OTc1Mzh9.ttHNkJC6lzCPGOHe27Oiofe6GsfGT6gjoUFoSieebpo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}student/getPendingTeachers",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"getPendingTeachers"
 							]
 						}
 					},
