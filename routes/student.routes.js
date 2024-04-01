@@ -16,15 +16,27 @@ router.put("/updateInfo/:id", Student.updateInfo);
 router.post("/me", auth, Student.profile);
 router.get("/single/:id", auth, Student.getSingle);
 router.get("/", auth, Student.allStudents);
-router.get("/getMyTeachers", StudentAndTeacher.getMyTeachers);
-
-router.post("/addStudentToTeacher", auth, StudentAndTeacher.addStudentToTeacherArray);
-router.post("/filterTeachersBySubjectAndClasses", auth,StudentAndTeacher.filterBySubjectAndClass);
-
 router.patch("/profileImg", auth, upload.single("img"), Student.uploadImage);
+
+router.post(
+  "/sendConnectToTeacher/:id",
+  auth,
+  StudentAndTeacher.sendConnectToTeacher
+);
+router.get("/getMyTeachers", auth, StudentAndTeacher.getMyTeachers);
+router.get("/getPendingTeachers", auth, StudentAndTeacher.getPendingTeachers);
+router.post(
+  "/addStudentToTeacher",
+  auth,
+  StudentAndTeacher.addStudentToTeacherArray
+);
+router.post(
+  "/filterTeachersBySubjectAndClasses",
+  auth,
+  StudentAndTeacher.filterBySubjectAndClass
+);
 
 router.get("/classes", Student.getListOfClasses);
 router.get("/subjects", Student.getListOfSubjects);
-
 
 module.exports = router;

@@ -84,6 +84,14 @@ const studentSchema = mongoose.Schema(
         ref: 'Teacher'
       }
     ],
+    pendingTeachersIDs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Teacher',
+        unique: true,
+        trim: true
+      }
+    ],
     tokens: [
       {
         token: { type: String, required: true },

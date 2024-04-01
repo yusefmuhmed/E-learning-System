@@ -141,6 +141,62 @@ class Student_Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
+
+  static sendConnectToTeacher = async (req, res) => {
+    try {
+      const studentId = req.student.id;
+      const teacherId = req.params.id;
+
+      const student = await studentModel.findByIdAndUpdate(studentId, {
+        $push: { pendingTeachersIDs: teacherId },
+      });
+      
+      const teacher = await teacherModel.findByIdAndUpdate(teacherId, {
+        $push: {
+          requestsFromStudents: { studentID: studentId, class: student.class },
+        },
+      });
+
+      myHelper.resHandler(
+        res,
+        200,
+        true,
+        teacher,
+        "Connect Sent successfully to the teacher"
+      );
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+
+  static getPendingTeachers = async (req, res) => {
+    try {
+      const student = await studentModel.findById(req.student._id);
+      let teachers = [];
+      for (const teacherId of student.pendingTeachersIDs) {
+        const teacher = await teacherModel.findById(teacherId, {
+          firstName: 1,
+          lastName: 1,
+          username: 1,
+          "classes.class": 1,
+          _id: 1,
+        });
+        if (teacher) {
+          teachers.push(teacher);
+        }
+      }
+
+      myHelper.resHandler(
+        res,
+        200,
+        true,
+        teachers,
+        "Pending Teachers fetched successfully"
+      );
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
 }
 
 module.exports = Student_Teacher;
