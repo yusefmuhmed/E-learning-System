@@ -61,6 +61,7 @@ const studentSchema = mongoose.Schema(
       type: String,
       trim: true,
     },
+    bufferProfileImage: Buffer,
     password: {
       type: String,
       trim: true,

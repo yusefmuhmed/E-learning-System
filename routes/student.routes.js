@@ -19,6 +19,14 @@ router.get("/", auth, Student.allStudents);
 router.patch("/profileImg", auth, upload.single("img"), Student.uploadImage);
 
 router.post(
+  "/profileImg1",
+  auth,
+  upload.single("img"),
+  Student.uploadImageBuffer
+);
+router.get("/getProfileImgBuffer", auth, Student.getImageBuffer);
+
+router.post(
   "/sendConnectToTeacher/:id",
   auth,
   StudentAndTeacher.sendConnectToTeacher

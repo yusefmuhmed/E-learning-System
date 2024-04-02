@@ -773,6 +773,75 @@
 					"response": []
 				},
 				{
+					"name": "uploadProfileImage Buffer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTIwODg3NTR9.Fn3JzxRperC1KAQk2-htRpdY0G7RUXJ4FGOtzQOJLAo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "img",
+									"type": "file",
+									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}student/profileImg1",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"profileImg1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "uploadProfileImage Buffer Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTIwODg3NTR9.Fn3JzxRperC1KAQk2-htRpdY0G7RUXJ4FGOtzQOJLAo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "img",
+									"type": "file",
+									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}student/getProfileImgBuffer",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"getProfileImgBuffer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "getMyTeachers",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
