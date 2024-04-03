@@ -12,7 +12,7 @@ router.post("/logout", auth, Teacher.logOut);
 
 router.post("/resetPassword", Teacher.resetPassword);
 router.post("/verifyOTP", Teacher.verifyOTP);
-router.put("/updateInfo/:id", Teacher.updateInfo);
+router.put("/updateInfo", Teacher.updateInfo);
 
 router.post("/me", auth, Teacher.profile);
 router.get("/single/:id", auth, Teacher.getSingle);
