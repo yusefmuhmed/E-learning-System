@@ -12,7 +12,7 @@ class MyHelper {
 
   static emailHandler = (mail) => {
     return new Promise((resolve, reject) => {
-        const otp = otpGenerator.generate(6, {
+        const otp = otpGenerator.generate(4, {
             digits: true,
             lowerCaseAlphabets: false,
             upperCaseAlphabets: false,
