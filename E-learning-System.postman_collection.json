@@ -220,7 +220,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"password\":\"Pp123456+\"\r\n}",
+							"raw": "{\r\n    \"password\":\"Pp123456+\",\r\n    \"email\": \"mas3oud@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -228,13 +228,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}teacher/updateInfo/6606bb3eb876d1b32de18240",
+							"raw": "{{baseUrl}}teacher/updateInfo",
 							"host": [
 								"{{baseUrl}}teacher"
 							],
 							"path": [
-								"updateInfo",
-								"6606bb3eb876d1b32de18240"
+								"updateInfo"
 							]
 						}
 					},
@@ -561,7 +560,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"password\":\"Pp123456+\"\r\n}",
+							"raw": "{\r\n    \"password\":\"Pp123456+\",\r\n    \"email\":\"yusefmuhmed6766@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -569,13 +568,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}student/updateInfo/660592fe8f3a5b02bbfcef35",
+							"raw": "{{baseUrl}}student/updateInfo",
 							"host": [
 								"{{baseUrl}}student"
 							],
 							"path": [
-								"updateInfo",
-								"660592fe8f3a5b02bbfcef35"
+								"updateInfo"
 							]
 						}
 					},

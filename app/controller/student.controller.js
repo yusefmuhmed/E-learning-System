@@ -146,8 +146,8 @@ class Student {
         req.body.password = await bcryptjs.hash(req.body.password, 8);
       }
 
-      const student = await studentModel.findByIdAndUpdate(
-        req.params.id,
+      const student = await studentModel.findOneAndUpdate(
+        { email: req.body.email },
         req.body,
         { new: true }
       );
