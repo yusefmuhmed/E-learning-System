@@ -337,6 +337,11 @@
 									"key": "img",
 									"type": "file",
 									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
+								},
+								{
+									"key": "username",
+									"value": "jennysmith12",
+									"type": "text"
 								}
 							]
 						},
@@ -857,6 +862,11 @@
 									"key": "img",
 									"type": "file",
 									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
+								},
+								{
+									"key": "username",
+									"value": "yusefmuhmed6766",
+									"type": "text"
 								}
 							]
 						},

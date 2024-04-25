@@ -188,9 +188,11 @@ class Teacher {
 
       const imageBuffer = req.file.buffer;
 
-      const newImage = await teacherModel.findByIdAndUpdate(req.teacher.id, {
-        bufferProfileImage: imageBuffer,
-      });
+      const updatedStudent = await teacherModel.findOneAndUpdate(
+        { username: req.body.username }, 
+        { bufferProfileImage: req.body.imageBuffer }, 
+        { new: true }
+    );
 
       res.status(201).json({ message: imageBuffer });
     } catch (error) {
