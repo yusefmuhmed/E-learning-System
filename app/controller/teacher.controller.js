@@ -178,5 +178,40 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
+
+
+  static uploadImageBuffer = async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: "No file uploaded" });
+      }
+
+      const imageBuffer = req.file.buffer;
+
+      const newImage = await teacherModel.findByIdAndUpdate(req.teacher.id, {
+        bufferProfileImage: imageBuffer,
+      });
+
+      res.status(201).json({ message: imageBuffer });
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  };
+
+  static getImageBuffer = async (req, res) => {
+    try {
+      const teacher = await teacherModel.findById(req.teacher.id);
+      if (!teacher || !teacher.bufferProfileImage) {
+        return res.status(404).json({ error: "Image not found" });
+      }
+
+      res.set("Content-Type", "image/jpeg"); // Set the response content type
+      res.send(teacher.bufferProfileImage); // Send the image buffer as the response
+    } catch (error) {
+      console.error("Error retrieving image:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  };
 }
 module.exports = Teacher;

@@ -20,6 +20,11 @@ router.get("/", auth, Teacher.allTeachers);
 router.get("/getMyStudents", auth,StudentAndTeacher.getMyStudents);
 
 
-router.patch("/profileImg", auth, upload.single("img"), Teacher.uploadImage);
+router.post(
+    "/profileImg1",
+    upload.single("img"),
+    Teacher.uploadImageBuffer
+  );
+  router.get("/getProfileImgBuffer", Teacher.getImageBuffer);
 
 module.exports = router;

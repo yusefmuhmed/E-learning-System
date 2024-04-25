@@ -16,15 +16,14 @@ router.put("/updateInfo", Student.updateInfo);
 router.post("/me", auth, Student.profile);
 router.get("/single/:id", auth, Student.getSingle);
 router.get("/", auth, Student.allStudents);
-router.patch("/profileImg", auth, upload.single("img"), Student.uploadImage);
+router.patch("/profileImg", upload.single("img"), Student.uploadImage);
 
 router.post(
   "/profileImg1",
-  auth,
   upload.single("img"),
   Student.uploadImageBuffer
 );
-router.get("/getProfileImgBuffer", auth, Student.getImageBuffer);
+router.get("/getProfileImgBuffer", Student.getImageBuffer);
 
 router.post(
   "/sendConnectToTeacher/:id",
