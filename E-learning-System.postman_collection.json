@@ -42,7 +42,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"jennysmith12\",\r\n    \"password\": \"SecurePass123\"\r\n}",
+							"raw": "{\r\n    \"username\": \"jennysmith12\",\r\n    \"password\": \"Pp123456+\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -68,7 +68,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0OWViMDFlN2Q5Y2I2MGYxNzE5ZDEiLCJpYXQiOjE3MTE1NzkwMjF9.BsbtyGck0HYoIqworhgpjYaM2ttd5AX4uvt2P--gcUQ",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA4NzhkMjk2OGQwMTlkMjRjOTg5NmMiLCJpYXQiOjE3MTQwNjAxOTd9.V4pGqSpmLTpeM67MEnsj4Hfth86ky1ldrg-Kf4_WK1c",
 								"type": "text"
 							}
 						],
@@ -320,6 +320,75 @@
 					"response": []
 				},
 				{
+					"name": "uploadProfileImage Buffer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTIwODg3NTR9.Fn3JzxRperC1KAQk2-htRpdY0G7RUXJ4FGOtzQOJLAo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "img",
+									"type": "file",
+									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}student/profileImg1",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"profileImg1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get uploadProfileImage Buffer",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTIwODg3NTR9.Fn3JzxRperC1KAQk2-htRpdY0G7RUXJ4FGOtzQOJLAo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "img",
+									"type": "file",
+									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}student/getProfileImgBuffer",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"getProfileImgBuffer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "getMyStudents",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -453,7 +522,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0YWFkMzY2ZmVjNTdiODc3MDY1NDUiLCJpYXQiOjE3MTE1ODIwMjh9.0G2HM8lv329tsyHaT5BDK9NVKrTJx8kCPjCzjTys90A",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTQwNjAyMzZ9.KpSvRmXaGKZTiIHkijbT9HwbRLZ5vXb5FQEdXB9JELs",
 								"type": "text"
 							}
 						],
@@ -804,7 +873,7 @@
 					"response": []
 				},
 				{
-					"name": "uploadProfileImage Buffer Copy",
+					"name": "Get uploadProfileImage Buffer",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
