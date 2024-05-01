@@ -142,15 +142,27 @@ class Student {
   };
   static updateInfo = async (req, res) => {
     try {
+      let imageBuffer;
+      let student;
       if (req.body.password) {
         req.body.password = await bcryptjs.hash(req.body.password, 8);
       }
+      if (req.file) {
+        imageBuffer = req.file.buffer;
 
-      const student = await studentModel.findOneAndUpdate(
-        { email: req.body.email },
-        req.body,
-        { new: true }
-      );
+        student = await studentModel.findOneAndUpdate(
+          { email: req.body.email },
+          { ...req.body, bufferProfileImage: imageBuffer },
+          { new: true }
+        );
+      } else {
+        student = await studentModel.findOneAndUpdate(
+          { email: req.body.email },
+          { ...req.body },
+          { new: true }
+        );
+      }
+
       if (!student) {
         return myHelper.resHandler(
           res,
@@ -196,7 +208,7 @@ class Student {
         { username: req.body.username },
         { bufferProfileImage: req.body.imageBuffer },
         { new: true }
-    );
+      );
 
       res.status(201).json({ message: imageBuffer });
     } catch (error) {
