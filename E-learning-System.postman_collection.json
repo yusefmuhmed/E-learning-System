@@ -893,18 +893,18 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTIwODg3NTR9.Fn3JzxRperC1KAQk2-htRpdY0G7RUXJ4FGOtzQOJLAo",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "img",
-									"type": "file",
-									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"yusefmuhmed6766\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}student/getProfileImgBuffer",
