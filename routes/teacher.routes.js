@@ -11,7 +11,7 @@ router.post("/logout", auth, Teacher.logOut);
 
 router.post("/resetPassword", Teacher.resetPassword);
 router.post("/verifyOTP", Teacher.verifyOTP);
-router.put("/updateInfo", Teacher.updateInfo);
+router.post("/updateInfo",upload.single("bufferProfileImage"), Teacher.updateInfo);
 
 router.post("/me", auth, Teacher.profile);
 router.get("/single/:id", Teacher.getSingle);
