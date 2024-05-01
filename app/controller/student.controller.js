@@ -10,10 +10,22 @@ const upload = multer({
 class Student {
   static register = async (req, res) => {
     try {
+      let studentData
       if (req.body.password.length < 6)
         throw new Error("password must be more than 6");
-      const studentData = new studentModel(req.body);
-      await studentData.save();
+
+      if (req.file) {
+        const imageBuffer = req.file.buffer;
+        studentData = new studentModel({
+          ...req.body,
+          bufferProfileImage: imageBuffer,
+        });
+
+        await studentData.save();
+      } else {
+        studentData = new studentModel(req.body);
+        await studentData.save();
+      }
       myHelper.resHandler(
         res,
         200,
@@ -190,7 +202,9 @@ class Student {
         return res.status(400).json({ error: "No file uploaded" });
       }
 
-      const student = await studentModel.findOne({username:req.body.username});
+      const student = await studentModel.findOne({
+        username: req.body.username,
+      });
       if (!student) {
         return res.status(404).json({ error: "User not found" });
       }
@@ -201,7 +215,7 @@ class Student {
         { username: req.body.username },
         { bufferProfileImage: req.body.imageBuffer },
         { new: true }
-    );
+      );
 
       res.status(201).json({ imageBuffer: imageBuffer });
     } catch (error) {
@@ -212,13 +226,13 @@ class Student {
 
   static getImageBuffer = async (req, res) => {
     try {
-      const student = await studentModel.findOne({username:req.body.username});
+      const student = await studentModel.findOne({
+        username: req.body.username,
+      });
       if (!student || !student.bufferProfileImage) {
         return res.status(404).json({ error: "Image not found" });
       }
 
-      //res.set("Content-Type", "image/jpeg");
-      //res.send(student.bufferProfileImage);
       res.status(201).json({ imageBuffer: student.bufferProfileImage });
     } catch (error) {
       console.error("Error retrieving image:", error);

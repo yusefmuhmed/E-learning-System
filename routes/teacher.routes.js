@@ -5,7 +5,7 @@ const StudentAndTeacher = require("../app/controller/student&teacher.controller"
 const { auth } = require("../app/middleware/teacher.auth.middleware");
 const upload = require("../app/middleware/fileUpload.middleware");
 
-router.post("/register", Teacher.register);
+router.post("/register", upload.single("bufferProfileImage"),Teacher.register);
 router.post("/login", Teacher.login);
 router.post("/logout", auth, Teacher.logOut);
 
@@ -14,7 +14,7 @@ router.post("/verifyOTP", Teacher.verifyOTP);
 router.put("/updateInfo", Teacher.updateInfo);
 
 router.post("/me", auth, Teacher.profile);
-router.get("/single/:id", auth, Teacher.getSingle);
+router.get("/single/:id", Teacher.getSingle);
 router.get("/", auth, Teacher.allTeachers);
 router.get("/getMyStudents", auth, StudentAndTeacher.getMyStudents);
 

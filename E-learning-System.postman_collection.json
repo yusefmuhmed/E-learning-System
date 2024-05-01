@@ -474,13 +474,54 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"jennifer\",\r\n    \"lastName\": \"smith\",\r\n    \"email\": \"yusefmuhmed6766@gmail.com\",\r\n    \"username\": \"yusefmuhmed6766\",\r\n    \"class\": \"الثاني الابتدائي\",\r\n    \"password\": \"SecurePass123\",\r\n    \"phoneNum\": \"+201234567890\",\r\n    \"introVideoLink\": \"https://www.youtube.com/jennysmith_intro\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firstName",
+									"value": "jennifer",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "smith",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "yusef@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "yusef",
+									"type": "text"
+								},
+								{
+									"key": "class",
+									"value": "الثاني الابتدائي",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "SecurePass123",
+									"type": "text"
+								},
+								{
+									"key": "phoneNum",
+									"value": "01234567890",
+									"type": "text"
+								},
+								{
+									"key": "introVideoLink",
+									"value": "https://www.youtube.com/jennysmith_intro",
+									"type": "text"
+								},
+								{
+									"key": "bufferProfileImage",
+									"type": "file",
+									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{baseUrl}}student/register",
@@ -501,7 +542,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"yusefmuhmed6766\",\r\n    \"password\": \"Pp123456+\"\r\n}",
+							"raw": "{\r\n    \"username\": \"yusefmuhmed6766\",\r\n    \"password\": \"SecurePass123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -692,7 +733,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTE4MzUyNTh9.FqCsJpzQVTkwDc2S-apc68CjEGY--edwwF1j06wNrjM",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjMyMGY5OWUwZmQwMTQ3MTI2YTg0ZTMiLCJpYXQiOjE3MTQ1NTY4NDJ9.dksW4sVcw80BFrJyKCKJen5-flCpW8V0tZQNQ1pkX50",
 								"type": "text"
 							}
 						],
@@ -899,7 +940,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"yusefmuhmed6766\"\r\n}",
+							"raw": "{\r\n    \"username\":\"yusef\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

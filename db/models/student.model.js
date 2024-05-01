@@ -89,8 +89,8 @@ const studentSchema = mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Teacher',
-        unique: true,
-        trim: true
+        trim: true,
+        required:false
       }
     ],
     tokens: [

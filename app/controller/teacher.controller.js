@@ -7,8 +7,19 @@ class Teacher {
     try {
       if (req.body.password.length < 6)
         throw new Error("password must be more than 6");
-      const teacherData = new teacherModel(req.body);
-      await teacherData.save();
+        let teacherData
+        if (req.file) {
+          const imageBuffer = req.file.buffer;
+          teacherData = new teacherModel({
+            ...req.body,
+            bufferProfileImage: imageBuffer,
+          });
+  
+          await teacherData.save();
+        } else {
+          teacherData = new teacherModel(req.body);
+          await teacherData.save();
+        }
       myHelper.resHandler(
         res,
         200,
