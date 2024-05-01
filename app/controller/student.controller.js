@@ -10,10 +10,22 @@ const upload = multer({
 class Student {
   static register = async (req, res) => {
     try {
+      let studentData
       if (req.body.password.length < 6)
         throw new Error("password must be more than 6");
-      const studentData = new studentModel(req.body);
-      await studentData.save();
+
+      if (req.file) {
+        const imageBuffer = req.file.buffer;
+        studentData = new studentModel({
+          ...req.body,
+          bufferProfileImage: imageBuffer,
+        });
+
+        await studentData.save();
+      } else {
+        studentData = new studentModel(req.body);
+        await studentData.save();
+      }
       myHelper.resHandler(
         res,
         200,
@@ -202,6 +214,13 @@ class Student {
         return res.status(400).json({ error: "No file uploaded" });
       }
 
+      const student = await studentModel.findOne({
+        username: req.body.username,
+      });
+      if (!student) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
       const imageBuffer = req.file.buffer;
 
       const updatedStudent = await studentModel.findOneAndUpdate(
@@ -210,7 +229,7 @@ class Student {
         { new: true }
       );
 
-      res.status(201).json({ message: imageBuffer });
+      res.status(201).json({ imageBuffer: imageBuffer });
     } catch (error) {
       console.error("Error uploading image:", error);
       res.status(500).json({ error: "Internal server error" });
@@ -219,13 +238,14 @@ class Student {
 
   static getImageBuffer = async (req, res) => {
     try {
-      const student = await studentModel.findById(req.student.id);
+      const student = await studentModel.findOne({
+        username: req.body.username,
+      });
       if (!student || !student.bufferProfileImage) {
         return res.status(404).json({ error: "Image not found" });
       }
 
-      res.set("Content-Type", "image/jpeg"); // Set the response content type
-      res.send(student.bufferProfileImage); // Send the image buffer as the response
+      res.status(201).json({ imageBuffer: student.bufferProfileImage });
     } catch (error) {
       console.error("Error retrieving image:", error);
       res.status(500).json({ error: "Internal server error" });

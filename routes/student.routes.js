@@ -5,7 +5,7 @@ const StudentAndTeacher = require("../app/controller/student&teacher.controller"
 const { auth } = require("../app/middleware/student.auth.middleware");
 const upload = require("../app/middleware/fileUpload.middleware");
 
-router.post("/register", Student.register);
+router.post("/register", upload.single("bufferProfileImage"),Student.register);
 router.post("/login", Student.login);
 router.post("/logout", auth, Student.logOut);
 
@@ -23,7 +23,7 @@ router.post(
   upload.single("img"),
   Student.uploadImageBuffer
 );
-router.get("/getProfileImgBuffer", auth,Student.getImageBuffer);
+router.get("/getProfileImgBuffer",Student.getImageBuffer);
 
 router.post(
   "/sendConnectToTeacher/:id",

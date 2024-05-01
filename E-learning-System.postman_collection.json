@@ -15,13 +15,69 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"jennifer\",\r\n    \"lastName\": \"smith\",\r\n    \"email\": \"mas3o3ud1222@gmail.com\",\r\n    \"username\": \"jennysmith122212\",\r\n    \"classes\": [\r\n        {\r\n            \"class\": \"الثالث الابتدائي\"\r\n        },\r\n        {\r\n            \"class\": \"third primary\"\r\n        }\r\n    ],\r\n    \"password\": \"SecurePass123\",\r\n    \"phoneNum\": \"+201234567890\",\r\n    \"introVideoLink\": \"https://www.youtube.com/jennysmith_intro\",\r\n    \"subjects\": [\r\n        {\r\n            \"subject\": \"arabic\"\r\n        },\r\n        {\r\n            \"subject\": \"لغه عربيه\"\r\n        }\r\n    ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firstName",
+									"value": " jennifer ",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": " smith",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": " mas3o3ud122@gmail.com ",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "jeny",
+									"type": "text"
+								},
+								{
+									"key": "classes[0][class]",
+									"value": " الثالث الابتدائي ",
+									"type": "text"
+								},
+								{
+									"key": "classes[1][class]",
+									"value": " third primary ",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": " SecurePass123 ",
+									"type": "text"
+								},
+								{
+									"key": "phoneNum",
+									"value": "01234567890",
+									"type": "text"
+								},
+								{
+									"key": "introVideoLink",
+									"value": " https://www.youtube.com/jennysmith_intro ",
+									"type": "text"
+								},
+								{
+									"key": "subjects[0][subject]",
+									"value": " arabic ",
+									"type": "text"
+								},
+								{
+									"key": "subjects[1][subject]",
+									"value": " لغه عربيه",
+									"type": "text"
+								},
+								{
+									"key": "bufferProfileImage",
+									"type": "file",
+									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{baseUrl}}teacher/register",
@@ -69,7 +125,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA4NzhkMjk2OGQwMTlkMjRjOTg5NmMiLCJpYXQiOjE3MTQwNjAxOTd9.V4pGqSpmLTpeM67MEnsj4Hfth86ky1ldrg-Kf4_WK1c",
-								"type": "text"
+								"type": "text",
+								"uuid": "c8fbf503-8b2f-4b45-811a-9f071071b8f2"
 							}
 						],
 						"url": {
@@ -92,7 +149,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0OWViMDFlN2Q5Y2I2MGYxNzE5ZDEiLCJpYXQiOjE3MTE1Nzk2OTV9.5SU-Y8XBbhuw_mmZoQ5pc4ZcAUh2nysEikdBHGzzF2c",
-								"type": "text"
+								"type": "text",
+								"uuid": "090e9177-476c-44bc-a5e4-42c46db772d8"
 							}
 						],
 						"url": {
@@ -247,7 +305,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0OWViMDFlN2Q5Y2I2MGYxNzE5ZDEiLCJpYXQiOjE3MTE1Nzk2OTV9.5SU-Y8XBbhuw_mmZoQ5pc4ZcAUh2nysEikdBHGzzF2c",
-								"type": "text"
+								"type": "text",
+								"uuid": "70bc5161-abb8-43b4-83db-c58d53170eac"
 							}
 						],
 						"url": {
@@ -271,7 +330,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0OWViMDFlN2Q5Y2I2MGYxNzE5ZDEiLCJpYXQiOjE3MTE1Nzk2OTV9.5SU-Y8XBbhuw_mmZoQ5pc4ZcAUh2nysEikdBHGzzF2c",
-								"type": "text"
+								"type": "text",
+								"uuid": "ec85f509-1859-45d2-91d5-784b0f18c099"
 							}
 						],
 						"url": {
@@ -294,7 +354,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0OWViMDFlN2Q5Y2I2MGYxNzE5ZDEiLCJpYXQiOjE3MTE1Nzk2OTV9.5SU-Y8XBbhuw_mmZoQ5pc4ZcAUh2nysEikdBHGzzF2c",
-								"type": "text"
+								"type": "text",
+								"uuid": "b120feef-d358-48fb-8ad0-1edb447a7654"
 							}
 						],
 						"body": {
@@ -327,7 +388,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTIwODg3NTR9.Fn3JzxRperC1KAQk2-htRpdY0G7RUXJ4FGOtzQOJLAo",
-								"type": "text"
+								"type": "text",
+								"uuid": "5effd25f-1b84-434c-9c0c-982c2f27c019"
 							}
 						],
 						"body": {
@@ -368,23 +430,22 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTIwODg3NTR9.Fn3JzxRperC1KAQk2-htRpdY0G7RUXJ4FGOtzQOJLAo",
-								"type": "text"
+								"uuid": "912a22cb-4908-447b-b9e8-bf715383345a"
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "img",
-									"type": "file",
-									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"jeny\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}student/getProfileImgBuffer",
+							"raw": "{{baseUrl}}teacher/getProfileImgBuffer",
 							"host": [
-								"{{baseUrl}}student"
+								"{{baseUrl}}teacher"
 							],
 							"path": [
 								"getProfileImgBuffer"
@@ -404,7 +465,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA4NzhkMjk2OGQwMTlkMjRjOTg5NmMiLCJpYXQiOjE3MTE4MzE1NDd9.XEcLyRjytwfXxFgctcW4wcp3LC2VQ_cLfYbpsbuEG4U",
-								"type": "text"
+								"type": "text",
+								"uuid": "a353abf7-9158-404f-9b99-12cc182fc4e2"
 							}
 						],
 						"body": {
@@ -439,7 +501,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA4NzhkMjk2OGQwMTlkMjRjOTg5NmMiLCJpYXQiOjE3MTE4MzE1NDd9.XEcLyRjytwfXxFgctcW4wcp3LC2VQ_cLfYbpsbuEG4U",
-								"type": "text"
+								"type": "text",
+								"uuid": "e3dd7d8b-7266-4d2f-be98-1427e141f539"
 							}
 						],
 						"body": {
@@ -474,13 +537,54 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"jennifer\",\r\n    \"lastName\": \"smith\",\r\n    \"email\": \"yusefmuhmed6766@gmail.com\",\r\n    \"username\": \"yusefmuhmed6766\",\r\n    \"class\": \"الثاني الابتدائي\",\r\n    \"password\": \"SecurePass123\",\r\n    \"phoneNum\": \"+201234567890\",\r\n    \"introVideoLink\": \"https://www.youtube.com/jennysmith_intro\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firstName",
+									"value": "jennifer",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "smith",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "yusef@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "yusef",
+									"type": "text"
+								},
+								{
+									"key": "class",
+									"value": "الثاني الابتدائي",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "SecurePass123",
+									"type": "text"
+								},
+								{
+									"key": "phoneNum",
+									"value": "01234567890",
+									"type": "text"
+								},
+								{
+									"key": "introVideoLink",
+									"value": "https://www.youtube.com/jennysmith_intro",
+									"type": "text"
+								},
+								{
+									"key": "bufferProfileImage",
+									"type": "file",
+									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{baseUrl}}student/register",
@@ -501,7 +605,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"yusefmuhmed6766\",\r\n    \"password\": \"Pp123456+\"\r\n}",
+							"raw": "{\r\n    \"username\": \"yusefmuhmed6766\",\r\n    \"password\": \"SecurePass123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -528,7 +632,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTQwNjAyMzZ9.KpSvRmXaGKZTiIHkijbT9HwbRLZ5vXb5FQEdXB9JELs",
-								"type": "text"
+								"type": "text",
+								"uuid": "88c652b5-995e-4793-820d-c47700950291"
 							}
 						],
 						"url": {
@@ -551,7 +656,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTE2Njk1MTl9.EEuM8Loy85NIAmP3ZhXiTyfGQ7WNMw3Q_Ni2TPFZerY",
-								"type": "text"
+								"type": "text",
+								"uuid": "d513a264-178c-44b9-b9b9-ef77ea418d25"
 							}
 						],
 						"body": {
@@ -661,7 +767,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTE4MzEyODF9.JppZxU5xypSbzh8YBMJED5CvpoSdjOcNdOlpSDoGRW4",
-								"type": "text"
+								"type": "text",
+								"uuid": "68c3fbc2-60f4-4cb4-9ef3-55feb59de475"
 							}
 						],
 						"body": {
@@ -692,8 +799,9 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTE4MzUyNTh9.FqCsJpzQVTkwDc2S-apc68CjEGY--edwwF1j06wNrjM",
-								"type": "text"
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjMyMGY5OWUwZmQwMTQ3MTI2YTg0ZTMiLCJpYXQiOjE3MTQ1NTY4NDJ9.dksW4sVcw80BFrJyKCKJen5-flCpW8V0tZQNQ1pkX50",
+								"type": "text",
+								"uuid": "5ccb5567-ed94-4335-9477-434f61f51e13"
 							}
 						],
 						"body": {
@@ -725,7 +833,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTIwMDU0NzZ9.2BbeRrpnJUBHHT2J9nhHFOstPoy4wU-RiOaSbP7hKTo",
-								"type": "text"
+								"type": "text",
+								"uuid": "be2a2807-ebe1-47e7-a1d1-2507eabd1557"
 							}
 						],
 						"url": {
@@ -749,7 +858,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0YWFkMzY2ZmVjNTdiODc3MDY1NDUiLCJpYXQiOjE3MTE1ODIwMDZ9.BkYzyZ1FCJ6Y9X0qSVuZHM7d3H_4mlQtOdangM2cDNQ",
-								"type": "text"
+								"type": "text",
+								"uuid": "e9c13760-6d75-4e0e-8a5b-775019110535"
 							}
 						],
 						"url": {
@@ -773,7 +883,8 @@
 							{
 								"key": "locale",
 								"value": "ar",
-								"type": "text"
+								"type": "text",
+								"uuid": "fd800e79-5a88-4213-855c-c2b509a6ed7f"
 							}
 						],
 						"url": {
@@ -796,7 +907,8 @@
 							{
 								"key": "locale",
 								"value": "en",
-								"type": "text"
+								"type": "text",
+								"uuid": "7ebeed04-c172-420b-b1c3-c01fade4e4be"
 							}
 						],
 						"url": {
@@ -819,7 +931,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0YWFkMzY2ZmVjNTdiODc3MDY1NDUiLCJpYXQiOjE3MTE1ODIwMDZ9.BkYzyZ1FCJ6Y9X0qSVuZHM7d3H_4mlQtOdangM2cDNQ",
-								"type": "text"
+								"type": "text",
+								"uuid": "9e6134ca-359b-4997-8f49-fac5bca6d37a"
 							}
 						],
 						"body": {
@@ -852,7 +965,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTIwODg3NTR9.Fn3JzxRperC1KAQk2-htRpdY0G7RUXJ4FGOtzQOJLAo",
-								"type": "text"
+								"type": "text",
+								"uuid": "1dfe182e-00c5-453f-8f2a-38948d25d855"
 							}
 						],
 						"body": {
@@ -893,18 +1007,19 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTIwODg3NTR9.Fn3JzxRperC1KAQk2-htRpdY0G7RUXJ4FGOtzQOJLAo",
-								"type": "text"
+								"type": "text",
+								"uuid": "b93d5a95-4337-4cd1-b0f5-9fd7cbec7edb",
+								"disabled": true
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "img",
-									"type": "file",
-									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"yusef\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
 							"raw": "{{baseUrl}}student/getProfileImgBuffer",
@@ -929,7 +1044,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTE4MzEyODF9.JppZxU5xypSbzh8YBMJED5CvpoSdjOcNdOlpSDoGRW4",
-								"type": "text"
+								"type": "text",
+								"uuid": "1531dcdc-7efa-4c47-ad08-24ab597c83bc"
 							}
 						],
 						"body": {
@@ -961,7 +1077,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTE4OTc1Mzh9.ttHNkJC6lzCPGOHe27Oiofe6GsfGT6gjoUFoSieebpo",
-								"type": "text"
+								"type": "text",
+								"uuid": "b24f78e8-307b-4219-9553-fcb3322ab38d"
 							}
 						],
 						"url": {
