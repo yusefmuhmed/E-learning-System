@@ -23,7 +23,7 @@ router.post(
   upload.single("img"),
   Student.uploadImageBuffer
 );
-router.get("/getProfileImgBuffer", auth,Student.getImageBuffer);
+router.get("/getProfileImgBuffer",Student.getImageBuffer);
 
 router.post(
   "/sendConnectToTeacher/:id",

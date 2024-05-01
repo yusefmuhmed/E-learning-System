@@ -190,6 +190,11 @@ class Student {
         return res.status(400).json({ error: "No file uploaded" });
       }
 
+      const student = await studentModel.findOne({username:req.body.username});
+      if (!student) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
       const imageBuffer = req.file.buffer;
 
       const updatedStudent = await studentModel.findOneAndUpdate(
@@ -198,7 +203,7 @@ class Student {
         { new: true }
     );
 
-      res.status(201).json({ message: imageBuffer });
+      res.status(201).json({ imageBuffer: imageBuffer });
     } catch (error) {
       console.error("Error uploading image:", error);
       res.status(500).json({ error: "Internal server error" });
@@ -207,13 +212,14 @@ class Student {
 
   static getImageBuffer = async (req, res) => {
     try {
-      const student = await studentModel.findById(req.student.id);
+      const student = await studentModel.findOne({username:req.body.username});
       if (!student || !student.bufferProfileImage) {
         return res.status(404).json({ error: "Image not found" });
       }
 
-      res.set("Content-Type", "image/jpeg"); // Set the response content type
-      res.send(student.bufferProfileImage); // Send the image buffer as the response
+      //res.set("Content-Type", "image/jpeg");
+      //res.send(student.bufferProfileImage);
+      res.status(201).json({ imageBuffer: student.bufferProfileImage });
     } catch (error) {
       console.error("Error retrieving image:", error);
       res.status(500).json({ error: "Internal server error" });

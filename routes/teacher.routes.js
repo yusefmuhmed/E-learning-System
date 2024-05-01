@@ -19,6 +19,6 @@ router.get("/", auth, Teacher.allTeachers);
 router.get("/getMyStudents", auth, StudentAndTeacher.getMyStudents);
 
 router.post("/profileImg1", upload.single("img"), Teacher.uploadImageBuffer);
-router.get("/getProfileImgBuffer", auth, Teacher.getImageBuffer);
+router.get("/getProfileImgBuffer", Teacher.getImageBuffer);
 
 module.exports = router;
