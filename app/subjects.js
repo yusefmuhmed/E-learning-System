@@ -28,7 +28,7 @@ module.exports = {
       return subjects;
     }
 
-    if (locale === "en") {
+    else {
       const subjects = [
         "Arabic",
         "Mathematics",
@@ -77,7 +77,7 @@ module.exports = {
       return classes;
     }
 
-    if (locale === "en") {
+    else {
       const classes = [
         "First Primary",
         "Second Primary",
