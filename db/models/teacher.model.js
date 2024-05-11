@@ -9,14 +9,12 @@ const teacherSchema = mongoose.Schema(
       type: String,
       trim: true,
       lowercase: true,
-      maxLength: 20,
       required: true,
     },
     lastName: {
       type: String,
       trim: true,
       lowercase: true,
-      maxLength: 20,
       required: true,
     },
     email: {
@@ -55,7 +53,6 @@ const teacherSchema = mongoose.Schema(
       type: String,
       trim: true,
       required: true,
-      // match: ''
     },
     phoneNum: {
       type: String,
