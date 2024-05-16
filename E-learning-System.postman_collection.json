@@ -19,22 +19,22 @@
 							"formdata": [
 								{
 									"key": "firstName",
-									"value": " jennifer ",
+									"value": "محمود",
 									"type": "text"
 								},
 								{
 									"key": "lastName",
-									"value": " smith",
+									"value": "احمدد",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": " mas3o3ud122@gmail.com ",
+									"value": "m312@gmail.com ",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "jeny",
+									"value": "عبدالسلامم31",
 									"type": "text"
 								},
 								{
@@ -49,7 +49,7 @@
 								},
 								{
 									"key": "password",
-									"value": " SecurePass123 ",
+									"value": "SecurePass123",
 									"type": "text"
 								},
 								{
@@ -76,6 +76,21 @@
 									"key": "bufferProfileImage",
 									"type": "file",
 									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
+								},
+								{
+									"key": "status",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "female",
+									"type": "text"
+								},
+								{
+									"key": "Bio",
+									"value": "hello this is my bio hello this is my bio hello this ius my bio for first expercience to tka no are this is ",
+									"type": "text"
 								}
 							]
 						},
@@ -98,7 +113,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"jennysmith12\",\r\n    \"password\": \"Pp123456+\"\r\n}",
+							"raw": "{\r\n    \"username\": \"عبدالسلامم31\",\r\n    \"password\": \"SecurePass123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -320,6 +335,52 @@
 							"path": [
 								"single",
 								"66049eb01e7d9cb60f1719d1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Teacher Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ2MjQ4OTU5MmVhODg5MzdkMWZiZGMiLCJpYXQiOjE3MTU4NzMwMjF9.ZPJUhI6DbHZ-Eh8XTVEzuFLbhLm9OybKYPg4i98VNAc",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}teacher/getTeacherStatus/664626df1f37fce6584c52af",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								"getTeacherStatus",
+								"664626df1f37fce6584c52af"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Teacher Status",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQ2MjZkZjFmMzdmY2U2NTg0YzUyYWYiLCJpYXQiOjE3MTU4NzM1MjJ9.Em9H0jq3phRe4wOixgsHHPWGFNZM-hQTaygbb025-nc"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}teacher/changeTeacherStatus",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								"changeTeacherStatus"
 							]
 						}
 					},
@@ -551,12 +612,12 @@
 								},
 								{
 									"key": "email",
-									"value": "yusefz@gmail.com",
+									"value": "yusefzz@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "yusefz",
+									"value": "yusefzz",
 									"type": "text"
 								},
 								{
@@ -600,7 +661,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"yusef\",\r\n    \"password\": \"SecurePass123\"\r\n}",
+							"raw": "{\r\n    \"username\": \"yusefzz\",\r\n    \"password\": \"SecurePass123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -626,8 +687,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTQwNjAyMzZ9.KpSvRmXaGKZTiIHkijbT9HwbRLZ5vXb5FQEdXB9JELs",
-								"type": "text"
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNjZTYwYWY1NzliYjUwODBkNTc4Y2QiLCJpYXQiOjE3MTUyNjcwOTV9.67AioSstok1-KG4m_QANric_jUIlQ6YAwbaL0sib0Ms"
 							}
 						],
 						"url": {

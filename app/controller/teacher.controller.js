@@ -243,5 +243,24 @@ class Teacher {
       res.status(500).json({ error: "Internal server error" });
     }
   };
+
+  static getStatus = async (req, res) => {
+    try {
+      const teacher = await teacherModel.findById(req.params.id);
+      myHelper.resHandler(res, 200, true, true,teacher.status, "teacher's status fetched");
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+
+  static changeStatus = async (req, res) => {
+    try {
+      let newStatus = ! req.teacher.status
+      const teacher = await teacherModel.findByIdAndUpdate(req.teacher.id, { status: newStatus }, { new: true });
+      myHelper.resHandler(res, 200, true, true,teacher.status, "status changes successfully");
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
 }
 module.exports = Teacher;

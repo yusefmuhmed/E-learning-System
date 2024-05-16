@@ -36,6 +36,19 @@ const teacherSchema = mongoose.Schema(
       required: true,
       unique: true,
     },
+    Bio: {
+      type: String,
+      trim: true,
+    },
+    gender: {
+      type: String,
+      trim: true,
+      enum: ["ذكر", "انثى", "male", "female"],
+      required: true,
+    },
+    status: {
+      type:Boolean
+    },
     classes: [
       {
         class: {
@@ -86,8 +99,8 @@ const teacherSchema = mongoose.Schema(
     studentsIDs: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Student'
-      }
+        ref: "Student",
+      },
     ],
     bufferProfileImage: Buffer,
     requestsFromStudents: [

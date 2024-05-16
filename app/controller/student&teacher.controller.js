@@ -107,7 +107,9 @@ class Student_Teacher {
     try {
       const { subject, class: studentClass } = req.body;
 
-      const query = {};
+      let query = {
+        "status": true
+      };
 
       if (subject || studentClass) {
         query.$and = [];
