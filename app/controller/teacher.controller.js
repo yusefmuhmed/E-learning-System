@@ -12,12 +12,16 @@ class Teacher {
           const imageBuffer = req.file.buffer;
           teacherData = new teacherModel({
             ...req.body,
+            status:true,
             bufferProfileImage: imageBuffer,
           });
   
           await teacherData.save();
         } else {
-          teacherData = new teacherModel(req.body);
+          teacherData = new teacherModel({
+            ...req.body,
+            status:true
+          });
           await teacherData.save();
         }
       myHelper.resHandler(
