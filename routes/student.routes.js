@@ -4,6 +4,7 @@ const StudentAndTeacher = require("../app/controller/student&teacher.controller"
 
 const { auth } = require("../app/middleware/student.auth.middleware");
 const upload = require("../app/middleware/fileUpload.middleware");
+const Guest = require("../app/controller/guest.controller");
 
 router.post("/register", upload.single("bufferProfileImage"),Student.register);
 router.post("/login", Student.login);
@@ -39,7 +40,6 @@ router.post(
 );
 router.post(
   "/filterTeachersBySubjectAndClasses",
-  auth,
   StudentAndTeacher.filterBySubjectAndClass
 );
 
@@ -47,6 +47,12 @@ router.put(
   "/rateTeacher/:id",
   auth,
   StudentAndTeacher.rateTeacher
+);
+
+
+router.post(
+  "/loginAsGuest",
+  Guest.checkVisitedGuest
 );
 
 router.get("/classes", Student.getListOfClasses);

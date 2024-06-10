@@ -1081,6 +1081,37 @@
 					"response": []
 				},
 				{
+					"name": "Login as guest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTIwODg3NTR9.Fn3JzxRperC1KAQk2-htRpdY0G7RUXJ4FGOtzQOJLAo"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phoneNumber\":\"01012802688\",\r\n    \"deviceID\":\"132asdadasd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}student/loginAsGuest",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"loginAsGuest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get uploadProfileImage Buffer",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
