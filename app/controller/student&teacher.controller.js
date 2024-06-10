@@ -1,6 +1,7 @@
 const teacherModel = require("../../db/models/teacher.model");
 const studentModel = require("../../db/models/student.model");
 const myHelper = require("../../app/helper");
+const Teacher = require("../../db/models/teacher.model");
 
 class Student_Teacher {
   static addStudentToTeacherArray = async (req, res) => {
@@ -108,7 +109,7 @@ class Student_Teacher {
       const { subject, class: studentClass } = req.body;
 
       let query = {
-        "status": true
+        status: true,
       };
 
       if (subject || studentClass) {
@@ -152,7 +153,7 @@ class Student_Teacher {
       const student = await studentModel.findByIdAndUpdate(studentId, {
         $push: { pendingTeachersIDs: teacherId },
       });
-      
+
       const teacher = await teacherModel.findByIdAndUpdate(teacherId, {
         $push: {
           requestsFromStudents: { studentID: studentId, class: student.class },
@@ -165,6 +166,43 @@ class Student_Teacher {
         true,
         teacher,
         "Connect Sent successfully to the teacher"
+      );
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+
+  static rateTeacher = async (req, res) => {
+    try {
+      const teacherId = req.params.id;
+      const rating = req.body.rating;
+      const studentId = req.student.id;
+
+      const teacher = await Teacher.findById(teacherId);
+
+      teacher.ratings.push({ studentId: studentId, rate: rating });
+
+      const totalRatings = teacher.ratings.length;
+      const totalRatingSum = teacher.ratings.reduce(
+        (acc, curr) => acc + curr.rate,
+        0
+      );
+      teacher.ratingAverage =
+        Math.round((totalRatingSum / totalRatings) * 10) / 10;
+      teacher.totalNumberOfRatings = totalRatings;
+
+      await teacher.save();
+
+      myHelper.resHandler(
+        res,
+        200,
+        true,
+        {
+          ratingAverage: teacher.ratingAverage,
+          totalRatings: teacher.totalNumberOfRatings,
+        },
+
+        "Rating successfully submitted for the teacher"
       );
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);

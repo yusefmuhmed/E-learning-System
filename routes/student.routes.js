@@ -43,6 +43,12 @@ router.post(
   StudentAndTeacher.filterBySubjectAndClass
 );
 
+router.put(
+  "/rateTeacher/:id",
+  auth,
+  StudentAndTeacher.rateTeacher
+);
+
 router.get("/classes", Student.getListOfClasses);
 router.get("/subjects", Student.getListOfSubjects);
 

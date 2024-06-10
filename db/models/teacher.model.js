@@ -47,7 +47,7 @@ const teacherSchema = mongoose.Schema(
       required: true,
     },
     status: {
-      type:Boolean
+      type: Boolean,
     },
     classes: [
       {
@@ -109,6 +109,41 @@ const teacherSchema = mongoose.Schema(
         class: { type: String, trim: true },
       },
     ],
+    pricePerHour: {
+      type: Number,
+      trim: true,
+    },
+    ratings: [
+      {
+        studentId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Student',
+          required: true
+        },
+        rate: {
+          type: Number,
+          trim: true,
+          default: 0,
+          min: 0,
+          max: 5,
+          required: true // Assuming the rating value is required
+        }
+      }
+    ],
+    ratingAverage:{
+      type: Number,
+      trim: true,
+      default: 0,
+      min: 0,
+      max: 5,
+      set: (val) => Math.round(val * 10) / 10
+    },
+    totalNumberOfRatings:{
+      type: Number,
+      trim: true,
+      default: 0,
+      min:0
+    }
   },
   {
     timestamps: true,
