@@ -17,7 +17,7 @@ class Guest {
           "guest added successfully"
         );
       } else {
-        myHelper.resHandler(res, 401, true, false, "Not authorized guest");
+        myHelper.resHandler(res, 401, false, false, "Not authorized guest");
       }
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
