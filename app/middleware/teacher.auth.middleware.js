@@ -1,5 +1,5 @@
 const teacherModel = require("../../db/models/teacher.model")
-const myHelper = require("../helper")
+const myHelper = require("../util/helper")
 const jwt = require("jsonwebtoken")
 const auth = async(req, res, next) => {
     try{

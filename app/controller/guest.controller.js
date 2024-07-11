@@ -1,4 +1,4 @@
-const myHelper = require("../../app/helper");
+const myHelper = require("../util/helper");
 const guestModel = require("../../db/models/guest.model");
 class Guest {
   static checkVisitedGuest = async (req, res) => {

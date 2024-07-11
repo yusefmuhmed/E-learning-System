@@ -1,5 +1,5 @@
 const teacherModel = require("../../db/models/teacher.model");
-const myHelper = require("../../app/helper");
+const myHelper = require("../util/helper");
 const fs = require("fs");
 const bcryptjs = require("bcryptjs");
 class Teacher {

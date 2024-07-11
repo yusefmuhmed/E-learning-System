@@ -98,8 +98,7 @@ const teacherSchema = mongoose.Schema(
     ],
     studentsIDs: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Student",
+        studentID: { type: String, trim: true },
       },
     ],
     bufferProfileImage: Buffer,
@@ -117,8 +116,8 @@ const teacherSchema = mongoose.Schema(
       {
         studentId: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: 'Student',
-          required: true
+          ref: "Student",
+          required: true,
         },
         rate: {
           type: Number,
@@ -126,24 +125,24 @@ const teacherSchema = mongoose.Schema(
           default: 0,
           min: 0,
           max: 5,
-          required: true // Assuming the rating value is required
-        }
-      }
+          required: true, // Assuming the rating value is required
+        },
+      },
     ],
-    ratingAverage:{
+    ratingAverage: {
       type: Number,
       trim: true,
       default: 0,
       min: 0,
       max: 5,
-      set: (val) => Math.round(val * 10) / 10
+      set: (val) => Math.round(val * 10) / 10,
     },
-    totalNumberOfRatings:{
+    totalNumberOfRatings: {
       type: Number,
       trim: true,
       default: 0,
-      min:0
-    }
+      min: 0,
+    },
   },
   {
     timestamps: true,

@@ -1,6 +1,6 @@
 const teacherModel = require("../../db/models/teacher.model");
 const studentModel = require("../../db/models/student.model");
-const myHelper = require("../../app/helper");
+const myHelper = require("../util/helper");
 const Teacher = require("../../db/models/teacher.model");
 
 class Student_Teacher {
@@ -147,16 +147,19 @@ class Student_Teacher {
 
   static sendConnectToTeacher = async (req, res) => {
     try {
-      const studentId = req.student.id;
-      const teacherId = req.params.id;
+      const studentId = req.params.studentId;
+      const teacherId = req.params.teacherId;
+      let student
 
-      const student = await studentModel.findByIdAndUpdate(studentId, {
-        $push: { pendingTeachersIDs: teacherId },
-      });
+      if (myHelper.checkIsObjectId(studentId)) {
+        student = await studentModel.findByIdAndUpdate(studentId, {
+          $push: { pendingTeachersIDs: teacherId },
+        });
+      }
 
       const teacher = await teacherModel.findByIdAndUpdate(teacherId, {
         $push: {
-          requestsFromStudents: { studentID: studentId, class: student.class },
+          requestsFromStudents: { studentID: studentId, class: req.body.class },
         },
       });
 

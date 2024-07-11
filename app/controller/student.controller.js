@@ -1,5 +1,5 @@
 const studentModel = require("../../db/models/student.model");
-const myHelper = require("../../app/helper");
+const myHelper = require("../util/helper");
 const subjects = require("../../app/subjects");
 const fs = require("fs");
 const bcryptjs = require("bcryptjs");
