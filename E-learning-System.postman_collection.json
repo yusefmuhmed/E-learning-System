@@ -891,7 +891,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjMyMGY5OWUwZmQwMTQ3MTI2YTg0ZTMiLCJpYXQiOjE3MTQ1NTY4NDJ9.dksW4sVcw80BFrJyKCKJen5-flCpW8V0tZQNQ1pkX50",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
@@ -927,13 +928,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}student/sendConnectToTeacher/660878d2968d019d24c9896c",
+							"raw": "{{baseUrl}}connection/sendConnectToTeacher/1234/6632aa43de9bd511e8b32328",
 							"host": [
-								"{{baseUrl}}student"
+								"{{baseUrl}}connection"
 							],
 							"path": [
 								"sendConnectToTeacher",
-								"660878d2968d019d24c9896c"
+								"1234",
+								"6632aa43de9bd511e8b32328"
 							]
 						}
 					},
@@ -1092,7 +1094,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"phoneNumber\":\"01012802688\",\r\n    \"deviceID\":\"132asdadasd\"\r\n}",
+							"raw": "{\r\n    \"phoneNumber\":\"01012802689\",\r\n    \"deviceID\":\"132asdadasf\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
