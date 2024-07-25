@@ -1,37 +1,49 @@
-<!-- index2.html -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebSocket Teacher Client</title>
+    <title>Teacher Page</title>
 </head>
 <body>
     <h1>Teacher Page</h1>
+    <div id="notification" style="display:none;">
+        <p>New Notification</p>
+        <button id="accept">Accept</button>
+        <button id="decline">Decline</button>
+    </div>
     <script>
-        let socket = new WebSocket('ws://localhost:3030');
+        const socket = new WebSocket('ws://localhost:3000');
 
-        socket.addEventListener('open', function (event) {
-            console.log('WebSocket connected as teacher');
-        });
+        socket.onopen = () => {
+            console.log('Connected to server');
+            socket.send(JSON.stringify({ type: 'register', role: 'teacher' }));
+        };
 
-        socket.addEventListener('message', function (event) {
-            // Assume the message is a JSON string
-            console.log(event);
-            //const data = JSON.parse(event.data);
-            if (event.data.type === 'connect to teacher') {
-                confirmStudentRequest(data.studentId);
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.type === 'notification') {
+                document.getElementById('notification').style.display = 'block';
             }
-        });
+        };
 
-        function confirmStudentRequest(studentId) {
-            const confirmed = confirm(`Student ${studentId} wants to connect. Do you accept?`);
-            const response = JSON.stringify({
-              type: 'connect response',
-              studentId,
-              response: confirmed ? 'accept' : 'decline'
-            });
-            socket.send(response);
-        }
+        document.getElementById('accept').onclick = () => {
+            socket.send(JSON.stringify({ type: 'teacherResponse', response: 'accepted your request', studentId: 'student1' }));
+            document.getElementById('notification').style.display = 'none';
+        };
+
+        document.getElementById('decline').onclick = () => {
+            socket.send(JSON.stringify({ type: 'teacherResponse', response: 'declined your request', studentId: 'student1' }));
+            document.getElementById('notification').style.display = 'none';
+        };
+
+        socket.onerror = (error) => {
+            console.error('WebSocket error:', error);
+        };
+
+        socket.onclose = () => {
+            console.log('WebSocket connection closed');
+        };
     </script>
 </body>
 </html>

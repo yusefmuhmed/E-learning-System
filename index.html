@@ -1,35 +1,39 @@
-<!-- index.html for Student -->
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebSocket Client</title>
+    <title>Student Page</title>
 </head>
-
 <body>
-    <button onclick="connectToTeacher()">Connect to Teacher</button>
-
+    <h1>Student Page</h1>
+    <button id="sendNotification">Send Notification</button>
     <script>
-        let socket = new WebSocket('ws://localhost:3030');
+        const socket = new WebSocket('ws://localhost:3000');
 
-        socket.addEventListener('open', function (event) {
-            console.log('WebSocket connected');
-        });
+        socket.onopen = () => {
+            console.log('Connected to server');
+            socket.send(JSON.stringify({ type: 'register', role: 'student', studentId: 'student1' }));
+        };
 
-        socket.addEventListener('message', function (event) {
-            console.log('Message from server:', event.data);
-        });
+        document.getElementById('sendNotification').onclick = () => {
+            socket.send(JSON.stringify({ type: 'studentNotification', studentId: 'student1' }));
+        };
 
-        function connectToTeacher() {
-            const message = JSON.stringify({
-                studentId: 'tamer',
-                type: 'connect_to_teacher'
-            });
-            socket.send(message);
-            console.log('Sent connect request to teacher');
-        }
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.type === 'response') {
+                alert(`Teacher ${data.response}`);
+            }
+        };
+
+        socket.onerror = (error) => {
+            console.error('WebSocket error:', error);
+        };
+
+        socket.onclose = () => {
+            console.log('WebSocket connection closed');
+        };
     </script>
 </body>
-
 </html>
