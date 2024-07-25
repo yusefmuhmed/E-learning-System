@@ -1240,6 +1240,37 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Zoom integration",
+			"item": [
+				{
+					"name": "Generate Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"topic\": \"generate token topic\",\r\n    \"name\": \"Chrome\",\r\n    \"password\": \"pass\",\r\n    \"userIdentity\": \"\",\r\n    \"sessionKey\": \"\",\r\n    \"roleType\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}zoom/generateToken",
+							"host": [
+								"{{baseUrl}}zoom"
+							],
+							"path": [
+								"generateToken"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [

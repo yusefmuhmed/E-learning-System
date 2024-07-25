@@ -12,6 +12,7 @@ require("../db/connect");
 const teacherRoutes = require("../routes/teacher.routes");
 const studentRoutes = require("../routes/student.routes");
 
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../uploads")));
@@ -20,11 +21,11 @@ app.use("/api/teacher/", teacherRoutes);
 app.use("/api/student/", studentRoutes);
 app.use("/api/connection/", require("../routes/connectionBetweenS&T.routes"));
 
-const wss = new webSocket(server, {
-  cors: {
-    origin: "*",
-  },
-});
+app.use("/api/zoom/", require("../routes/zoom.routes"));
+
+
+
+const wss = new webSocket.Server({ server });
 initializeSocket(wss);
 
 app.all("*", (req, res) => {

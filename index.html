@@ -1,28 +1,35 @@
+<!-- index.html for Student -->
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>WebSocket Client</title>
 </head>
+
 <body>
-    client1
-    <button>send connect</button>
+    <button onclick="connectToTeacher()">Connect to Teacher</button>
+
+    <script>
+        let socket = new WebSocket('ws://localhost:3030');
+
+        socket.addEventListener('open', function (event) {
+            console.log('WebSocket connected');
+        });
+
+        socket.addEventListener('message', function (event) {
+            console.log('Message from server:', event.data);
+        });
+
+        function connectToTeacher() {
+            const message = JSON.stringify({
+                studentId: 'tamer',
+                type: 'connect_to_teacher'
+            });
+            socket.send(message);
+            console.log('Sent connect request to teacher');
+        }
+    </script>
 </body>
-
-<script>
-    const socket = new WebSocket('ws://localhost:3000');
-    socket.addEventListener('register', () => {
-        console.log('register')
-    })
-
-    socket.addEventListener('disconnect', (event) => {
-        console.log('disconnect', event.data)
-    })
-
-    const sendMessage = () => {
-        socket.send('hello from client 1')
-    }
-
-</script>
 
 </html>
