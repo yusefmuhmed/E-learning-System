@@ -58,6 +58,8 @@ wss.on("connection", (socket, req) => {
 
 // Serve your existing routes
 require("./app/app")(app);
+require('./db/connect');
+
 
 // Start the server
 server.listen(process.env.PORT, () => {
