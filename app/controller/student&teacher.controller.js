@@ -6,20 +6,19 @@ const Teacher = require("../../db/models/teacher.model");
 class Student_Teacher {
   static addStudentToTeacherArray = async (req, res) => {
     try {
-      const student = await studentModel.findById(req.body.studentId);
-      const teacher = await teacherModel.findById(req.body.teacherId);
+      const student = await studentModel.findById(req.params.studentId);
+      const teacher = await teacherModel.findById(req.params.teacherId);
 
       if (!student || !teacher) {
         myHelper.resHandler(res, 404, false, "Data not found", e.message);
       }
 
-      student.teachersIDs.push(req.body.teacherId);
-      teacher.studentsIDs.push(req.body.studentId);
+      student.teachersIDs.push(req.params.teacherId);
+      teacher.studentsIDs.push(req.params.studentId);
 
       await student.save();
       await teacher.save();
 
-      //return { student, teacher };
       myHelper.resHandler(
         res,
         200,
@@ -149,25 +148,56 @@ class Student_Teacher {
     try {
       const studentId = req.params.studentId;
       const teacherId = req.params.teacherId;
-      let student
+      const className = req.body.class;
+      const duration = req.body.duration;
 
-      if (myHelper.checkIsObjectId(studentId)) {
-        student = await studentModel.findByIdAndUpdate(studentId, {
-          $push: { pendingTeachersIDs: teacherId },
-        });
+      if (!studentId || !teacherId || !className || !duration) {
+        myHelper.resHandler(
+          res,
+          404,
+          false,
+          "Data not found",
+          "Please provide all required fields"
+        );
       }
 
-      const teacher = await teacherModel.findByIdAndUpdate(teacherId, {
-        $push: {
-          requestsFromStudents: { studentID: studentId, class: req.body.class },
+      let student;
+
+      if (myHelper.checkIsObjectId(studentId)) {
+        student = await studentModel.findByIdAndUpdate(
+          studentId,
+          {
+            $push: {
+              pendingTeachersIDs: {
+                teachersID: teacherId,
+                durationInMinutes: duration,
+                class: className,
+              },
+            },
+          },
+          { new: true }
+        );
+      }
+
+      const teacher = await teacherModel.findByIdAndUpdate(
+        teacherId,
+        {
+          $push: {
+            requestsFromStudents: {
+              studentID: studentId,
+              class: className,
+              durationInMinutes: duration,
+            },
+          },
         },
-      });
+        { new: true }
+      );
 
       myHelper.resHandler(
         res,
         200,
         true,
-        teacher,
+        '',
         "Connect Sent successfully to the teacher"
       );
     } catch (e) {

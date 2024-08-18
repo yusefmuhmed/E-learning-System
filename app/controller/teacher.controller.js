@@ -2,28 +2,29 @@ const teacherModel = require("../../db/models/teacher.model");
 const myHelper = require("../util/helper");
 const fs = require("fs");
 const bcryptjs = require("bcryptjs");
+const SessionMap = require("../util/sessionMapCache");
 class Teacher {
   static register = async (req, res) => {
     try {
       if (req.body.password.length < 6)
         throw new Error("password must be more than 6");
-        let teacherData
-        if (req.file) {
-          const imageBuffer = req.file.buffer;
-          teacherData = new teacherModel({
-            ...req.body,
-            status:true,
-            bufferProfileImage: imageBuffer,
-          });
-  
-          await teacherData.save();
-        } else {
-          teacherData = new teacherModel({
-            ...req.body,
-            status:true
-          });
-          await teacherData.save();
-        }
+      let teacherData;
+      if (req.file) {
+        const imageBuffer = req.file.buffer;
+        teacherData = new teacherModel({
+          ...req.body,
+          status: true,
+          bufferProfileImage: imageBuffer,
+        });
+
+        await teacherData.save();
+      } else {
+        teacherData = new teacherModel({
+          ...req.body,
+          status: true,
+        });
+        await teacherData.save();
+      }
       myHelper.resHandler(
         res,
         200,
@@ -212,7 +213,9 @@ class Teacher {
         return res.status(400).json({ error: "No file uploaded" });
       }
 
-      const student = await studentModel.findOne({username:req.body.username});
+      const student = await studentModel.findOne({
+        username: req.body.username,
+      });
       if (!student) {
         return res.status(404).json({ error: "User not found" });
       }
@@ -234,7 +237,9 @@ class Teacher {
 
   static getImageBuffer = async (req, res) => {
     try {
-      const teacher = await teacherModel.findOne({username:req.body.username});
+      const teacher = await teacherModel.findOne({
+        username: req.body.username,
+      });
       if (!teacher || !teacher.bufferProfileImage) {
         return res.status(404).json({ error: "Image not found" });
       }
@@ -251,7 +256,14 @@ class Teacher {
   static getStatus = async (req, res) => {
     try {
       const teacher = await teacherModel.findById(req.params.id);
-      myHelper.resHandler(res, 200, true, true,teacher.status, "teacher's status fetched");
+      myHelper.resHandler(
+        res,
+        200,
+        true,
+        true,
+        teacher.status,
+        "teacher's status fetched"
+      );
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
@@ -259,9 +271,105 @@ class Teacher {
 
   static changeStatus = async (req, res) => {
     try {
-      let newStatus = ! req.teacher.status
-      const teacher = await teacherModel.findByIdAndUpdate(req.teacher.id, { status: newStatus }, { new: true });
-      myHelper.resHandler(res, 200, true, true,teacher.status, "status changes successfully");
+      let newStatus = !req.teacher.status;
+      const teacher = await teacherModel.findByIdAndUpdate(
+        req.teacher.id,
+        { status: newStatus },
+        { new: true }
+      );
+      myHelper.resHandler(
+        res,
+        200,
+        true,
+        true,
+        teacher.status,
+        "status changes successfully"
+      );
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+
+  static getStudentsRequests = async (req, res) => {
+    try {
+      const teacher = await teacherModel.findById(req.teacher.id);
+      myHelper.resHandler(
+        res,
+        200,
+        true,
+        teacher.requestsFromStudents,
+        "Students requests fetched"
+      );
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+
+  static approveRequest = async (req, res) => {
+    try {
+      const teacherId = req.params.teacherId;
+      const studentId = req.params.studentId;
+
+      const session = SessionMap.generateSession(
+        studentId,
+        teacherId,
+        req.body.duration
+      );
+
+      const teacher = await teacherModel.findOneAndUpdate(
+        { _id: teacherId },
+        { $pull: { requestsFromStudents: { studentID: studentId } } },
+        { new: true }
+      );
+      myHelper.resHandler(
+        res,
+        200,
+        true,
+        session,
+        "Session created successfully"
+      );
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+
+  static rejectRequest = async (req, res) => {
+    try {
+      const teacherId = req.params.teacherId;
+      const studentId = req.params.studentId;
+
+      const teacher = await teacherModel.findOneAndUpdate(
+        { _id: teacherId },
+        { $pull: { requestsFromStudents: { studentID: studentId } } },
+        { new: true }
+      );
+
+      if (!teacher) {
+        return myHelper.resHandler(res, 404, false, null, "Teacher not found");
+      }
+
+      myHelper.resHandler(
+        res,
+        200,
+        true,
+        teacher,
+        "Request rejected successfully"
+      );
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+
+  static checkIfTeacherHasSession = async (req, res) => {
+    try {
+      const sessionName = SessionMap.checkIfTeacherHasSession(
+        req.params.teacherId
+      );
+
+      if (!sessionName) {
+        return myHelper.resHandler(res, 404, false, null, "Session not found");
+      }
+      myHelper.resHandler(res, 200, true, sessionName, "Session found");
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }

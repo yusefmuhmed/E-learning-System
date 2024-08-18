@@ -7,10 +7,11 @@ const multer = require("multer");
 const upload = multer({
   storage: multer.memoryStorage(), // Store uploaded files in memory as buffers
 }).single("image");
+const SessionMap = require("../util/sessionMapCache");
 class Student {
   static register = async (req, res) => {
     try {
-      let studentData
+      let studentData;
       if (req.body.password.length < 6)
         throw new Error("password must be more than 6");
 
@@ -265,6 +266,21 @@ class Student {
     try {
       const subject = await subjects.getSubjects(req.headers.locale);
       myHelper.resHandler(res, 200, true, subject, "Subjects fetched");
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+
+  static checkIfStudentHasSession = async (req, res) => {
+    try {
+      const sessionName = SessionMap.checkIfStudentHasSession(
+        req.params.studentId
+      );
+
+      if (!sessionName) {
+        return myHelper.resHandler(res, 404, false, null, "Session not found");
+      }
+      myHelper.resHandler(res, 200, true, sessionName, "Session found");
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }

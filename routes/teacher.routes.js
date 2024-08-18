@@ -17,6 +17,12 @@ router.post("/me", auth, Teacher.profile);
 router.get("/single/:id", Teacher.getSingle);
 router.get("/", auth, Teacher.allTeachers);
 router.get("/getMyStudents", auth, StudentAndTeacher.getMyStudents);
+router.get("/getStudentsRequests", auth, Teacher.getStudentsRequests);
+
+router.get("/checkIfTeacherHasSession/:teacherId", Teacher.checkIfTeacherHasSession);
+
+router.get("/approveRequest/:studentId/:teacherId", Teacher.approveRequest);
+router.get("/rejectRequest/:studentId/:teacherId", Teacher.rejectRequest);
 
 router.post("/profileImg1", upload.single("img"), Teacher.uploadImageBuffer);
 router.get("/getProfileImgBuffer", Teacher.getImageBuffer);

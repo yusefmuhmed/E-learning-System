@@ -42,6 +42,8 @@ router.post(
   StudentAndTeacher.filterBySubjectAndClass
 );
 
+router.get("/checkIfStudentHasSession", Student.checkIfStudentHasSession);
+
 router.put(
   "/rateTeacher/:id",
   auth,

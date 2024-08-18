@@ -77,16 +77,20 @@ const studentSchema = mongoose.Schema(
     teachersIDs: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Teacher'
-      }
+        ref: "Teacher",
+      },
     ],
     pendingTeachersIDs: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Teacher',
-        trim: true,
-        required:false
-      }
+        teachersID: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Teacher",
+          trim: true,
+          required: false,
+        },
+        durationInMinutes: { type: Number, required: false },
+        class:{ type:String }
+      },
     ],
     tokens: [
       {
