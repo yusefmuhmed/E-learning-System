@@ -5,19 +5,20 @@ const cors = require("cors");
 const http = require("http");
 
 const app = express();
-const server = http.createServer(app); // Create HTTP server
+const server = http.createServer(app);
+
+require("./app/util/scheduleTasks");
+
+
 
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, "public")));
 
 require("./app/app")(app);
-require('./db/connect');
+require("./db/connect");
 
-
-// Start the server
 server.listen(process.env.PORT, () => {
-    console.log(`Server is running on http://localhost:${process.env.PORT}`);
+  console.log(`Server is running on http://localhost:${process.env.PORT}`);
 });

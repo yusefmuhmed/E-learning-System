@@ -197,7 +197,7 @@ class Student_Teacher {
         res,
         200,
         true,
-        '',
+        "",
         "Connect Sent successfully to the teacher"
       );
     } catch (e) {
@@ -209,11 +209,12 @@ class Student_Teacher {
     try {
       const teacherId = req.params.id;
       const rating = req.body.rating;
+      const feedbackMsg = req.body.feedback;
       const studentId = req.student.id;
 
       const teacher = await Teacher.findById(teacherId);
 
-      teacher.ratings.push({ studentId: studentId, rate: rating });
+      teacher.ratings.push({ studentId: studentId, rate: rating, feedbackMsg: feedbackMsg });
 
       const totalRatings = teacher.ratings.length;
       const totalRatingSum = teacher.ratings.reduce(
@@ -265,6 +266,24 @@ class Student_Teacher {
         true,
         teachers,
         "Pending Teachers fetched successfully"
+      );
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+
+  static checkIfTeacherIsOnlineOrOffline = async (req, res) => {
+    try {
+      const teacherId = req.params.id;
+      const teacher = await teacherModel.findById(teacherId, {
+        status: 1,
+      });
+      myHelper.resHandler(
+        res,
+        200,
+        true,
+        { online: teacher.status },
+        "Online status fetched successfully"
       );
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);

@@ -81,6 +81,7 @@ const teacherSchema = mongoose.Schema(
     tokens: [
       {
         token: { type: String, required: true },
+        expiresAt: { type: Date, required: true },
       },
     ],
     OTP: {
@@ -128,6 +129,12 @@ const teacherSchema = mongoose.Schema(
           max: 5,
           required: true, // Assuming the rating value is required
         },
+        feedbackMsg: {
+          type: String,
+          trim: true,
+          default: "",
+          maxLength: 500,
+        }
       },
     ],
     ratingAverage: {
@@ -173,10 +180,29 @@ teacherSchema.methods.toJSON = function () {
 };
 teacherSchema.methods.generateToken = async function () {
   const teacherData = this;
-  const token = jwt.sign({ _id: teacherData._id }, process.env.tokenPass);
-  teacherData.tokens = teacherData.tokens.concat({ token });
+  const expiresIn = 24 * 60 * 60; 
+  const token = jwt.sign(
+    { _id: teacherData._id }, 
+    process.env.tokenPass, 
+    { expiresIn }
+  );
+  const expiresAt = new Date(Date.now() + expiresIn * 1000);
+  teacherData.tokens = teacherData.tokens.concat({ token, expiresAt });
   await teacherData.save();
+  
   return token;
 };
+
+teacherSchema.statics.removeExpiredTokens = async function () {
+  const now = new Date();
+
+  await this.updateMany(
+    {},
+    { $pull: { tokens: { expiresAt: { $lte: now } } } }
+  );
+
+  console.log('Expired tokens removed');
+};
+
 const Teacher = mongoose.model("Teacher", teacherSchema);
 module.exports = Teacher;

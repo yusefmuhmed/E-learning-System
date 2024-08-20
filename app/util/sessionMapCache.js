@@ -21,13 +21,13 @@ class SessionMap {
 
     SessionMap.sessions[sessionName] = session;
 
-    return sessionName;
+    return session;
   }
 
   static checkIfStudentHasSession(studentId) {
     for (const sessionName in SessionMap.sessions) {
       if (SessionMap.sessions[sessionName].studentId === studentId) {
-        return sessionName;
+        return SessionMap.sessions[sessionName];
       }
     }
     return false;
@@ -36,7 +36,7 @@ class SessionMap {
   static checkIfTeacherHasSession(teacherId) {
     for (const sessionName in SessionMap.sessions) {
       if (SessionMap.sessions[sessionName].teacherId === teacherId) {
-        return sessionName;
+        return SessionMap.sessions[sessionName];
       }
     }
     return false;

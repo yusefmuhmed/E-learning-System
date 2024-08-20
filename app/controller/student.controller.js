@@ -274,7 +274,7 @@ class Student {
   static checkIfStudentHasSession = async (req, res) => {
     try {
       const sessionName = SessionMap.checkIfStudentHasSession(
-        req.params.studentId
+        req.params.id
       );
 
       if (!sessionName) {

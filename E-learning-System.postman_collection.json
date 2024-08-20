@@ -29,12 +29,12 @@
 								},
 								{
 									"key": "email",
-									"value": "mahmoud@gmail.com ",
+									"value": "mahmoudz@gmail.com ",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "7oda",
+									"value": "7odaz",
 									"type": "text"
 								},
 								{
@@ -118,7 +118,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"hello\",\r\n    \"password\": \"SecurePass123\"\r\n}",
+							"raw": "{\r\n    \"username\": \"7odaz\",\r\n    \"password\": \"SecurePass123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -574,7 +574,30 @@
 					"response": []
 				},
 				{
-					"name": "getRequestedStudent",
+					"name": "getStudentsRequests",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmM0NTY0ZjBhNmRmODMzZTY3YTAzYzciLCJpYXQiOjE3MjQxNDQxODB9.3c30-ApkvNPZ3sd7khD1DN1cH3bCTam3xYtuLnnvttU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}teacher/getStudentsRequests",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								"getStudentsRequests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "approveRequestFromStudent",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -583,13 +606,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA4NzhkMjk2OGQwMTlkMjRjOTg5NmMiLCJpYXQiOjE3MTE4MzE1NDd9.XEcLyRjytwfXxFgctcW4wcp3LC2VQ_cLfYbpsbuEG4U",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmMyMTg2ZTY2NTdkYzU4YjJkN2FmMjIiLCJpYXQiOjE3MjM5OTYyNzR9.96OQ8b69AVv9pGIDPuI1lfmzp1bdEF7j0z8qBcj5FQU",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"teacherId\":\"660878d2968d019d24c9896c\"\r\n}",
+							"raw": "{\r\n    \"duration\":\"30\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -597,12 +620,39 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}teacher/getRequestedStudent",
+							"raw": "{{baseUrl}}teacher/approveRequest/66c4540de12a78dfcab8ec8d/66c4564f0a6df833e67a03c7",
 							"host": [
 								"{{baseUrl}}teacher"
 							],
 							"path": [
-								"getRequestedStudent"
+								"approveRequest",
+								"66c4540de12a78dfcab8ec8d",
+								"66c4564f0a6df833e67a03c7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rejectRequestFromStudent",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmMyMTg2ZTY2NTdkYzU4YjJkN2FmMjIiLCJpYXQiOjE3MjM5OTYyNzR9.96OQ8b69AVv9pGIDPuI1lfmzp1bdEF7j0z8qBcj5FQU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}teacher/rejectRequest/66c4540de12a78dfcab8ec8d/66c4564f0a6df833e67a03c7",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								"rejectRequest",
+								"66c4540de12a78dfcab8ec8d",
+								"66c4564f0a6df833e67a03c7"
 							]
 						}
 					},
@@ -633,7 +683,7 @@
 								},
 								{
 									"key": "email",
-									"value": "yusefmuhmed67s6@gmail.com",
+									"value": "yusefmuhmed6@gmail.com",
 									"type": "text"
 								},
 								{
@@ -927,15 +977,24 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"class\":\"English\",\r\n    \"duration\":\"30\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{baseUrl}}connection/sendConnectToTeacher/1234/6632aa43de9bd511e8b32328",
+							"raw": "{{baseUrl}}student/sendConnectToTeacher/66c4540de12a78dfcab8ec8d/66c4564f0a6df833e67a03c7",
 							"host": [
-								"{{baseUrl}}connection"
+								"{{baseUrl}}student"
 							],
 							"path": [
 								"sendConnectToTeacher",
-								"1234",
-								"6632aa43de9bd511e8b32328"
+								"66c4540de12a78dfcab8ec8d",
+								"66c4564f0a6df833e67a03c7"
 							]
 						}
 					},
@@ -1208,6 +1267,42 @@
 					"response": []
 				},
 				{
+					"name": "checkIfStudentHasSessionOrNot",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}student/checkIfStudentHasSession/66c4540de12a78dfcab8ec8d",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"checkIfStudentHasSession",
+								"66c4540de12a78dfcab8ec8d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checkIfTeacherIsOnlineOrOffline",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}student/checkIfTeacherIsOnlineOrOffline/66c4564f0a6df833e67a03c7",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"checkIfTeacherIsOnlineOrOffline",
+								"66c4564f0a6df833e67a03c7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Rate Teacher",
 					"request": {
 						"method": "PUT",
@@ -1219,7 +1314,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"rating\":5\r\n}",
+							"raw": "{\r\n    \"rating\":5,\r\n    \"feedback\":\"he is the best teacher ever\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1234,37 +1329,6 @@
 							"path": [
 								"rateTeacher",
 								"6666ad98caec986959ccd0eb"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Zoom integration",
-			"item": [
-				{
-					"name": "Generate Token",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"topic\": \"generate token topic\",\r\n    \"name\": \"Chrome\",\r\n    \"password\": \"pass\",\r\n    \"userIdentity\": \"\",\r\n    \"sessionKey\": \"\",\r\n    \"roleType\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}zoom/generateToken",
-							"host": [
-								"{{baseUrl}}zoom"
-							],
-							"path": [
-								"generateToken"
 							]
 						}
 					},

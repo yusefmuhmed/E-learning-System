@@ -42,7 +42,8 @@ router.post(
   StudentAndTeacher.filterBySubjectAndClass
 );
 
-router.get("/checkIfStudentHasSession", Student.checkIfStudentHasSession);
+router.get("/checkIfStudentHasSession/:id", Student.checkIfStudentHasSession);
+router.get("/checkIfTeacherIsOnlineOrOffline/:id", StudentAndTeacher.checkIfTeacherIsOnlineOrOffline);
 
 router.put(
   "/rateTeacher/:id",
