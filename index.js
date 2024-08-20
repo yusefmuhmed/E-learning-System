@@ -7,7 +7,9 @@ const http = require("http");
 const app = express();
 const server = http.createServer(app);
 
-require("./app/util/scheduleTasks");
+const scheduleTasks = require('./app/util/scheduleTasks');
+scheduleTasks();
+
 
 
 
