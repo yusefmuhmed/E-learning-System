@@ -149,9 +149,11 @@ class Student_Teacher {
       const studentId = req.params.studentId;
       const teacherId = req.params.teacherId;
       const className = req.body.class;
+      const subjectName = req.body.subject;
       const duration = req.body.duration;
+      const sessionInfo = req.body.sessionInfo;
 
-      if (!studentId || !teacherId || !className || !duration) {
+      if (!studentId || !teacherId || !className || !subjectName) {
         myHelper.resHandler(
           res,
           404,
@@ -172,6 +174,8 @@ class Student_Teacher {
                 teachersID: teacherId,
                 durationInMinutes: duration,
                 class: className,
+                subject: subjectName,
+                sessionInfo: sessionInfo,
               },
             },
           },
@@ -186,7 +190,9 @@ class Student_Teacher {
             requestsFromStudents: {
               studentID: studentId,
               class: className,
+              subject: subjectName,
               durationInMinutes: duration,
+              sessionInfo: sessionInfo,
             },
           },
         },

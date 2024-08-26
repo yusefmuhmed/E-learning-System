@@ -89,7 +89,12 @@ const studentSchema = mongoose.Schema(
           required: false,
         },
         durationInMinutes: { type: Number, required: false },
-        class:{ type:String }
+        class:{ type:String,trim:true },
+        sessionInfo: {
+          type: String,
+          trim: true,
+        },
+        subject: { type: String, trim: true },
       },
     ],
     tokens: [
