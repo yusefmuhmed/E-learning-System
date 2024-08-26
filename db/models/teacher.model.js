@@ -110,6 +110,8 @@ const teacherSchema = mongoose.Schema(
         durationInMinutes: { type: Number},
         sessionInfo: {type: String, trim: true},
         subject: { type: String, trim: true },
+        studentName: { type: String, trim: true },
+        studentClass: { type: String, trim: true },
       },
     ],
     pricePerHour: {

@@ -193,6 +193,8 @@ class Student_Teacher {
               subject: subjectName,
               durationInMinutes: duration,
               sessionInfo: sessionInfo,
+              studentName: student.firstName + " " + student.lastName,
+              studentClass: student.class,
             },
           },
         },
