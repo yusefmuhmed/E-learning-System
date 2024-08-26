@@ -979,7 +979,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"class\":\"English\",\r\n    \"duration\":\"30\"\r\n}",
+							"raw": "{\r\n    \"class\":\"Second Prep\",\r\n    \"duration\":\"30\",\r\n    \"subject\":\"Arabic\",\r\n    \"sessionInfo\":\"unit 3 line 16 math section\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
