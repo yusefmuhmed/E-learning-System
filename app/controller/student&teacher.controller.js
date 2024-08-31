@@ -3,6 +3,8 @@ const studentModel = require("../../db/models/student.model");
 const myHelper = require("../util/helper");
 const Teacher = require("../../db/models/teacher.model");
 
+const SessionMap = require("../util/sessionMapCache");
+
 class Student_Teacher {
   static addStudentToTeacherArray = async (req, res) => {
     try {
@@ -222,7 +224,11 @@ class Student_Teacher {
 
       const teacher = await Teacher.findById(teacherId);
 
-      teacher.ratings.push({ studentId: studentId, rate: rating, feedbackMsg: feedbackMsg });
+      teacher.ratings.push({
+        studentId: studentId,
+        rate: rating,
+        feedbackMsg: feedbackMsg,
+      });
 
       const totalRatings = teacher.ratings.length;
       const totalRatingSum = teacher.ratings.reduce(
@@ -293,6 +299,27 @@ class Student_Teacher {
         { online: teacher.status },
         "Online status fetched successfully"
       );
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+
+  static endSession = async (req, res) => {
+    try {
+      const sessionName = req.body.sessionName;
+
+      const session = SessionMap.deleteSession(sessionName);
+      if (!session) {
+        myHelper.resHandler(
+          res,
+          404,
+          false,
+          "Session not found",
+          "Session not found"
+        );
+      }
+
+      myHelper.resHandler(res, 200, true, "", "Session ended successfully");
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }

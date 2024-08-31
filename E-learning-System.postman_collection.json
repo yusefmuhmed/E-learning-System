@@ -580,7 +580,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmM0NTY0ZjBhNmRmODMzZTY3YTAzYzciLCJpYXQiOjE3MjQxNDQxODB9.3c30-ApkvNPZ3sd7khD1DN1cH3bCTam3xYtuLnnvttU",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmQzMzFkM2Q2ZDE2ODRmM2I3ODlmMGQiLCJpYXQiOjE3MjUxMTY4OTAsImV4cCI6MTcyNTIwMzI5MH0.1fjdVo7TUgRYsuUbLSIiRHHEjPo1zy1OENoK-ubZ6Ys",
 								"type": "text"
 							}
 						],
@@ -598,11 +598,8 @@
 				},
 				{
 					"name": "approveRequestFromStudent",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Authorization",
@@ -620,14 +617,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}teacher/approveRequest/66c4540de12a78dfcab8ec8d/66c4564f0a6df833e67a03c7",
+							"raw": "{{baseUrl}}teacher/approveRequest/66d33211d6d1684f3b789f1a/66d331d3d6d1684f3b789f0d",
 							"host": [
 								"{{baseUrl}}teacher"
 							],
 							"path": [
 								"approveRequest",
-								"66c4540de12a78dfcab8ec8d",
-								"66c4564f0a6df833e67a03c7"
+								"66d33211d6d1684f3b789f1a",
+								"66d331d3d6d1684f3b789f0d"
 							]
 						}
 					},
@@ -987,14 +984,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}student/sendConnectToTeacher/66c4540de12a78dfcab8ec8d/66c4564f0a6df833e67a03c7",
+							"raw": "{{baseUrl}}student/sendConnectToTeacher/66d33211d6d1684f3b789f1a/66d331d3d6d1684f3b789f0d",
 							"host": [
 								"{{baseUrl}}student"
 							],
 							"path": [
 								"sendConnectToTeacher",
-								"66c4540de12a78dfcab8ec8d",
-								"66c4564f0a6df833e67a03c7"
+								"66d33211d6d1684f3b789f1a",
+								"66d331d3d6d1684f3b789f0d"
 							]
 						}
 					},
@@ -1329,6 +1326,37 @@
 							"path": [
 								"rateTeacher",
 								"6666ad98caec986959ccd0eb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "End session",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjY2YWUxYmNhZWM5ODY5NTljY2QwZmQiLCJpYXQiOjE3MTgwMDUyOTF9.2LcqtXccf1fQNY6T_sJcAm1ldESyuC9CBaZpRs-BSt0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sessionName\":\"session601\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}student/endSession",
+							"host": [
+								"{{baseUrl}}student"
+							],
+							"path": [
+								"endSession"
 							]
 						}
 					},

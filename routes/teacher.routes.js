@@ -21,7 +21,7 @@ router.get("/getStudentsRequests", auth, Teacher.getStudentsRequests);
 
 router.get("/checkIfTeacherHasSession/:teacherId", Teacher.checkIfTeacherHasSession);
 
-router.get("/approveRequest/:studentId/:teacherId", Teacher.approveRequest);
+router.post("/approveRequest/:studentId/:teacherId", Teacher.approveRequest);
 router.get("/rejectRequest/:studentId/:teacherId", Teacher.rejectRequest);
 
 router.post("/profileImg1", upload.single("img"), Teacher.uploadImageBuffer);

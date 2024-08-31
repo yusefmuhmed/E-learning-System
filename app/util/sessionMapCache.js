@@ -54,6 +54,10 @@ class SessionMap {
   static getSession(sessionName) {
     return SessionMap.sessions[sessionName];
   }
+
+  static deleteSession(sessionName) {
+    return delete SessionMap.sessions[sessionName];
+  }
 }
 
 module.exports = SessionMap;

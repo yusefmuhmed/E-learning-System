@@ -100,6 +100,7 @@ const studentSchema = mongoose.Schema(
     tokens: [
       {
         token: { type: String, required: true },
+        expiresAt: { type: Date, required: true },
       },
     ],
   },
@@ -131,10 +132,31 @@ studentSchema.methods.toJSON = function () {
 };
 studentSchema.methods.generateToken = async function () {
   const studentData = this;
-  const token = jwt.sign({ _id: studentData._id }, process.env.tokenPass);
-  studentData.tokens = studentData.tokens.concat({ token });
+  const expiresIn = 24 * 60 * 60; 
+  const token = jwt.sign(
+    { _id: studentData._id }, 
+    process.env.tokenPass, 
+    { expiresIn }
+  );
+  const expiresAt = new Date(Date.now() + expiresIn * 1000);
+  studentData.tokens = studentData.tokens.concat({ token, expiresAt });
   await studentData.save();
+  
   return token;
 };
+
+
+studentSchema.statics.removeExpiredTokens = async function () {
+  const now = new Date();
+
+  await this.updateMany(
+    {},
+    { $pull: { tokens: { expiresAt: { $lte: now } } } }
+  );
+
+  console.log('Expired tokens removed');
+};
+
+
 const Student = mongoose.model("Student", studentSchema);
 module.exports = Student;

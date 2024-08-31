@@ -51,6 +51,11 @@ router.put(
   StudentAndTeacher.rateTeacher
 );
 
+router.post(
+  "/endSession",
+  StudentAndTeacher.endSession
+);
+
 
 router.post(
   "/loginAsGuest",
