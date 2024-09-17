@@ -131,6 +131,10 @@ class Student_Teacher {
         username: 1,
         classes: 1,
         subjects: 1,
+        pricePerHour: 1,
+        ratings: 1,
+        ratingAverage: 1,
+        totalNumberOfRatings : 1,
         _id: 1,
       });
 
