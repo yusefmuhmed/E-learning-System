@@ -1,12 +1,9 @@
 const studentModel = require("../../db/models/student.model");
 const myHelper = require("../util/helper");
 const subjects = require("../../app/subjects");
-const fs = require("fs");
+const fs = require('fs');
+const path = require('path');
 const bcryptjs = require("bcryptjs");
-const multer = require("multer");
-const upload = multer({
-  storage: multer.memoryStorage(), // Store uploaded files in memory as buffers
-}).single("image");
 const SessionMap = require("../util/sessionMapCache");
 class Student {
   static register = async (req, res) => {
@@ -15,18 +12,13 @@ class Student {
       if (req.body.password.length < 6)
         throw new Error("password must be more than 6");
 
-      if (req.file) {
-        const imageBuffer = req.file.buffer;
-        studentData = new studentModel({
-          ...req.body,
-          bufferProfileImage: imageBuffer,
-        });
+      studentData = new studentModel({
+        ...req.body,
+        profileImage: req.file ? req.file.filename : null,
+      });
 
-        await studentData.save();
-      } else {
-        studentData = new studentModel(req.body);
-        await studentData.save();
-      }
+      await studentData.save();
+
       myHelper.resHandler(
         res,
         200,
@@ -86,8 +78,11 @@ class Student {
   };
   static getSingle = async (req, res) => {
     try {
-      const student = await studentModel.findById(req.params.id);
-      myHelper.resHandler(res, 200, true, student, "single student fetched");
+      const student =  req.student 
+      const imageUrl = student.profileImage
+        ? `${req.protocol}://${req.get('host')}/uploads/${student.profileImage}`
+        : null;
+        myHelper.resHandler(res, 200, true, { ...student.toObject(), imageUrl }, "Student info retrieved successfully");
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
@@ -155,36 +150,53 @@ class Student {
   };
   static updateInfo = async (req, res) => {
     try {
-      let imageBuffer;
-      let student;
-      if (req.body.password) {
-        req.body.password = await bcryptjs.hash(req.body.password, 8);
-      }
-      if (req.file) {
-        imageBuffer = req.file.buffer;
-
-        student = await studentModel.findOneAndUpdate(
-          { email: req.body.email },
-          { ...req.body, bufferProfileImage: imageBuffer },
-          { new: true }
-        );
-      } else {
-        student = await studentModel.findOneAndUpdate(
-          { email: req.body.email },
-          { ...req.body },
-          { new: true }
-        );
-      }
-
+      let student = await studentModel.findOne({ email: req.body.email });
+  
       if (!student) {
         return myHelper.resHandler(
           res,
           404,
           false,
           "Student not found",
-          "Student not found with the provided ID"
+          "Student not found with the provided email"
         );
       }
+  
+      // Hash the password if it's being updated
+      if (req.body.password) {
+        req.body.password = await bcryptjs.hash(req.body.password, 8);
+      }
+  
+      // If a new profile image is uploaded, delete the old one
+      if (req.file) {
+        // Check if the student already has an existing image
+        if (student.profileImage) {
+          const oldImagePath = path.join(__dirname, '../../uploads/', student.profileImage);
+  
+          // Delete the old image file from the uploads folder
+          fs.unlink(oldImagePath, (err) => {
+            if (err) {
+              console.error("Failed to delete old profile image:", err);
+            }
+          });
+        }
+  
+        // Update with the new image filename
+        student = await studentModel.findOneAndUpdate(
+          { email: req.body.email },
+          { ...req.body, profileImage: req.file.filename },
+          { new: true }
+        );
+      } else {
+        // Update without changing the profile image
+        student = await studentModel.findOneAndUpdate(
+          { email: req.body.email },
+          { ...req.body },
+          { new: true }
+        );
+      }
+  
+      // Send a success response
       myHelper.resHandler(
         res,
         200,
@@ -193,6 +205,7 @@ class Student {
         "Student information updated successfully"
       );
     } catch (e) {
+      // Handle any errors
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
@@ -273,9 +286,7 @@ class Student {
 
   static checkIfStudentHasSession = async (req, res) => {
     try {
-      const sessionName = SessionMap.checkIfStudentHasSession(
-        req.params.id
-      );
+      const sessionName = SessionMap.checkIfStudentHasSession(req.params.id);
 
       if (!sessionName) {
         return myHelper.resHandler(res, 404, false, null, "Session not found");

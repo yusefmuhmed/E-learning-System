@@ -29,12 +29,12 @@
 								},
 								{
 									"key": "email",
-									"value": "mahmoudz@gmail.com ",
+									"value": "mahass@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "7odaz",
+									"value": "7odaz222ss",
 									"type": "text"
 								},
 								{
@@ -73,11 +73,6 @@
 									"type": "text"
 								},
 								{
-									"key": "bufferProfileImage",
-									"type": "file",
-									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
-								},
-								{
 									"key": "status",
 									"value": "true",
 									"type": "text"
@@ -96,17 +91,19 @@
 									"key": "pricePerHour",
 									"value": "10",
 									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://141.136.42.159:3000/api/teacher/register",
+							"raw": "http://localhost:3000/api/teacher/register",
 							"protocol": "http",
 							"host": [
-								"141",
-								"136",
-								"42",
-								"159"
+								"localhost"
 							],
 							"port": "3000",
 							"path": [
@@ -125,7 +122,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"7odaz\",\r\n    \"password\": \"SecurePass123\"\r\n}",
+							"raw": "{\r\n    \"username\": \"7odaz222ss\",\r\n    \"password\": \"SecurePass123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -174,7 +171,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0OWViMDFlN2Q5Y2I2MGYxNzE5ZDEiLCJpYXQiOjE3MTE1Nzk2OTV9.5SU-Y8XBbhuw_mmZoQ5pc4ZcAUh2nysEikdBHGzzF2c",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmVmMjE3MDRjN2IwMmJjYTI0YjYyMjYiLCJpYXQiOjE3MjY5NDc4MjUsImV4cCI6MTcyNzAzNDIyNX0._hOH0YYT74OwhZzEmslfX3QGnDnKYil2QEzwP1fkIoU",
 								"type": "text"
 							}
 						],
@@ -279,14 +276,13 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "mahmoudz@gmail.com",
+									"value": "mahass@gmail.com",
 									"type": "text"
 								},
 								{
-									"key": "bufferProfileImage",
+									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/Youssef mohamed/Pictures/Screenshots/Screenshot 2024-04-30 223013.png",
-									"disabled": true
+									"src": "/C:/Users/Youssef mohamed/Pictures/Screenshots/Screenshot 2024-08-11 162453.png"
 								},
 								{
 									"key": "password",
@@ -297,7 +293,8 @@
 								{
 									"key": "subjects[1][subject]",
 									"value": "math",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "firstName",
@@ -599,13 +596,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}teacher/approveRequest/66d33211d6d1684f3b789f1a/66d331d3d6d1684f3b789f0d",
+							"raw": "{{baseUrl}}teacher/approveRequest/66c4540de12a78dfcab8ec8d/66d331d3d6d1684f3b789f0d",
 							"host": [
 								"{{baseUrl}}teacher"
 							],
 							"path": [
 								"approveRequest",
-								"66d33211d6d1684f3b789f1a",
+								"66c4540de12a78dfcab8ec8d",
 								"66d331d3d6d1684f3b789f0d"
 							]
 						}
@@ -668,6 +665,24 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "checkIfTeacherHasSession",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}teacher/checkIfTeacherHasSession/66c4540de12a78dfcab8ec8d",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								"checkIfTeacherHasSession",
+								"66c4540de12a78dfcab8ec8d"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -694,12 +709,12 @@
 								},
 								{
 									"key": "email",
-									"value": "yusefmuhmed6@gmail.com",
+									"value": "yusefmuhmed6x@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "yusefz",
+									"value": "yusefzx",
 									"type": "text"
 								},
 								{
@@ -721,6 +736,11 @@
 									"key": "introVideoLink",
 									"value": "https://www.youtube.com/jennysmith_intro",
 									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Youssef mohamed/Pictures/Screenshots/Screenshot 2024-09-15 210753.png"
 								}
 							]
 						},
@@ -791,7 +811,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTE2Njk1MTl9.EEuM8Loy85NIAmP3ZhXiTyfGQ7WNMw3Q_Ni2TPFZerY",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmVmMjk5ZGQ0YmFlZjMzNjJmNDhhZDgiLCJpYXQiOjE3MjY5NDk4MzQsImV4cCI6MTcyNzAzNjIzNH0.HBwHFZUO7pgxz8ykdLBHU1zKTMs2y0oqN3TWYskmxMQ",
 								"type": "text"
 							}
 						],
@@ -878,19 +898,19 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "yusefmuhmed6766@gmail.com",
+									"value": "yusefmuhmed6@gmail.com",
 									"type": "text"
 								},
 								{
-									"key": "bufferProfileImage",
+									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/Youssef mohamed/Pictures/Screenshots/Screenshot 2024-04-30 225228.png",
-									"disabled": true
+									"src": "/C:/Users/Youssef mohamed/Pictures/Screenshots/Screenshot 2024-08-13 223536.png"
 								},
 								{
 									"key": "class",
 									"value": "الرابع الابتدائي",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "password",
@@ -1357,7 +1377,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"sessionName\":\"session601\"\r\n}",
+							"raw": "{\r\n    \"sessionName\":\"session253\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

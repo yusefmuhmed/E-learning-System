@@ -25,7 +25,6 @@ class SessionMap {
   }
 
   static checkIfStudentHasSession(studentId) {
-
     if (!SessionMap.sessions || Object.keys(SessionMap.sessions).length === 0) {
       return false;
     }
@@ -39,6 +38,10 @@ class SessionMap {
   }
 
   static checkIfTeacherHasSession(teacherId) {
+    if (!SessionMap.sessions || Object.keys(SessionMap.sessions).length === 0) {
+      return false;
+    }
+
     for (const sessionName in SessionMap.sessions) {
       if (SessionMap.sessions[sessionName].teacherId === teacherId) {
         return SessionMap.sessions[sessionName];

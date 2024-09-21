@@ -1,6 +1,7 @@
 const teacherModel = require("../../db/models/teacher.model");
 const myHelper = require("../util/helper");
-const fs = require("fs");
+const fs = require('fs');
+const path = require('path');
 const bcryptjs = require("bcryptjs");
 const SessionMap = require("../util/sessionMapCache");
 const globalConfigModel = require("../../db/models/globalConfig.model");
@@ -8,35 +9,27 @@ class Teacher {
   static register = async (req, res) => {
     try {
       if (req.body.password.length < 6)
-        throw new Error("password must be more than 6");
-      let teacherData;
-      if (req.file) {
-        const imageBuffer = req.file.buffer;
-        teacherData = new teacherModel({
-          ...req.body,
-          status: true,
-          bufferProfileImage: imageBuffer,
-        });
+        throw new Error("Password must be more than 6 characters");
+  
+      const teacherData = new teacherModel({
+        ...req.body,
+        profileImage: req.file ? req.file.filename : null,
+      });
 
-        await teacherData.save();
-      } else {
-        teacherData = new teacherModel({
-          ...req.body,
-          status: true,
-        });
-        await teacherData.save();
-      }
+      await teacherData.save();
+  
       myHelper.resHandler(
         res,
         200,
         true,
         teacherData,
-        "teacher added successfully"
+        "Teacher added successfully"
       );
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
+  
   static login = async (req, res) => {
     try {
       const teacherData = await teacherModel.loginTeacher(
@@ -85,20 +78,23 @@ class Teacher {
   };
   static getSingle = async (req, res) => {
     try {
-      const teacher = await teacherModel.findById(req.params.id);
-      myHelper.resHandler(res, 200, true, teacher, "single teacher fetched");
+      const teacher = req.teacher;
+  
+      if (!teacher) throw new Error("Teacher not found");
+  
+      const imageUrl = teacher.profileImage
+        ? `${req.protocol}://${req.get('host')}/uploads/${teacher.profileImage}`
+        : null;
+  
+      myHelper.resHandler(res, 200, true, { ...teacher.toObject(), imageUrl }, "Teacher info retrieved successfully");
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-  static uploadImage = async (req, res) => {
+  
+  static updateImage = async (req, res) => {
     try {
-      const ext = req.file.originalname.split(".").pop();
-      const newName = "uploads/" + req.teacher._id + "." + ext;
-      fs.renameSync(req.file.path, newName);
-      req.teacher.image = newName;
-      await req.teacher.save();
-      myHelper.resHandler(res, 200, true, newName, "updated");
+      myHelper.resHandler(res, 200, true, newName, "Image updated successfully");
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
@@ -166,36 +162,53 @@ class Teacher {
   };
   static updateInfo = async (req, res) => {
     try {
-      let imageBuffer;
-      let teacher;
-      if (req.body.password) {
-        req.body.password = await bcryptjs.hash(req.body.password, 8);
-      }
-
-      if (req.file) {
-        imageBuffer = req.file.buffer;
-
-        teacher = await teacherModel.findOneAndUpdate(
-          { email: req.body.email },
-          { ...req.body, bufferProfileImage: imageBuffer },
-          { new: true }
-        );
-      } else {
-        teacher = await teacherModel.findOneAndUpdate(
-          { email: req.body.email },
-          { ...req.body },
-          { new: true }
-        );
-      }
+      let teacher = await teacherModel.findOne({ email: req.body.email });
+  
       if (!teacher) {
         return myHelper.resHandler(
           res,
           404,
           false,
           "Teacher not found",
-          "Teacher not found with the provided ID"
+          "Teacher not found with the provided email"
         );
       }
+  
+      // Hash the password if it's being updated
+      if (req.body.password) {
+        req.body.password = await bcryptjs.hash(req.body.password, 8);
+      }
+  
+      // If a new profile image is uploaded, delete the old one
+      if (req.file) {
+        // Check if the teacher already has an existing image
+        if (teacher.profileImage) {
+          const oldImagePath = path.join(__dirname, '../../uploads/', teacher.profileImage);
+  
+          // Delete the old image file from the uploads folder
+          fs.unlink(oldImagePath, (err) => {
+            if (err) {
+              console.error("Failed to delete old profile image:", err);
+            }
+          });
+        }
+  
+        // Update with the new image filename
+        teacher = await teacherModel.findOneAndUpdate(
+          { email: req.body.email },
+          { ...req.body, profileImage: req.file.filename },
+          { new: true }
+        );
+      } else {
+        // Update without changing the profile image
+        teacher = await teacherModel.findOneAndUpdate(
+          { email: req.body.email },
+          { ...req.body },
+          { new: true }
+        );
+      }
+  
+      // Send a success response
       myHelper.resHandler(
         res,
         200,
@@ -204,6 +217,7 @@ class Teacher {
         "Teacher information updated successfully"
       );
     } catch (e) {
+      // Handle any errors
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
@@ -313,7 +327,7 @@ class Teacher {
       let globalSessionDuration = await globalConfigModel.findOne({});
       if (!globalSessionDuration) {
         await globalConfigModel.create({
-          id:1,
+          id: 1,
           sessionDuration: 30,
         });
       }
@@ -323,7 +337,7 @@ class Teacher {
       const session = SessionMap.generateSession(
         studentId,
         teacherId,
-        globalSessionDuration.meetingDuration 
+        globalSessionDuration.meetingDuration
       );
 
       const teacher = await teacherModel.findOneAndUpdate(

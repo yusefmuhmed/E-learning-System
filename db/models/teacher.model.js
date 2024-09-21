@@ -102,7 +102,6 @@ const teacherSchema = mongoose.Schema(
         studentID: { type: String, trim: true },
       },
     ],
-    bufferProfileImage: Buffer,
     requestsFromStudents: [
       {
         studentID: { type: String, trim: true },
