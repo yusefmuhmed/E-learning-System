@@ -3,6 +3,7 @@ const myHelper = require("../util/helper");
 const fs = require("fs");
 const bcryptjs = require("bcryptjs");
 const SessionMap = require("../util/sessionMapCache");
+const globalConfigModel = require("../../db/models/globalConfig.model");
 class Teacher {
   static register = async (req, res) => {
     try {
@@ -309,11 +310,20 @@ class Teacher {
     try {
       const teacherId = req.params.teacherId;
       const studentId = req.params.studentId;
+      let globalSessionDuration = await globalConfigModel.findOne({});
+      if (!globalSessionDuration) {
+        await globalConfigModel.create({
+          id:1,
+          sessionDuration: 30,
+        });
+      }
+
+      globalSessionDuration = await globalConfigModel.findOne({});
 
       const session = SessionMap.generateSession(
         studentId,
         teacherId,
-        req.body.duration
+        globalSessionDuration.meetingDuration 
       );
 
       const teacher = await teacherModel.findOneAndUpdate(
@@ -370,6 +380,15 @@ class Teacher {
         return myHelper.resHandler(res, 404, false, null, "Session not found");
       }
       myHelper.resHandler(res, 200, true, sessionName, "Session found");
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+
+  static endMeeting = async (req, res) => {
+    try {
+      SessionMap.deleteSession(req.body.session);
+      myHelper.resHandler(res, 200, true, "", "Sessions ended successfully");
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }

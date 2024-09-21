@@ -100,11 +100,18 @@
 							]
 						},
 						"url": {
-							"raw": "{{baseUrl}}teacher/register",
+							"raw": "http://141.136.42.159:3000/api/teacher/register",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}teacher"
+								"141",
+								"136",
+								"42",
+								"159"
 							],
+							"port": "3000",
 							"path": [
+								"api",
+								"teacher",
 								"register"
 							]
 						}
@@ -236,33 +243,6 @@
 					"response": []
 				},
 				{
-					"name": "approveStudent",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"yusefmuhmed6766@gmail.com\",\r\n    \"otp\":\"EhtS3Z\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}teacher/approveStudent/",
-							"host": [
-								"{{baseUrl}}teacher"
-							],
-							"path": [
-								"approveStudent",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "declineStudent",
 					"request": {
 						"method": "POST",
@@ -299,7 +279,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "m312@gmail.com",
+									"value": "mahmoudz@gmail.com",
 									"type": "text"
 								},
 								{
@@ -311,17 +291,19 @@
 								{
 									"key": "password",
 									"value": "12345678910",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "subjects[1][subject]",
-									"value": "arabic",
+									"value": "math",
 									"type": "text"
 								},
 								{
 									"key": "firstName",
 									"value": "abohemed",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -414,7 +396,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0OWViMDFlN2Q5Y2I2MGYxNzE5ZDEiLCJpYXQiOjE3MTE1Nzk2OTV9.5SU-Y8XBbhuw_mmZoQ5pc4ZcAUh2nysEikdBHGzzF2c",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmQzMzFkM2Q2ZDE2ODRmM2I3ODlmMGQiLCJpYXQiOjE3MjY2MTA2MTYsImV4cCI6MTcyNjY5NzAxNn0.4FgnFuTrrJhzUP1LkJuKdSWikwTPYOYe_kwOM8TQnLc",
 								"type": "text"
 							}
 						],
@@ -650,6 +632,38 @@
 								"rejectRequest",
 								"66c4540de12a78dfcab8ec8d",
 								"66c4564f0a6df833e67a03c7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "endMeeting",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmMyMTg2ZTY2NTdkYzU4YjJkN2FmMjIiLCJpYXQiOjE3MjM5OTYyNzR9.96OQ8b69AVv9pGIDPuI1lfmzp1bdEF7j0z8qBcj5FQU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"session\":\"session499\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}teacher/endMeeting",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								"endMeeting"
 							]
 						}
 					},
@@ -1311,7 +1325,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"rating\":5,\r\n    \"feedback\":\"he is the best teacher ever\"\r\n}",
+							"raw": "{\r\n    \"rating\":5,\r\n    \"feedback\":\"he is the best teacher ever\",\r\n    \"session\":\"session770\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1357,6 +1371,54 @@
 							],
 							"path": [
 								"endSession"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Global Config",
+			"item": [
+				{
+					"name": "Get Global Session's Duration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}globalConfig/getGlobalSessionDuration",
+							"host": [
+								"{{baseUrl}}globalConfig"
+							],
+							"path": [
+								"getGlobalSessionDuration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Global Session's Duration Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"meetingDuration\":70\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}globalConfig/addGlobalSessionDuration",
+							"host": [
+								"{{baseUrl}}globalConfig"
+							],
+							"path": [
+								"addGlobalSessionDuration"
 							]
 						}
 					},

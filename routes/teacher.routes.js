@@ -30,5 +30,6 @@ router.get("/getProfileImgBuffer", Teacher.getImageBuffer);
 router.get("/getTeacherStatus/:id",Teacher.getStatus);
 router.post("/changeTeacherStatus", auth,Teacher.changeStatus);
 
+router.post("/endMeeting", Teacher.endMeeting);
 
 module.exports = router;

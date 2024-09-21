@@ -134,7 +134,7 @@ class Student_Teacher {
         pricePerHour: 1,
         ratings: 1,
         ratingAverage: 1,
-        totalNumberOfRatings : 1,
+        totalNumberOfRatings: 1,
         _id: 1,
       });
 
@@ -225,6 +225,7 @@ class Student_Teacher {
       const rating = req.body.rating;
       const feedbackMsg = req.body.feedback;
       const studentId = req.student.id;
+      const session = req.body.session;
 
       const teacher = await Teacher.findById(teacherId);
 
@@ -242,6 +243,8 @@ class Student_Teacher {
       teacher.ratingAverage =
         Math.round((totalRatingSum / totalRatings) * 10) / 10;
       teacher.totalNumberOfRatings = totalRatings;
+
+      SessionMap.deleteSession(session);
 
       await teacher.save();
 
