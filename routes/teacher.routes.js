@@ -19,6 +19,9 @@ router.get("/", auth, Teacher.allTeachers);
 router.get("/getMyStudents", auth, StudentAndTeacher.getMyStudents);
 router.get("/getStudentsRequests", auth, Teacher.getStudentsRequests);
 
+router.get("/getSpecificStudent/:id", StudentAndTeacher.getSpecificStudent);
+
+
 router.get("/checkIfTeacherHasSession/:teacherId", Teacher.checkIfTeacherHasSession);
 
 router.post("/approveRequest/:studentId/:teacherId", Teacher.approveRequest);

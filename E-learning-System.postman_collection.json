@@ -610,6 +610,24 @@
 					"response": []
 				},
 				{
+					"name": "getSpecificStudent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}teacher/getSpecificStudent/66ef214a4c7b02bca24b6220",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								"getSpecificStudent",
+								"66ef214a4c7b02bca24b6220"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "rejectRequestFromStudent",
 					"request": {
 						"method": "GET",
@@ -1032,24 +1050,18 @@
 					"response": []
 				},
 				{
-					"name": "getSpecificStudent",
+					"name": "getSpecificTeacher",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0YWFkMzY2ZmVjNTdiODc3MDY1NDUiLCJpYXQiOjE3MTE1ODIwMDZ9.BkYzyZ1FCJ6Y9X0qSVuZHM7d3H_4mlQtOdangM2cDNQ",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}student/single/6604aad366fec57b87706545",
+							"raw": "{{baseUrl}}student/getSpecificTeacher/66ef214a4c7b02bca24b6220",
 							"host": [
 								"{{baseUrl}}student"
 							],
 							"path": [
-								"single",
-								"6604aad366fec57b87706545"
+								"getSpecificTeacher",
+								"66ef214a4c7b02bca24b6220"
 							]
 						}
 					},

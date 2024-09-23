@@ -19,6 +19,8 @@ router.get("/single/:id", auth, Student.getSingle);
 router.get("/", auth, Student.allStudents);
 router.patch("/profileImg", upload.single("img"), Student.uploadImage);
 
+router.get("/getSpecificTeacher/:id", StudentAndTeacher.getSpecificTeacher);
+
 router.post(
   "/profileImg1",
   upload.single("img"),

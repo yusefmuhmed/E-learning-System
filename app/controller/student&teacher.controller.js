@@ -331,6 +331,60 @@ class Student_Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
+
+  static getSpecificTeacher = async (req, res) => {
+    try {
+      const teacherId = req.params.id;
+      const teacher = await teacherModel.findById(teacherId);
+
+      if (!teacher) {
+        myHelper.resHandler(
+          res,
+          404,
+          false,
+          "Teacher not found",
+          "Teacher not found"
+        );
+      }
+
+      myHelper.resHandler(
+        res,
+        200,
+        true,
+        teacher,
+        "Teacher fetched successfully"
+      );
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+
+  static getSpecificStudent = async (req, res) => {
+    try {
+      const studentId = req.params.id;
+      const student = await studentModel.findById(studentId);
+
+      if (!student) {
+        myHelper.resHandler(
+          res,
+          404,
+          false,
+          "Student not found",
+          "Student not found"
+        );
+      }
+
+      myHelper.resHandler(
+        res,
+        200,
+        true,
+        student,
+        "Student fetched successfully"
+      );
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
 }
 
 module.exports = Student_Teacher;
