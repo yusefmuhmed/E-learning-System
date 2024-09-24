@@ -6,26 +6,22 @@ const { auth } = require("../app/middleware/student.auth.middleware");
 const upload = require("../app/middleware/fileUpload.middleware");
 const Guest = require("../app/controller/guest.controller");
 
-router.post("/register", upload.single('image'),Student.register);
+router.post("/register", upload,Student.register);
 router.post("/login", Student.login);
 router.post("/logout", auth, Student.logOut);
 
 router.post("/resetPassword", Student.resetPassword);
 router.post("/verifyOTP", Student.verifyOTP);
-router.post("/updateInfo", upload.single('image'),Student.updateInfo);
+router.post("/updateInfo", upload,Student.updateInfo);
 
 router.post("/me", auth, Student.getSingle);
 router.get("/single/:id", auth, Student.getSingle);
 router.get("/", auth, Student.allStudents);
-router.patch("/profileImg", upload.single("img"), Student.uploadImage);
+
 
 router.get("/getSpecificTeacher/:id", StudentAndTeacher.getSpecificTeacher);
 
-router.post(
-  "/profileImg1",
-  upload.single("img"),
-  Student.uploadImageBuffer
-);
+
 router.get("/getProfileImgBuffer",Student.getImageBuffer);
 
 router.post(
