@@ -48,6 +48,7 @@ const teacherSchema = mongoose.Schema(
     },
     status: {
       type: Boolean,
+      default: true,
     },
     classes: [
       {
