@@ -132,6 +132,7 @@ class Student_Teacher {
         classes: 1,
         subjects: 1,
         pricePerHour: 1,
+        profileImage: 1,
         ratings: 1,
         ratingAverage: 1,
         totalNumberOfRatings: 1,
