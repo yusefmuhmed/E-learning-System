@@ -22,8 +22,6 @@ router.get("/", auth, Student.allStudents);
 router.get("/getSpecificTeacher/:id", StudentAndTeacher.getSpecificTeacher);
 
 
-router.get("/getProfileImgBuffer",Student.getImageBuffer);
-
 router.post(
   "/sendConnectToTeacher/:studentId/:teacherId",
   StudentAndTeacher.sendConnectToTeacher

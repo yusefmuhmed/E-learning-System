@@ -1,8 +1,8 @@
 const studentModel = require("../../db/models/student.model");
 const myHelper = require("../util/helper");
 const subjects = require("../../app/subjects");
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 const bcryptjs = require("bcryptjs");
 const SessionMap = require("../util/sessionMapCache");
 class Student {
@@ -14,7 +14,9 @@ class Student {
 
       studentData = new studentModel({
         ...req.body,
-        profileImage: req.file ? req.file.filename : null,
+        profileImage: req.file
+          ? `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`
+          : null,
       });
 
       await studentData.save();
@@ -78,11 +80,15 @@ class Student {
   };
   static getSingle = async (req, res) => {
     try {
-      const student =  req.student 
-      const imageUrl = student.profileImage
-        ? `${req.protocol}://${req.get('host')}/uploads/${student.profileImage}`
-        : null;
-        myHelper.resHandler(res, 200, true, { ...student.toObject(), imageUrl }, "Student info retrieved successfully");
+      const student = req.student;
+      const imageUrl = student.profileImage;
+      myHelper.resHandler(
+        res,
+        200,
+        true,
+        { ...student.toObject(), imageUrl },
+        "Student info retrieved successfully"
+      );
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
@@ -151,7 +157,7 @@ class Student {
   static updateInfo = async (req, res) => {
     try {
       let student = await studentModel.findOne({ email: req.body.email });
-  
+
       if (!student) {
         return myHelper.resHandler(
           res,
@@ -161,30 +167,38 @@ class Student {
           "Student not found with the provided email"
         );
       }
-  
+
       // Hash the password if it's being updated
       if (req.body.password) {
         req.body.password = await bcryptjs.hash(req.body.password, 8);
       }
-  
+
       // If a new profile image is uploaded, delete the old one
       if (req.file) {
         // Check if the student already has an existing image
         if (student.profileImage) {
-          const oldImagePath = path.join(__dirname, '../../uploads/', student.profileImage);
-  
+          const fileName = student.profileImage.split('/').pop();
+          const oldImagePath = path.join(
+            __dirname,
+            "../../uploads/",
+            fileName
+          );
+
           // Delete the old image file from the uploads folder
           fs.unlink(oldImagePath, (err) => {
             if (err) {
-              console.error("Failed to delete old profile image:", err);
+              myHelper.resHandler(res, 500, false, err, err.message);
             }
           });
         }
-  
+
         // Update with the new image filename
         student = await studentModel.findOneAndUpdate(
           { email: req.body.email },
-          { ...req.body, profileImage: req.file.filename },
+          {
+            ...req.body,
+            profileImage: req.file ? `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}` : null,
+          },
           { new: true }
         );
       } else {
@@ -195,7 +209,7 @@ class Student {
           { new: true }
         );
       }
-  
+
       // Send a success response
       myHelper.resHandler(
         res,
@@ -207,62 +221,6 @@ class Student {
     } catch (e) {
       // Handle any errors
       myHelper.resHandler(res, 500, false, e, e.message);
-    }
-  };
-  static uploadImage = async (req, res) => {
-    try {
-      const ext = req.file.originalname.split(".").pop();
-      const newName = "uploads/" + req.student._id + "." + ext;
-      fs.renameSync(req.file.path, newName);
-      req.student.image = newName;
-      await req.student.save();
-      myHelper.resHandler(res, 200, true, newName, "updated");
-    } catch (e) {
-      myHelper.resHandler(res, 500, false, e, e.message);
-    }
-  };
-
-  static uploadImageBuffer = async (req, res) => {
-    try {
-      if (!req.file) {
-        return res.status(400).json({ error: "No file uploaded" });
-      }
-
-      const student = await studentModel.findOne({
-        username: req.body.username,
-      });
-      if (!student) {
-        return res.status(404).json({ error: "User not found" });
-      }
-
-      const imageBuffer = req.file.buffer;
-
-      const updatedStudent = await studentModel.findOneAndUpdate(
-        { username: req.body.username },
-        { bufferProfileImage: req.body.imageBuffer },
-        { new: true }
-      );
-
-      res.status(201).json({ imageBuffer: imageBuffer });
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      res.status(500).json({ error: "Internal server error" });
-    }
-  };
-
-  static getImageBuffer = async (req, res) => {
-    try {
-      const student = await studentModel.findOne({
-        username: req.body.username,
-      });
-      if (!student || !student.bufferProfileImage) {
-        return res.status(404).json({ error: "Image not found" });
-      }
-
-      res.status(201).json({ imageBuffer: student.bufferProfileImage });
-    } catch (error) {
-      console.error("Error retrieving image:", error);
-      res.status(500).json({ error: "Internal server error" });
     }
   };
 

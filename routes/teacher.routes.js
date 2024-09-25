@@ -28,8 +28,6 @@ router.post("/approveRequest/:studentId/:teacherId", Teacher.approveRequest);
 router.get("/rejectRequest/:studentId/:teacherId", Teacher.rejectRequest);
 
 
-router.get("/getProfileImgBuffer", Teacher.getImageBuffer);
-
 router.get("/getTeacherStatus/:id",Teacher.getStatus);
 router.post("/changeTeacherStatus", auth,Teacher.changeStatus);
 
