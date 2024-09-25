@@ -13,8 +13,8 @@ class Teacher {
 
       const teacherData = new teacherModel({
         ...req.body,
-        profileImage: req.file
-        ? `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`
+        status:true,
+        profileImage: req.file? `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`
         : null,
       });
 
