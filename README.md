@@ -29,18 +29,18 @@ The system provides comprehensive session management, allowing both students and
 
 # Technology Stack
 
-=> Backend:
+# Backend:
 - Node.js: A powerful, event-driven JavaScript runtime used for building scalable applications.
 - Express.js: A fast, unopinionated web framework for building RESTful APIs and applications.
 - MongoDB: A NoSQL database used to store teacher and student data efficiently.
 
-=> Authentication:
+# Authentication:
 - JWT (JSON Web Tokens): Used for secure and scalable authentication and authorization.
 
-=> File Uploads:
+# File Uploads:
 - Multer: Middleware for handling multipart/form-data for file uploads (e.g., profile pictures).
 
-=> Security:
+# Security:
 - Bcrypt.js: Used for password hashing to ensure user data security.
 
 # Middleware
@@ -64,5 +64,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 For more information or inquiries, feel free to reach out to the project maintainer:
 
-Email: <yusefmuhmed6766@gmail.com>
-LinkedIn: [Youssef Abdelmeged](https://www.linkedin.com/in/youssef-abdelmeged-6589a3189/)
+- Email: <yusefmuhmed6766@gmail.com>
+- LinkedIn: [Youssef Abdelmeged](https://www.linkedin.com/in/youssef-abdelmeged-6589a3189/)
