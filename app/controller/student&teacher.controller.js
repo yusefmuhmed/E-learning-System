@@ -107,21 +107,21 @@ class Student_Teacher {
 
   static filterBySubjectAndClass = async (req, res) => {
     try {
-      const { subject, class: studentClass } = req.body;
+      const { subject } = req.body;
 
       let query = {
         status: true,
       };
 
-      if (subject || studentClass) {
+      if (subject || req.student.class) {
         query.$and = [];
 
         if (subject) {
           query.$and.push({ "subjects.subject": subject });
         }
 
-        if (studentClass) {
-          query.$and.push({ "classes.class": studentClass });
+        if (req.student.class) {
+          query.$and.push({ "classes.class": req.student.class });
         }
       }
 
@@ -245,7 +245,8 @@ class Student_Teacher {
         Math.round((totalRatingSum / totalRatings) * 10) / 10;
       teacher.totalNumberOfRatings = totalRatings;
 
-      SessionMap.deleteSession(session);
+      const result = SessionMap.deleteSession(session);
+      await this.changeTeacherStatus(result.session.teacherId);
 
       await teacher.save();
 
@@ -317,7 +318,8 @@ class Student_Teacher {
       const sessionName = req.body.sessionName;
 
       const session = SessionMap.deleteSession(sessionName);
-      if (!session) {
+      await this.changeTeacherStatus(result.session.teacherId);
+      if (!session.status) {
         myHelper.resHandler(
           res,
           404,

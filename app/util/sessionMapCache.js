@@ -64,7 +64,8 @@ class SessionMap {
   }
 
   static deleteSession(sessionName) {
-    return delete SessionMap.sessions[sessionName];
+    const session = SessionMap.sessions[sessionName];
+    return {status : delete SessionMap.sessions[sessionName] , session}
   }
 }
 

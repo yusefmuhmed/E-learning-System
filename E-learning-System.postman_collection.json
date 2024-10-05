@@ -19,22 +19,22 @@
 							"formdata": [
 								{
 									"key": "firstName",
-									"value": "محمود",
+									"value": "Marwa",
 									"type": "text"
 								},
 								{
 									"key": "lastName",
-									"value": "احمدد",
+									"value": "Mohamed",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "ma@gmail.com",
+									"value": "marwaa@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "7oda3",
+									"value": "marwaa",
 									"type": "text"
 								},
 								{
@@ -95,15 +95,18 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/Youssef mohamed/Pictures/Screenshots/Screenshot 2024-05-12 125123.png"
+									"src": "/C:/Users/Youssef mohamed/Downloads/AirBrush_20240126162745.jpg"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/teacher/register",
+							"raw": "http://141.136.42.159:3000/api/teacher/register",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"141",
+								"136",
+								"42",
+								"159"
 							],
 							"port": "3000",
 							"path": [
@@ -122,7 +125,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"7oda3\",\r\n    \"password\": \"SecurePass123\"\r\n}",
+							"raw": "{\r\n    \"username\": \"marwa\",\r\n    \"password\": \"SecurePass123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -276,13 +279,13 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "ma@gmail.com",
+									"value": "marwa@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/Youssef mohamed/Pictures/Screenshots/Screenshot 2024-04-30 225228.png"
+									"src": "/C:/Users/Youssef mohamed/Downloads/wallpaperflare.com_wallpaper (5).jpg"
 								},
 								{
 									"key": "password",
@@ -559,7 +562,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmQzMzFkM2Q2ZDE2ODRmM2I3ODlmMGQiLCJpYXQiOjE3MjUxMTY4OTAsImV4cCI6MTcyNTIwMzI5MH0.1fjdVo7TUgRYsuUbLSIiRHHEjPo1zy1OENoK-ubZ6Ys",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmY0MWUwNmVmODliNTgwYTQyNTVmMzEiLCJpYXQiOjE3MjgxNjkxMTAsImV4cCI6MTcyODI1NTUxMH0.PBxmC6-iu9ocvtTODoNw3dqdY4Mis1yQmoSSObDWqkg",
 								"type": "text"
 							}
 						],
@@ -583,7 +586,8 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmMyMTg2ZTY2NTdkYzU4YjJkN2FmMjIiLCJpYXQiOjE3MjM5OTYyNzR9.96OQ8b69AVv9pGIDPuI1lfmzp1bdEF7j0z8qBcj5FQU",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
@@ -596,14 +600,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}teacher/approveRequest/66c4540de12a78dfcab8ec8d/66d331d3d6d1684f3b789f0d",
+							"raw": "{{baseUrl}}teacher/approveRequest/66f3df96e7437ee1de67c82e/66f41e06ef89b580a4255f31",
 							"host": [
 								"{{baseUrl}}teacher"
 							],
 							"path": [
 								"approveRequest",
-								"66c4540de12a78dfcab8ec8d",
-								"66d331d3d6d1684f3b789f0d"
+								"66f3df96e7437ee1de67c82e",
+								"66f41e06ef89b580a4255f31"
 							]
 						}
 					},
@@ -665,7 +669,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"session\":\"session499\"\r\n}",
+							"raw": "{\r\n    \"session\":\"session965\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -781,7 +785,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"yuse\",\r\n    \"password\": \"SecurePass123\"\r\n}",
+							"raw": "{\r\n    \"username\": \"yuse\",\r\n    \"password\": \"pass1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -922,13 +926,13 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/Youssef mohamed/Pictures/Screenshots/Screenshot 2024-04-30 225228.png"
+									"src": "/C:/Users/Youssef mohamed/Pictures/Screenshots/Screenshot 2024-04-30 225228.png",
+									"disabled": true
 								},
 								{
 									"key": "class",
-									"value": "الرابع الابتدائي",
-									"type": "text",
-									"disabled": true
+									"value": "الثالث الابتدائي",
+									"type": "text"
 								},
 								{
 									"key": "password",
@@ -989,14 +993,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjMyMGY5OWUwZmQwMTQ3MTI2YTg0ZTMiLCJpYXQiOjE3MTQ1NTY4NDJ9.dksW4sVcw80BFrJyKCKJen5-flCpW8V0tZQNQ1pkX50",
-								"type": "text",
-								"disabled": true
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmYzZGY5NmU3NDM3ZWUxZGU2N2M4MmUiLCJpYXQiOjE3MjgxNzA2OTgsImV4cCI6MTcyODI1NzA5OH0.smvwhCLHnDaUR1215Y4qOMKtvTJVWytgbImZjzR37xY",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"subject\": \"math\",\r\n    \"class\": \"الثالث الابتدائي\"\r\n}",
+							"raw": "{\r\n    \"subject\":\"math\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1022,8 +1025,9 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA1OTJmZThmM2E1YjAyYmJmY2VmMzUiLCJpYXQiOjE3MTIwMDU0NzZ9.2BbeRrpnJUBHHT2J9nhHFOstPoy4wU-RiOaSbP7hKTo",
-								"type": "text"
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmYzZGY5NmU3NDM3ZWUxZGU2N2M4MmUiLCJpYXQiOjE3MjgxNjkxNjAsImV4cCI6MTcyODI1NTU2MH0.KzKLKMxEnq5Y80Rjv2HY9CbQMWbqtNEeVmBrHPF4O-8",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
@@ -1036,14 +1040,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}student/sendConnectToTeacher/66d33211d6d1684f3b789f1a/66d331d3d6d1684f3b789f0d",
+							"raw": "{{baseUrl}}student/sendConnectToTeacher/66f3df96e7437ee1de67c82e/66f41e06ef89b580a4255f31",
 							"host": [
 								"{{baseUrl}}student"
 							],
 							"path": [
 								"sendConnectToTeacher",
-								"66d33211d6d1684f3b789f1a",
-								"66d331d3d6d1684f3b789f0d"
+								"66f3df96e7437ee1de67c82e",
+								"66f41e06ef89b580a4255f31"
 							]
 						}
 					},

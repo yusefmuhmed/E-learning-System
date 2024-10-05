@@ -35,6 +35,7 @@ router.post(
 );
 router.post(
   "/filterTeachersBySubjectAndClasses",
+  auth,
   StudentAndTeacher.filterBySubjectAndClass
 );
 

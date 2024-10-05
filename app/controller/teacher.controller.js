@@ -13,9 +13,10 @@ class Teacher {
 
       const teacherData = new teacherModel({
         ...req.body,
-        status:true,
-        profileImage: req.file? `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`
-        : null,
+        status: true,
+        profileImage: req.file
+          ? `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`
+          : null,
       });
 
       await teacherData.save();
@@ -84,7 +85,7 @@ class Teacher {
 
       if (!teacher) throw new Error("Teacher not found");
 
-      const imageUrl = teacher.profileImage
+      const imageUrl = teacher.profileImage;
 
       myHelper.resHandler(
         res,
@@ -182,12 +183,8 @@ class Teacher {
       if (req.file) {
         // Check if the teacher already has an existing image
         if (teacher.profileImage) {
-          const fileName = teacher.profileImage.split('/').pop();
-          const oldImagePath = path.join(
-            __dirname,
-            "../../uploads/",
-            fileName
-          );
+          const fileName = teacher.profileImage.split("/").pop();
+          const oldImagePath = path.join(__dirname, "../../uploads/", fileName);
 
           // Delete the old image file from the uploads folder
           fs.unlink(oldImagePath, (err) => {
@@ -200,9 +197,14 @@ class Teacher {
         // Update with the new image filename
         teacher = await teacherModel.findOneAndUpdate(
           { email: req.body.email },
-          { ...req.body, profileImage: req.file
-            ? `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`
-            : null,},
+          {
+            ...req.body,
+            profileImage: req.file
+              ? `${req.protocol}://${req.get("host")}/uploads/${
+                  req.file.filename
+                }`
+              : null,
+          },
           { new: true }
         );
       } else {
@@ -302,9 +304,13 @@ class Teacher {
 
       const teacher = await teacherModel.findOneAndUpdate(
         { _id: teacherId },
-        { $pull: { requestsFromStudents: { studentID: studentId } } },
+        {
+          $pull: { requestsFromStudents: { studentID: studentId } },
+          status: false,
+        },
         { new: true }
       );
+
       myHelper.resHandler(
         res,
         200,
@@ -361,10 +367,24 @@ class Teacher {
 
   static endMeeting = async (req, res) => {
     try {
-      SessionMap.deleteSession(req.body.session);
+      const result = SessionMap.deleteSession(req.body.session);
+      await this.changeTeacherStatus(result.session.teacherId);
       myHelper.resHandler(res, 200, true, "", "Sessions ended successfully");
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+
+  static changeTeacherStatus = async (teacherId) => {
+    try {
+      const teacher = await teacherModel.findByIdAndUpdate(
+        teacherId,
+        { status: true },
+        { new: true }
+      );
+      return "status changes successfully to " + newStatus;
+    } catch (e) {
+      return e;
     }
   };
 }
