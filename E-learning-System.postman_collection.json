@@ -19,27 +19,27 @@
 							"formdata": [
 								{
 									"key": "firstName",
-									"value": "Marwa",
+									"value": "test12",
 									"type": "text"
 								},
 								{
 									"key": "lastName",
-									"value": "Mohamed",
+									"value": "test12",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "marwaa@gmail.com",
+									"value": "testt12@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "marwaa",
+									"value": "test3312",
 									"type": "text"
 								},
 								{
 									"key": "classes[0][class]",
-									"value": " الثالث الابتدائي ",
+									"value": "الثاني الابتدائي",
 									"type": "text"
 								},
 								{
@@ -75,7 +75,8 @@
 								{
 									"key": "status",
 									"value": "true",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "gender",
@@ -95,7 +96,8 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/Youssef mohamed/Downloads/AirBrush_20240126162745.jpg"
+									"src": "/C:/Users/Youssef mohamed/Pictures/Screenshots/Screenshot 2024-10-06 133141.png",
+									"disabled": true
 								}
 							]
 						},
@@ -125,7 +127,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"marwa\",\r\n    \"password\": \"SecurePass123\"\r\n}",
+							"raw": "{\r\n    \"username\": \"hosam33\",\r\n    \"password\": \"SecurePass123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -133,11 +135,18 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}teacher/login",
+							"raw": "http://141.136.42.159:3000/api/teacher/login",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}teacher"
+								"141",
+								"136",
+								"42",
+								"159"
 							],
+							"port": "3000",
 							"path": [
+								"api",
+								"teacher",
 								"login"
 							]
 						}
@@ -151,16 +160,23 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA4NzhkMjk2OGQwMTlkMjRjOTg5NmMiLCJpYXQiOjE3MTQwNjAxOTd9.V4pGqSpmLTpeM67MEnsj4Hfth86ky1ldrg-Kf4_WK1c",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzA0NWU1YWI1NGM5ODk4OTdiMTRlZjEiLCJpYXQiOjE3MjgzMzk3NzgsImV4cCI6MTcyODQyNjE3OH0.7CiAvVWHQ0TD96o-zsMsMIoQp1Q0KlP3Z5afohwXGRg",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}teacher/logout",
+							"raw": "http://141.136.42.159:3000/api/teacher/logout",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}teacher"
+								"141",
+								"136",
+								"42",
+								"159"
 							],
+							"port": "3000",
 							"path": [
+								"api",
+								"teacher",
 								"logout"
 							]
 						}
@@ -331,13 +347,20 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}teacher/single/66049eb01e7d9cb60f1719d1",
+							"raw": "http://141.136.42.159:3000/api/teacher/single/67045e5ab54c989897b14ef1",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}teacher"
+								"141",
+								"136",
+								"42",
+								"159"
 							],
+							"port": "3000",
 							"path": [
+								"api",
+								"teacher",
 								"single",
-								"66049eb01e7d9cb60f1719d1"
+								"67045e5ab54c989897b14ef1"
 							]
 						}
 					},
@@ -562,16 +585,23 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmY0MWUwNmVmODliNTgwYTQyNTVmMzEiLCJpYXQiOjE3MjgxNjkxMTAsImV4cCI6MTcyODI1NTUxMH0.PBxmC6-iu9ocvtTODoNw3dqdY4Mis1yQmoSSObDWqkg",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzA0NWU1YWI1NGM5ODk4OTdiMTRlZjEiLCJpYXQiOjE3MjgzMzk2ODQsImV4cCI6MTcyODQyNjA4NH0.HtyUP158w7Wi2bWyXU9ZRd5LfoSdtHO8I1Y-pubTQBQ",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}teacher/getStudentsRequests",
+							"raw": "http://141.136.42.159:3000/api/teacher/getStudentsRequests",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}teacher"
+								"141",
+								"136",
+								"42",
+								"159"
 							],
+							"port": "3000",
 							"path": [
+								"api",
+								"teacher",
 								"getStudentsRequests"
 							]
 						}
@@ -600,14 +630,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}teacher/approveRequest/66f3df96e7437ee1de67c82e/66f41e06ef89b580a4255f31",
+							"raw": "http://141.136.42.159:3000/api/teacher/approveRequest/67045b3ab54c989897b14e3a/67045e5ab54c989897b14ef1",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}teacher"
+								"141",
+								"136",
+								"42",
+								"159"
 							],
+							"port": "3000",
 							"path": [
+								"api",
+								"teacher",
 								"approveRequest",
-								"66f3df96e7437ee1de67c82e",
-								"66f41e06ef89b580a4255f31"
+								"67045b3ab54c989897b14e3a",
+								"67045e5ab54c989897b14ef1"
 							]
 						}
 					},
@@ -669,7 +706,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"session\":\"session965\"\r\n}",
+							"raw": "{\r\n    \"session\":\"session190\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -677,11 +714,18 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}teacher/endMeeting",
+							"raw": "http://141.136.42.159:3000/api/teacher/endMeeting",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}teacher"
+								"141",
+								"136",
+								"42",
+								"159"
 							],
+							"port": "3000",
 							"path": [
+								"api",
+								"teacher",
 								"endMeeting"
 							]
 						}
@@ -785,7 +829,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"yuse\",\r\n    \"password\": \"pass1234\"\r\n}",
+							"raw": "{\r\n    \"username\": \"yuse\",\r\n    \"password\": \"SecurePass123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -793,11 +837,18 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}student/login",
+							"raw": "http://141.136.42.159:3000/api/student/login",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}student"
+								"141",
+								"136",
+								"42",
+								"159"
 							],
+							"port": "3000",
 							"path": [
+								"api",
+								"student",
 								"login"
 							]
 						}
@@ -993,13 +1044,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmYzZGY5NmU3NDM3ZWUxZGU2N2M4MmUiLCJpYXQiOjE3MjgxNzA2OTgsImV4cCI6MTcyODI1NzA5OH0.smvwhCLHnDaUR1215Y4qOMKtvTJVWytgbImZjzR37xY",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzA0NWIzYWI1NGM5ODk4OTdiMTRlM2EiLCJpYXQiOjE3MjgzMzg3NjgsImV4cCI6MTcyODQyNTE2OH0.2HDTtJnvxQu6HH3DJ3_Yt8KlmQlQLCrY37OpsimOrYw",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"subject\":\"math\"\r\n}",
+							"raw": "{\r\n    \"subject\":\"arabic\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1007,11 +1058,18 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}student/filterTeachersBySubjectAndClasses",
+							"raw": "http://141.136.42.159:3000/api/student/filterTeachersBySubjectAndClasses",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}student"
+								"141",
+								"136",
+								"42",
+								"159"
 							],
+							"port": "3000",
 							"path": [
+								"api",
+								"student",
 								"filterTeachersBySubjectAndClasses"
 							]
 						}
@@ -1040,14 +1098,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}student/sendConnectToTeacher/66f3df96e7437ee1de67c82e/66f41e06ef89b580a4255f31",
+							"raw": "http://141.136.42.159:3000/api/student/sendConnectToTeacher/67045b3ab54c989897b14e3a/67045e5ab54c989897b14ef1",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}student"
+								"141",
+								"136",
+								"42",
+								"159"
 							],
+							"port": "3000",
 							"path": [
+								"api",
+								"student",
 								"sendConnectToTeacher",
-								"66f3df96e7437ee1de67c82e",
-								"66f41e06ef89b580a4255f31"
+								"67045b3ab54c989897b14e3a",
+								"67045e5ab54c989897b14ef1"
 							]
 						}
 					},
