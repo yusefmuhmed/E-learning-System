@@ -390,6 +390,19 @@ class Student_Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
+
+  static changeTeacherStatus = async (teacherId) => {
+    try {
+      const teacher = await teacherModel.findByIdAndUpdate(
+        teacherId,
+        { status: true },
+        { new: true }
+      );
+      return "status changes successfully to " + newStatus;
+    } catch (e) {
+      return e;
+    }
+  };
 }
 
 module.exports = Student_Teacher;
