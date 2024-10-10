@@ -246,7 +246,8 @@ class Student_Teacher {
       teacher.totalNumberOfRatings = totalRatings;
 
       const result = SessionMap.deleteSession(session);
-      await this.changeTeacherStatus(result.session.teacherId);
+      if (result.session)
+        await this.changeTeacherStatus(result.session.teacherId);
 
       await teacher.save();
 
@@ -318,7 +319,8 @@ class Student_Teacher {
       const sessionName = req.body.sessionName;
 
       const session = SessionMap.deleteSession(sessionName);
-      await this.changeTeacherStatus(result.session.teacherId);
+      if (session.session)
+        await this.changeTeacherStatus(result.session.teacherId);
       if (!session.status) {
         myHelper.resHandler(
           res,

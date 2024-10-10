@@ -368,7 +368,9 @@ class Teacher {
   static endMeeting = async (req, res) => {
     try {
       const result = SessionMap.deleteSession(req.body.session);
-      await this.changeTeacherStatus(result.session.teacherId);
+
+      if (result.session)
+        await this.changeTeacherStatus(result.session.teacherId);
       myHelper.resHandler(res, 200, true, "", "Sessions ended successfully");
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
