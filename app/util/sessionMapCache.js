@@ -65,7 +65,15 @@ class SessionMap {
 
   static deleteSession(sessionName) {
     const session = SessionMap.sessions[sessionName];
-    return {status : delete SessionMap.sessions[sessionName] , session}
+    return { status: delete SessionMap.sessions[sessionName], session };
+  }
+
+  static deleteStudentIdFromSession(sessionName) {
+    const session = SessionMap.sessions[sessionName];
+    if (session) {
+      session.studentId = null;
+      return { status: true, session };
+    }
   }
 }
 

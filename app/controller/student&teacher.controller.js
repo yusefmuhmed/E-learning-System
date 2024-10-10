@@ -318,9 +318,7 @@ class Student_Teacher {
     try {
       const sessionName = req.body.sessionName;
 
-      const session = SessionMap.deleteSession(sessionName);
-      if (session.session)
-        await this.changeTeacherStatus(session.session.teacherId);
+      const session = SessionMap.deleteStudentIdFromSession(sessionName);
       if (!session.status) {
         myHelper.resHandler(
           res,
