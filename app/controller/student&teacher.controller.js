@@ -320,7 +320,7 @@ class Student_Teacher {
 
       const session = SessionMap.deleteSession(sessionName);
       if (session.session)
-        await this.changeTeacherStatus(result.session.teacherId);
+        await this.changeTeacherStatus(session.session.teacherId);
       if (!session.status) {
         myHelper.resHandler(
           res,
