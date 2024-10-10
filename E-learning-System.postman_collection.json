@@ -29,12 +29,12 @@
 								},
 								{
 									"key": "email",
-									"value": "testt12@gmail.com",
+									"value": "testt12346@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "test3312",
+									"value": "test3312346",
 									"type": "text"
 								},
 								{
@@ -59,7 +59,7 @@
 								},
 								{
 									"key": "introVideoLink",
-									"value": " https://www.youtube.com/jennysmith_intro ",
+									"value": " null",
 									"type": "text"
 								},
 								{
@@ -74,9 +74,8 @@
 								},
 								{
 									"key": "status",
-									"value": "true",
-									"type": "text",
-									"disabled": true
+									"value": " null",
+									"type": "text"
 								},
 								{
 									"key": "gender",
@@ -94,10 +93,14 @@
 									"type": "text"
 								},
 								{
+									"key": "profileImage",
+									"value": " null",
+									"type": "text"
+								},
+								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/Youssef mohamed/Pictures/Screenshots/Screenshot 2024-10-06 133141.png",
-									"disabled": true
+									"src": []
 								}
 							]
 						},
@@ -342,7 +345,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjA0OWViMDFlN2Q5Y2I2MGYxNzE5ZDEiLCJpYXQiOjE3MTE1Nzk2OTV9.5SU-Y8XBbhuw_mmZoQ5pc4ZcAUh2nysEikdBHGzzF2c",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzA0NWIzYWI1NGM5ODk4OTdiMTRlM2EiLCJpYXQiOjE3Mjg1NjE0NDYsImV4cCI6MTcyODY0Nzg0Nn0.JlP1fWyFj5X6KUj1xdMUWGYn8YyRc4jJ0KpMRrOYYZk",
 								"type": "text"
 							}
 						],
@@ -585,7 +588,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzA0NWU1YWI1NGM5ODk4OTdiMTRlZjEiLCJpYXQiOjE3MjgzMzk2ODQsImV4cCI6MTcyODQyNjA4NH0.HtyUP158w7Wi2bWyXU9ZRd5LfoSdtHO8I1Y-pubTQBQ",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzA0NWU1YWI1NGM5ODk4OTdiMTRlZjEiLCJpYXQiOjE3Mjg1NjExNzMsImV4cCI6MTcyODY0NzU3M30.lSdE2XGjzRS0rJpIFeJmHj4sehAFdfpHqdUeVKTwbX4",
 								"type": "text"
 							}
 						],
@@ -656,13 +659,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}teacher/getSpecificStudent/66ef214a4c7b02bca24b6220",
+							"raw": "http://141.136.42.159:3000/api/teacher/getSpecificStudent/67045b3ab54c989897b14e3a",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}teacher"
+								"141",
+								"136",
+								"42",
+								"159"
 							],
+							"port": "3000",
 							"path": [
+								"api",
+								"teacher",
 								"getSpecificStudent",
-								"66ef214a4c7b02bca24b6220"
+								"67045b3ab54c989897b14e3a"
 							]
 						}
 					},
@@ -706,7 +716,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"session\":\"session190\"\r\n}",
+							"raw": "{\r\n    \"session\":\"session957\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1044,13 +1054,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzA0NWIzYWI1NGM5ODk4OTdiMTRlM2EiLCJpYXQiOjE3MjgzMzg3NjgsImV4cCI6MTcyODQyNTE2OH0.2HDTtJnvxQu6HH3DJ3_Yt8KlmQlQLCrY37OpsimOrYw",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzA0NWIzYWI1NGM5ODk4OTdiMTRlM2EiLCJpYXQiOjE3Mjg1NjE0NDYsImV4cCI6MTcyODY0Nzg0Nn0.JlP1fWyFj5X6KUj1xdMUWGYn8YyRc4jJ0KpMRrOYYZk",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"subject\":\"arabic\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1553,6 +1563,11 @@
 			"key": "baseUrl",
 			"value": "http://localhost:3000/api/",
 			"type": "default"
+		},
+		{
+			"key": "baseProductionUrl",
+			"value": "http://141.136.42.159:3000/api/",
+			"type": "string"
 		}
 	]
 }
