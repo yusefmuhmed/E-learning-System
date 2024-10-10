@@ -74,6 +74,7 @@ class SessionMap {
       session.studentId = null;
       return { status: true, session };
     }
+    return { status: true };
   }
 }
 
