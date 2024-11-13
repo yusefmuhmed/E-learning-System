@@ -20,7 +20,7 @@ class Payment {
 
   static createPaymentLink = async (req, res) => {
     try {
-      const token ="ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2T1RrM05EazFMQ0p3YUdGemFDSTZJbVk1TTJSa1pEQXlNR000WkRVM056TmpaRFV5TldKbU5UYzBOalprTXpkbU56QTFNR1prWldabE9ERXpOVEpoWWpGa1ltSmxNRFF5TjJSbE16STVaVEVpTENKbGVIQWlPakUzTXpFMU1ERTFPREI5LjFvcjR0ZW0zUWR5RG90Xy1CR1BmdjdoNWJ5cUY0cXFFTzloeGpBeXNheW9LbldCYmNQZmRjMEJaNzhJQjY4UTJmcjBRdFppckJIdkxyRE4xTTZGQjJB" 
+      const token = config.payment.auth_token;
       //await this.getAuthToken();
 
       let data = new FormData();
@@ -42,7 +42,7 @@ class Payment {
         data,
         {
           headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
           },
           maxBodyLength: Infinity,
         }

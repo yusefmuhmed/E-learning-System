@@ -19,12 +19,12 @@
 							"formdata": [
 								{
 									"key": "firstName",
-									"value": "test12",
+									"value": "Ahmed",
 									"type": "text"
 								},
 								{
 									"key": "lastName",
-									"value": "test12",
+									"value": "Mohamed",
 									"type": "text"
 								},
 								{
@@ -34,17 +34,17 @@
 								},
 								{
 									"key": "username",
-									"value": "test3312346",
+									"value": "AhmedMohamed",
 									"type": "text"
 								},
 								{
 									"key": "classes[0][class]",
-									"value": "الثاني الابتدائي",
+									"value": "الخامس الابتدائي",
 									"type": "text"
 								},
 								{
 									"key": "classes[1][class]",
-									"value": " third primary ",
+									"value": "fifth primary",
 									"type": "text"
 								},
 								{
@@ -94,29 +94,23 @@
 								},
 								{
 									"key": "profileImage",
-									"value": " null",
-									"type": "text"
+									"value": " ",
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "image",
 									"type": "file",
-									"src": []
+									"src": "/C:/Users/Youssef mohamed/Downloads/AirBrush_20240126162745.jpg"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://141.136.42.159:3000/api/teacher/register",
-							"protocol": "http",
+							"raw": "{{baseUrl}}teacher/register",
 							"host": [
-								"141",
-								"136",
-								"42",
-								"159"
+								"{{baseUrl}}teacher"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"teacher",
 								"register"
 							]
 						}
@@ -130,7 +124,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"hosam33\",\r\n    \"password\": \"SecurePass123\"\r\n}",
+							"raw": "{\r\n    \"username\": \"7odaz222\",\r\n    \"password\": \"SecurePass123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -138,18 +132,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://141.136.42.159:3000/api/teacher/login",
-							"protocol": "http",
+							"raw": "{{baseUrl}}teacher/login",
 							"host": [
-								"141",
-								"136",
-								"42",
-								"159"
+								"{{baseUrl}}teacher"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"teacher",
 								"login"
 							]
 						}
@@ -588,23 +575,16 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzA0NWU1YWI1NGM5ODk4OTdiMTRlZjEiLCJpYXQiOjE3Mjg1NjExNzMsImV4cCI6MTcyODY0NzU3M30.lSdE2XGjzRS0rJpIFeJmHj4sehAFdfpHqdUeVKTwbX4",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmVmMjE0YTRjN2IwMmJjYTI0YjYyMjAiLCJpYXQiOjE3MjkyODAxMzUsImV4cCI6MTcyOTM2NjUzNX0.CTPbQ_elZ_I1PxdMiiI5etjQxHt8LKp2MhxXjFvs7_4",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://141.136.42.159:3000/api/teacher/getStudentsRequests",
-							"protocol": "http",
+							"raw": "{{baseUrl}}teacher/getStudentsRequests",
 							"host": [
-								"141",
-								"136",
-								"42",
-								"159"
+								"{{baseUrl}}teacher"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"teacher",
 								"getStudentsRequests"
 							]
 						}
@@ -633,21 +613,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://141.136.42.159:3000/api/teacher/approveRequest/67045b3ab54c989897b14e3a/67045e5ab54c989897b14ef1",
-							"protocol": "http",
+							"raw": "{{baseUrl}}teacher/approveRequest/670825f71b7881745ba79e31/66ef214a4c7b02bca24b6220",
 							"host": [
-								"141",
-								"136",
-								"42",
-								"159"
+								"{{baseUrl}}teacher"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"teacher",
 								"approveRequest",
-								"67045b3ab54c989897b14e3a",
-								"67045e5ab54c989897b14ef1"
+								"670825f71b7881745ba79e31",
+								"66ef214a4c7b02bca24b6220"
 							]
 						}
 					},
@@ -716,7 +689,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"session\":\"session957\"\r\n}",
+							"raw": "{\r\n    \"session\":\"session733\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -724,18 +697,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://141.136.42.159:3000/api/teacher/endMeeting",
-							"protocol": "http",
+							"raw": "{{baseUrl}}teacher/endMeeting",
 							"host": [
-								"141",
-								"136",
-								"42",
-								"159"
+								"{{baseUrl}}teacher"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"teacher",
 								"endMeeting"
 							]
 						}
@@ -780,22 +746,22 @@
 								},
 								{
 									"key": "lastName",
-									"value": "khaled",
+									"value": "hossam",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "yusefmuhmedx@gmail.com",
+									"value": "ahmedhossam@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "yuse",
+									"value": "AhmedHossam",
 									"type": "text"
 								},
 								{
 									"key": "class",
-									"value": "الثاني الابتدائي",
+									"value": "الخامس الابتدائي",
 									"type": "text"
 								},
 								{
@@ -816,7 +782,7 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/Youssef mohamed/Pictures/Screenshots/Screenshot 2024-05-12 125123.png"
+									"src": "postman-cloud:///1eeec8f0-219d-4570-b39c-4447f48e87f5"
 								}
 							]
 						},
@@ -839,7 +805,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"yuse\",\r\n    \"password\": \"SecurePass123\"\r\n}",
+							"raw": "{\r\n    \"username\": \"AhmedHossam\",\r\n    \"password\": \"SecurePass123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -847,18 +813,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://141.136.42.159:3000/api/student/login",
-							"protocol": "http",
+							"raw": "{{baseUrl}}student/login",
 							"host": [
-								"141",
-								"136",
-								"42",
-								"159"
+								"{{baseUrl}}student"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"student",
 								"login"
 							]
 						}
@@ -993,13 +952,13 @@
 								{
 									"key": "class",
 									"value": "الثالث الابتدائي",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "password",
 									"value": "pass1234",
-									"type": "text",
-									"disabled": true
+									"type": "text"
 								}
 							]
 						},
@@ -1054,7 +1013,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzA0NWIzYWI1NGM5ODk4OTdiMTRlM2EiLCJpYXQiOjE3Mjg1NjE0NDYsImV4cCI6MTcyODY0Nzg0Nn0.JlP1fWyFj5X6KUj1xdMUWGYn8YyRc4jJ0KpMRrOYYZk",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzA4MjVmNzFiNzg4MTc0NWJhNzllMzEiLCJpYXQiOjE3Mjg1ODcyNzYsImV4cCI6MTcyODY3MzY3Nn0.2UeYcEPKR78uzmALnIPyprWN835d-6EnjXzw4XqJZLo",
 								"type": "text"
 							}
 						],
@@ -1068,18 +1027,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://141.136.42.159:3000/api/student/filterTeachersBySubjectAndClasses",
-							"protocol": "http",
+							"raw": "{{baseUrl}}student/filterTeachersBySubjectAndClasses",
 							"host": [
-								"141",
-								"136",
-								"42",
-								"159"
+								"{{baseUrl}}student"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"student",
 								"filterTeachersBySubjectAndClasses"
 							]
 						}
@@ -1100,7 +1052,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"class\":\"Second Prep\",\r\n    \"duration\":\"30\",\r\n    \"subject\":\"Arabic\",\r\n    \"sessionInfo\":\"unit 3 line 16 math section\"\r\n}",
+							"raw": "{\r\n    \"class\":\"Second Prep\",\r\n    \"duration\":\"30\",\r\n    \"subject\":\"English\",\r\n    \"sessionInfo\":\"unit 3 line 16 math section\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1108,21 +1060,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://141.136.42.159:3000/api/student/sendConnectToTeacher/67045b3ab54c989897b14e3a/67045e5ab54c989897b14ef1",
-							"protocol": "http",
+							"raw": "{{baseUrl}}student/sendConnectToTeacher/670825f71b7881745ba79e31/66ef214a4c7b02bca24b6220",
 							"host": [
-								"141",
-								"136",
-								"42",
-								"159"
+								"{{baseUrl}}student"
 							],
-							"port": "3000",
 							"path": [
-								"api",
-								"student",
 								"sendConnectToTeacher",
-								"67045b3ab54c989897b14e3a",
-								"67045e5ab54c989897b14ef1"
+								"670825f71b7881745ba79e31",
+								"66ef214a4c7b02bca24b6220"
 							]
 						}
 					},
@@ -1158,9 +1103,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}student/subjects",
+							"raw": "{{baseProductionUrl}}student/subjects",
 							"host": [
-								"{{baseUrl}}student"
+								"{{baseProductionUrl}}student"
 							],
 							"path": [
 								"subjects"
@@ -1468,7 +1413,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"sessionName\":\"session253\"\r\n}",
+							"raw": "{\r\n    \"sessionName\":\"session862\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1530,6 +1475,43 @@
 							],
 							"path": [
 								"addGlobalSessionDuration"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Paymob",
+			"item": [
+				{
+					"name": "Get payment key",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzA4MjVmNzFiNzg4MTc0NWJhNzllMzEiLCJpYXQiOjE3MzE1MDA2MDksImV4cCI6MTczMTU4NzAwOX0.KSZG20FiHLeQyqJN4-9Fm6l79lr9NOvOiiU4HGnC8oA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": \"20000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}payment/create-payment-link",
+							"host": [
+								"{{baseUrl}}payment"
+							],
+							"path": [
+								"create-payment-link"
 							]
 						}
 					},
