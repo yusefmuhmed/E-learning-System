@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const paymentHistorySchema = mongoose.Schema(
   {
+    studentMail: { type: String, required: true },
     amount_cents: { type: Number, required: true },
     created_at: { type: Date, required: true },
     currency: { type: String, required: true },

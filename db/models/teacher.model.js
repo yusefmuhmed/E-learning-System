@@ -107,8 +107,8 @@ const teacherSchema = mongoose.Schema(
       {
         studentID: { type: String, trim: true },
         class: { type: String, trim: true },
-        durationInMinutes: { type: Number},
-        sessionInfo: {type: String, trim: true},
+        durationInMinutes: { type: Number },
+        sessionInfo: { type: String, trim: true },
         subject: { type: String, trim: true },
         studentName: { type: String, trim: true },
         studentClass: { type: String, trim: true },
@@ -138,7 +138,7 @@ const teacherSchema = mongoose.Schema(
           trim: true,
           default: "",
           maxLength: 500,
-        }
+        },
       },
     ],
     ratingAverage: {
@@ -154,6 +154,10 @@ const teacherSchema = mongoose.Schema(
       trim: true,
       default: 0,
       min: 0,
+    },
+    balance: {
+      type: Number,
+      default: 0,
     },
   },
   {
@@ -184,16 +188,14 @@ teacherSchema.methods.toJSON = function () {
 };
 teacherSchema.methods.generateToken = async function () {
   const teacherData = this;
-  const expiresIn = 24 * 60 * 60; 
-  const token = jwt.sign(
-    { _id: teacherData._id }, 
-    process.env.tokenPass, 
-    { expiresIn }
-  );
+  const expiresIn = 24 * 60 * 60;
+  const token = jwt.sign({ _id: teacherData._id }, process.env.tokenPass, {
+    expiresIn,
+  });
   const expiresAt = new Date(Date.now() + expiresIn * 1000);
   teacherData.tokens = teacherData.tokens.concat({ token, expiresAt });
   await teacherData.save();
-  
+
   return token;
 };
 
@@ -205,7 +207,7 @@ teacherSchema.statics.removeExpiredTokens = async function () {
     { $pull: { tokens: { expiresAt: { $lte: now } } } }
   );
 
-  console.log('Expired tokens removed');
+  console.log("Expired tokens removed");
 };
 
 const Teacher = mongoose.model("Teacher", teacherSchema);

@@ -1492,13 +1492,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzA4MjVmNzFiNzg4MTc0NWJhNzllMzEiLCJpYXQiOjE3MzE1MDA2MDksImV4cCI6MTczMTU4NzAwOX0.KSZG20FiHLeQyqJN4-9Fm6l79lr9NOvOiiU4HGnC8oA",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM2M2E4YWFjNDJlZWU4YzM2NTUxMDgiLCJpYXQiOjE3MzE2MDc5NDAsImV4cCI6MTczMTY5NDM0MH0.juwwUtve8rqNbs5P5VYbl3jQNXlKSs7VklWsJ2TbEvA",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"amount\": \"20000\"\r\n}",
+							"raw": "{\r\n    \"amount\": \"200000\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -3,6 +3,7 @@ const axios = require("axios");
 const config = require("../../config.json");
 const FormData = require("form-data");
 const paymentHistoryModel = require("../../db/models/paymentHistory.model");
+const studentModel = require("../../db/models/student.model");
 const crypto = require("crypto");
 
 class Payment {
@@ -67,11 +68,14 @@ class Payment {
 
   static paymentStatus = async (req, res) => {
     try {
-      // Log the Paymob response
-      console.log("Paymob Response:", req.query);
+      const hmac = req.query.hmac;
 
-      // Extract the HMAC and payment data from `req.query`
-      const { hmac, ...paymobData } = req.query;
+      const { obj: paymobData } = req.body;
+
+      if (!paymobData) {
+        console.log("Paymob Data not found for this request");
+        return;
+      }
 
       // Step 1: Construct the data string in the specified order
       const dataString = [
@@ -88,12 +92,12 @@ class Payment {
         paymobData.is_refunded,
         paymobData.is_standalone_payment,
         paymobData.is_voided,
-        paymobData.order_id,
+        paymobData.order?.id, // Access nested order ID
         paymobData.owner,
         paymobData.pending,
-        paymobData.source_data.pan,
-        paymobData.source_data.sub_type,
-        paymobData.source_data.type,
+        paymobData.source_data?.pan, // Access nested source data properties
+        paymobData.source_data?.sub_type,
+        paymobData.source_data?.type,
         paymobData.success,
       ].join("");
 
@@ -105,12 +109,11 @@ class Payment {
 
       // Step 3: Compare the received HMAC with the computed one
       if (computedHmac !== hmac) {
-        return res
-          .status(403)
-          .json({ success: false, message: "Invalid HMAC" });
+        console.log("Invalid HMAC");
+        return;
       }
 
-      // Destructure the payment data from paymobData object
+      // Destructure and store the necessary payment data
       const {
         amount_cents,
         created_at,
@@ -132,39 +135,60 @@ class Payment {
         source_data,
       } = paymobData;
 
-      // Access nested properties if required
       const orderId = order?.id;
       const pan = source_data?.pan;
       const subType = source_data?.sub_type;
       const sourceType = source_data?.type;
 
-      // Respond based on payment success status
-      if (success === "true") {
-        myHelper.resHandler(
-          res,
-          200,
-          true,
+      // Save payment history if the payment was successful
+      if (success === true) {
+        const studentMail = req.body.obj.order.shipping_data.email;
+        const paymentHistory = new paymentHistoryModel({
+          studentMail,
+          amount_cents,
+          created_at,
+          currency,
+          error_occured,
+          has_parent_transaction,
+          transaction_id: id,
+          integration_id,
+          is_3d_secure,
+          is_auth,
+          is_capture,
+          is_refunded,
+          is_standalone_payment,
+          is_voided,
+          order_id: orderId,
+          owner,
+          pending,
+          success,
+        });
+        await paymentHistory.save();
+
+        const student = await studentModel.findOneAndUpdate(
+          { email: studentMail },
           {
-            transaction_id: id,
-            order: orderId,
-            amount_cents,
+            $inc: {
+              balance: amount_cents / 100, // Increment balance by the payment amount
+            },
           },
-          "Payment was successful"
+          { new: true } // Return the updated document
         );
+
+        if (!student) {
+          console.log("Student with this mail" + studentMail + " not found");
+          return;
+        }
+
+        console.log("Payment was successful");
+        return;
       } else {
-        myHelper.resHandler(
-          res,
-          400,
-          false,
-          {
-            transaction_id: id,
-            error_occured,
-          },
-          "Payment failed or was canceled"
-        );
+        console.log("Payment was not successful");
+        return;
       }
     } catch (e) {
-      myHelper.resHandler(res, 500, false, e, e.message);
+      console.log(e);
+      return;
     }
   };
 }
