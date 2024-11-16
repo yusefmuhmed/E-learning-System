@@ -29,12 +29,12 @@
 								},
 								{
 									"key": "email",
-									"value": "testt12346@gmail.com",
+									"value": "testt1234@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "AhmedMohamed",
+									"value": "AhmedMohame",
 									"type": "text"
 								},
 								{
@@ -89,7 +89,7 @@
 								},
 								{
 									"key": "pricePerHour",
-									"value": "10",
+									"value": "8000",
 									"type": "text"
 								},
 								{
@@ -603,24 +603,15 @@
 								"disabled": true
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"duration\":\"30\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{baseUrl}}teacher/approveRequest/670825f71b7881745ba79e31/66ef214a4c7b02bca24b6220",
+							"raw": "{{baseUrl}}teacher/approveRequest/67363a8aac42eee8c3655108/6738927573a03ccd47d87a98",
 							"host": [
 								"{{baseUrl}}teacher"
 							],
 							"path": [
 								"approveRequest",
-								"670825f71b7881745ba79e31",
-								"66ef214a4c7b02bca24b6220"
+								"67363a8aac42eee8c3655108",
+								"6738927573a03ccd47d87a98"
 							]
 						}
 					},
@@ -684,12 +675,13 @@
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmMyMTg2ZTY2NTdkYzU4YjJkN2FmMjIiLCJpYXQiOjE3MjM5OTYyNzR9.96OQ8b69AVv9pGIDPuI1lfmzp1bdEF7j0z8qBcj5FQU",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"session\":\"session733\"\r\n}",
+							"raw": "{\r\n    \"session\":\"session295\",\r\n    \"price\":85.1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1013,13 +1005,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzA4MjVmNzFiNzg4MTc0NWJhNzllMzEiLCJpYXQiOjE3Mjg1ODcyNzYsImV4cCI6MTcyODY3MzY3Nn0.2UeYcEPKR78uzmALnIPyprWN835d-6EnjXzw4XqJZLo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM2M2E4YWFjNDJlZWU4YzM2NTUxMDgiLCJpYXQiOjE3MzE3NjA1OTAsImV4cCI6MTczMTg0Njk5MH0.qspAIjwiR2KDAt2rqFQ2jQK5PF6k1b_fyE90ExAE2Tc",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\r\n    \"balance\":true,\r\n    \"subject\": \"arabic\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1052,7 +1044,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"class\":\"Second Prep\",\r\n    \"duration\":\"30\",\r\n    \"subject\":\"English\",\r\n    \"sessionInfo\":\"unit 3 line 16 math section\"\r\n}",
+							"raw": "{\r\n    \"class\":\"Second Prep\",\r\n    \"duration\":\"120\",\r\n    \"subject\":\"English\",\r\n    \"sessionInfo\":\"unit 3 line 16 math section\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1060,14 +1052,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}student/sendConnectToTeacher/670825f71b7881745ba79e31/66ef214a4c7b02bca24b6220",
+							"raw": "{{baseUrl}}student/sendConnectToTeacher/67363a8aac42eee8c3655108/6738927573a03ccd47d87a98",
 							"host": [
 								"{{baseUrl}}student"
 							],
 							"path": [
 								"sendConnectToTeacher",
-								"670825f71b7881745ba79e31",
-								"66ef214a4c7b02bca24b6220"
+								"67363a8aac42eee8c3655108",
+								"6738927573a03ccd47d87a98"
 							]
 						}
 					},

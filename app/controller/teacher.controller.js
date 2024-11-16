@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const bcryptjs = require("bcryptjs");
 const SessionMap = require("../util/sessionMapCache");
-const globalConfigModel = require("../../db/models/globalConfig.model");
+const studentAndTeacherController = require("./student&teacher.controller");
 class Teacher {
   static register = async (req, res) => {
     try {
@@ -286,20 +286,32 @@ class Teacher {
     try {
       const teacherId = req.params.teacherId;
       const studentId = req.params.studentId;
-      let globalSessionDuration = await globalConfigModel.findOne({});
-      if (!globalSessionDuration) {
-        await globalConfigModel.create({
-          id: 1,
-          sessionDuration: 30,
-        });
+
+      const object = await teacherModel.findOne(
+        { _id: teacherId },
+        { requestsFromStudents: { $elemMatch: { studentID: studentId } } }
+      );
+
+      // Check if a matching request was found
+      if (
+        !object ||
+        !object.requestsFromStudents ||
+        object.requestsFromStudents.length === 0
+      ) {
+        return res
+          .status(404)
+          .json({ success: false, message: "No matching request found." });
       }
 
-      globalSessionDuration = await globalConfigModel.findOne({});
+      // Retrieve the duration
+      const durationInMinutes =
+        object.requestsFromStudents[0].durationInMinutes;
 
+      // Generate the session using the retrieved duration
       const session = SessionMap.generateSession(
         studentId,
         teacherId,
-        globalSessionDuration.meetingDuration
+        durationInMinutes
       );
 
       const teacher = await teacherModel.findOneAndUpdate(
@@ -367,6 +379,17 @@ class Teacher {
 
   static endMeeting = async (req, res) => {
     try {
+      const session = SessionMap.getSession(req.body.session);
+
+      const transfer = await studentAndTeacherController.transferBalance(
+        session.studentId,
+        session.teacherId,
+        req.body.price
+      );
+
+      if (!transfer) {
+        return myHelper.resHandler(res, 404, false, null, "Transfer failed");
+      }
       const result = SessionMap.deleteSession(req.body.session);
 
       if (result.session)

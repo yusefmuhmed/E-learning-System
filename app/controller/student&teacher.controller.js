@@ -107,7 +107,7 @@ class Student_Teacher {
 
   static filterBySubjectAndClass = async (req, res) => {
     try {
-      const { subject } = req.body;
+      const { subject, balance } = req.body;
 
       let query = {
         status: true,
@@ -123,6 +123,15 @@ class Student_Teacher {
         if (req.student.class) {
           query.$and.push({ "classes.class": req.student.class });
         }
+      }
+
+      if (balance) {
+        query.$and = query.$and || [];
+        query.$and.push({
+          $expr: {
+            $lte: [{ $divide: ["$pricePerHour", 2] }, req.student.balance],
+          },
+        });
       }
 
       const teachers = await teacherModel.find(query, {
@@ -172,7 +181,21 @@ class Student_Teacher {
 
       let student;
 
-      if (myHelper.checkIsObjectId(studentId)) {
+      if (
+        myHelper.checkIsObjectId(studentId) &&
+        myHelper.checkIsObjectId(teacherId)
+      ) {
+        const match = await this.checkStudentBalance(studentId, teacherId);
+        if (!match) {
+          myHelper.resHandler(
+            res,
+            404,
+            false,
+            "Data not found",
+            "Not enough balance in your account"
+          );
+        }
+
         student = await studentModel.findByIdAndUpdate(
           studentId,
           {
@@ -188,25 +211,25 @@ class Student_Teacher {
           },
           { new: true }
         );
-      }
 
-      const teacher = await teacherModel.findByIdAndUpdate(
-        teacherId,
-        {
-          $push: {
-            requestsFromStudents: {
-              studentID: studentId,
-              class: className,
-              subject: subjectName,
-              durationInMinutes: duration,
-              sessionInfo: sessionInfo,
-              studentName: student.firstName + " " + student.lastName,
-              studentClass: student.class,
+        const teacher = await teacherModel.findByIdAndUpdate(
+          teacherId,
+          {
+            $push: {
+              requestsFromStudents: {
+                studentID: studentId,
+                class: className,
+                subject: subjectName,
+                durationInMinutes: duration,
+                sessionInfo: sessionInfo,
+                studentName: student.firstName + " " + student.lastName,
+                studentClass: student.class,
+              },
             },
           },
-        },
-        { new: true }
-      );
+          { new: true }
+        );
+      }
 
       myHelper.resHandler(
         res,
@@ -316,18 +339,17 @@ class Student_Teacher {
 
   static endSession = async (req, res) => {
     try {
-      const sessionName = req.body.sessionName;
-
-      const session = SessionMap.deleteStudentIdFromSession(sessionName);
-      if (!session.status) {
-        myHelper.resHandler(
-          res,
-          404,
-          false,
-          "Session not found",
-          "Session not found"
-        );
-      }
+      //const sessionName = req.body.sessionName;
+      // const session = SessionMap.deleteStudentIdFromSession(sessionName);
+      // if (!session.status) {
+      //   myHelper.resHandler(
+      //     res,
+      //     404,
+      //     false,
+      //     "Session not found",
+      //     "Session not found"
+      //   );
+      // }
 
       myHelper.resHandler(res, 200, true, "", "Session ended successfully");
     } catch (e) {
@@ -397,6 +419,30 @@ class Student_Teacher {
         { new: true }
       );
       return "status changes successfully to " + newStatus;
+    } catch (e) {
+      return e;
+    }
+  };
+
+  static checkStudentBalance = async (studentId, teacherId) => {
+    try {
+      const student = await studentModel.findById(studentId);
+      const teacher = await teacherModel.findById(teacherId);
+      return student.balance >= teacher.pricePerHour / 2;
+    } catch (e) {
+      return e;
+    }
+  };
+
+  static transferBalance = async (studentId, teacherId, price) => {
+    try {
+      const student = await studentModel.findById(studentId);
+      const teacher = await teacherModel.findById(teacherId);
+      student.balance -= price;
+      teacher.balance += price;
+      await student.save();
+      await teacher.save();
+      return true;
     } catch (e) {
       return e;
     }
