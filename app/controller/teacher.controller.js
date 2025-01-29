@@ -412,5 +412,28 @@ class Teacher {
       return e;
     }
   };
+
+  static checkTeacherBalance = async (req, res) => {
+    try {
+      if (!req.teacher) {
+        return myHelper.resHandler(res, 404, false, null, "Teacher not found");
+      }
+      const teacherBalance = req.teacher.balance;
+
+      if (req.body.amount > teacherBalance) {
+        return myHelper.resHandler(
+          res,
+          404,
+          false,
+          null,
+          "Teacher does not have enough balance"
+        );
+      } else {
+        myHelper.resHandler(res, 200, true, teacherBalance, "Balance fetched");
+      }
+    } catch (e) {
+      myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
 }
 module.exports = Teacher;

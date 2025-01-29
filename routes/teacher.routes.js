@@ -33,4 +33,6 @@ router.post("/changeTeacherStatus", auth,Teacher.changeStatus);
 
 router.post("/endMeeting", Teacher.endMeeting);
 
+router.post("/check-teacher-balance", auth ,Teacher.checkTeacherBalance);
+
 module.exports = router;

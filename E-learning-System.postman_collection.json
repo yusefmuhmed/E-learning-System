@@ -124,7 +124,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"7odaz222\",\r\n    \"password\": \"SecurePass123\"\r\n}",
+							"raw": "{\r\n    \"username\": \"ahmedmohame\",\r\n    \"password\": \"SecurePass123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -713,6 +713,38 @@
 							"path": [
 								"checkIfTeacherHasSession",
 								"66c4540de12a78dfcab8ec8d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check on teacher balance",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM4OTI3NTczYTAzY2NkNDdkODdhOTgiLCJpYXQiOjE3MzgxODUwMDgsImV4cCI6MTczODI3MTQwOH0.UyH2LGHnGvePWnnK4hUHvEnP8uGEkOY4unw23oLN4uo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": \"200000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}teacher/check-teacher-balance",
+							"host": [
+								"{{baseUrl}}teacher"
+							],
+							"path": [
+								"check-teacher-balance"
 							]
 						}
 					},
@@ -1504,6 +1536,87 @@
 							],
 							"path": [
 								"create-payment-link"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get cash out for mobile wallets",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM2M2E4YWFjNDJlZWU4YzM2NTUxMDgiLCJpYXQiOjE3MzE2MDc5NDAsImV4cCI6MTczMTY5NDM0MH0.juwwUtve8rqNbs5P5VYbl3jQNXlKSs7VklWsJ2TbEvA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": \"100\",\r\n    \"issuer\":\"vodafone\",\r\n    \"mobileNumber\":\"01023456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}payment/pay-out-mobileWallet",
+							"host": [
+								"{{baseUrl}}payment"
+							],
+							"path": [
+								"pay-out-mobileWallet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get cash out for bank accounts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM2M2E4YWFjNDJlZWU4YzM2NTUxMDgiLCJpYXQiOjE3MzE2MDc5NDAsImV4cCI6MTczMTY5NDM0MH0.juwwUtve8rqNbs5P5VYbl3jQNXlKSs7VklWsJ2TbEvA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": \"100\",\r\n    \"full_name\":\"Youssef Mohamed Abdelmeged\",\r\n    \"bank_card_number\":\"1111222233334444\",\r\n    \"bank_code\":\"CIB\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}payment/pay-out-bankAccount",
+							"host": [
+								"{{baseUrl}}payment"
+							],
+							"path": [
+								"pay-out-bankAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get banks codes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}payment/get-bank-codes",
+							"host": [
+								"{{baseUrl}}payment"
+							],
+							"path": [
+								"get-bank-codes"
 							]
 						}
 					},
