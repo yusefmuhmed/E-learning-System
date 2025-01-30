@@ -32,7 +32,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-
   static login = async (req, res) => {
     try {
       const teacherData = await teacherModel.loginTeacher(
@@ -98,7 +97,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-
   static resetPassword = async (req, res) => {
     try {
       const teacher = await teacherModel.findOne({ email: req.body.email });
@@ -229,7 +227,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-
   static getStatus = async (req, res) => {
     try {
       const teacher = await teacherModel.findById(req.params.id);
@@ -245,7 +242,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-
   static changeStatus = async (req, res) => {
     try {
       let newStatus = !req.teacher.status;
@@ -266,7 +262,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-
   static getStudentsRequests = async (req, res) => {
     try {
       const teacher = await teacherModel.findById(req.teacher.id);
@@ -281,7 +276,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-
   static approveRequest = async (req, res) => {
     try {
       const teacherId = req.params.teacherId;
@@ -334,7 +328,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-
   static rejectRequest = async (req, res) => {
     try {
       const teacherId = req.params.teacherId;
@@ -361,7 +354,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-
   static checkIfTeacherHasSession = async (req, res) => {
     try {
       const sessionName = SessionMap.checkIfTeacherHasSession(
@@ -376,7 +368,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-
   static endMeeting = async (req, res) => {
     try {
       const session = SessionMap.getSession(req.body.session);
@@ -399,7 +390,6 @@ class Teacher {
       myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
-
   static changeTeacherStatus = async (teacherId) => {
     try {
       const teacher = await teacherModel.findByIdAndUpdate(
@@ -412,7 +402,6 @@ class Teacher {
       return e;
     }
   };
-
   static checkTeacherBalance = async (req, res) => {
     try {
       if (!req.teacher) {
