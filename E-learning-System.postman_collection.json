@@ -1608,7 +1608,7 @@
 					"response": []
 				},
 				{
-					"name": "Get cash out for bank accounts Copy",
+					"name": "Transfer to company account",
 					"request": {
 						"method": "POST",
 						"header": [
