@@ -23,12 +23,11 @@ module.exports = {
         "اللغة الألمانية", // German Language
         "اللغة الإسبانية", // Spanish Language
         "اللغة الإيطالية", // Italian Language
+        "ICT",
       ];
 
       return subjects;
-    }
-
-    else {
+    } else {
       const subjects = [
         "Arabic",
         "Mathematics",
@@ -51,6 +50,7 @@ module.exports = {
         "German",
         "Spanish",
         "Italian",
+        "ICT",
       ];
 
       return subjects;
@@ -60,6 +60,7 @@ module.exports = {
   getClasses: async (locale) => {
     if (locale === "ar") {
       const classes = [
+        "تأسيس KG",
         "الاول الابتدائي",
         "الثاني الابتدائي",
         "الثالث الابتدائي",
@@ -75,10 +76,9 @@ module.exports = {
       ];
 
       return classes;
-    }
-
-    else {
+    } else {
       const classes = [
+        "KG Foundation",
         "First Primary",
         "Second Primary",
         "Third Primary",
@@ -91,6 +91,18 @@ module.exports = {
         "First Secondary",
         "Second Secondary",
         "Third Secondary",
+        "Grade 1",
+        "Grade 2",
+        "Grade 3",
+        "Grade 4",
+        "Grade 5",
+        "Grade 6",
+        "Grade 7",
+        "Grade 8",
+        "Grade 9",
+        "Grade 10",
+        "Grade 11",
+        "Grade 12",
       ];
 
       return classes;
