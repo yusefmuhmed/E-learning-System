@@ -7,5 +7,6 @@ router.post("/create-payment-link", auth, Payment.createPaymentLink);
 router.post("/payment-status", Payment.paymentStatus);
 router.post("/pay-out-mobileWallet/:id", Payment.payOutForMobileWallet);
 router.post("/pay-out-bankAccount/:id", Payment.payoutForBankAccount);
+router.post("/transfer-to-company-account", Payment.payoutToCompanyAccount);
 
 module.exports = router;

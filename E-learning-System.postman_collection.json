@@ -1608,6 +1608,38 @@
 					"response": []
 				},
 				{
+					"name": "Get cash out for bank accounts Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM2M2E4YWFjNDJlZWU4YzM2NTUxMDgiLCJpYXQiOjE3MzE2MDc5NDAsImV4cCI6MTczMTY5NDM0MH0.juwwUtve8rqNbs5P5VYbl3jQNXlKSs7VklWsJ2TbEvA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": \"50\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}payment/transfer-to-company-account",
+							"host": [
+								"{{baseUrl}}payment"
+							],
+							"path": [
+								"transfer-to-company-account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get banks codes",
 					"request": {
 						"method": "GET",

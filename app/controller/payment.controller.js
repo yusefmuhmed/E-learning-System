@@ -24,14 +24,13 @@ class Payment {
 
   static createPaymentLink = async (req, res) => {
     try {
-      const token = await this.getAuthToken(); //config.payment.auth_token;
-      //await this.getAuthToken();
+      const token = await this.getAuthToken();
 
       let data = new FormData();
 
       data.append("amount_cents", req.body.amount);
-      data.append("payment_methods", "4903758");
-      data.append("payment_methods", "4898173");
+      data.append("payment_methods", config.payment.onlineCard_id);
+      data.append("payment_methods", config.payment.mobileWallet_id);
       data.append("email", req.student.email);
       data.append("is_live", config.payment.is_live_mode);
       data.append(
@@ -72,7 +71,7 @@ class Payment {
       // Get the base URL based on environment
       const baseURL =
         config.payment.env === "staging"
-          ? config.payment.staging
+          ? config.payment.payoutEnv
           : config.payment.production;
 
       // Prepare the form data
@@ -110,7 +109,7 @@ class Payment {
       const token = await this.getAuthTokenForPayOut();
 
       const response = await axios.post(
-        `https://${config.payment.staging}disburse/`,
+        `https://${config.payment.payoutEnv}disburse/`,
         {
           amount: req.body.amount,
           msisdn: req.body.mobileNumber,
@@ -146,7 +145,7 @@ class Payment {
       const token = await this.getAuthTokenForPayOut();
 
       const response = await axios.post(
-        `https://${config.payment.staging}disburse/`,
+        `https://${config.payment.payoutEnv}disburse/`,
         {
           issuer: "bank_card",
           amount: req.body.amount,
@@ -581,6 +580,56 @@ class Payment {
     } catch (e) {
       console.log(e);
       return;
+    }
+  };
+
+  static payoutToCompanyAccount = async (req, res) => {
+    try {
+      const token = await this.getAuthTokenForPayOut();
+
+      const response = await axios.post(
+        `https://${config.payment.payoutEnv}disburse/`,
+        {
+          issuer: "bank_card",
+          amount: req.body.amount,
+          full_name: config.payment.company_full_name,
+          bank_card_number: config.payment.company_bank_account_no,
+          bank_code: config.payment.company_bank_code,
+          bank_transaction_type: "cash_transfer",
+        },
+        {
+          headers: {
+            Authorization: `${token.token_type} ${token.access_token}`,
+          },
+        }
+      );
+
+      if (response.data.disbursement_status === "pending" || response.data.disbursement_status === "processing" || response.data.disbursement_status === "success") {
+        // Send success response
+        myHelper.resHandler(
+          res,
+          200,
+          true,
+          response.data,
+          "Transaction received and validated successfully. Dispatched for being processed by the bank with the transaction ID" +
+            response.data.transaction_id +
+            " NOTE: Transactions on bank take 2 Working Days to get final status"
+        );
+      }
+
+      else {
+        // Send error response
+        myHelper.resHandler(
+          res,
+          500,
+          false,
+          response.data,
+          response.data.error
+        );
+      }
+    } catch (error) {
+      // Send error response
+      myHelper.resHandler(res, 500, false, error, error.message);
     }
   };
 }
