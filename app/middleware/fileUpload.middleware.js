@@ -1,15 +1,27 @@
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 
-// Define storage strategy
+
+const uploadFolder = path.join(process.cwd(), "uploads");
+
+// Ensure uploads folder exists
+if (!fs.existsSync(uploadFolder)) {
+  fs.mkdirSync(uploadFolder, { recursive: true });
+}
+
+console.log("[UPLOAD FOLDER]", uploadFolder); // Debug: See path
+
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/"); // Directory where images will be saved
+  destination: (req, file, cb) => {
+    cb(null, uploadFolder);
   },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
+  filename: (req, file, cb) => {
+    const uniqueName = Date.now() + path.extname(file.originalname);
+    cb(null, uniqueName);
   },
 });
+
 
 // Filter for image files only
 const fileFilter = (req, file, cb) => {

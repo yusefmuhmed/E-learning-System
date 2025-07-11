@@ -16,6 +16,7 @@ class Payment {
           api_key: config.payment.api_key,
         }
       );
+
       return response.data.token;
     } catch (error) {
       return error;
@@ -29,16 +30,21 @@ class Payment {
       let data = new FormData();
 
       data.append("amount_cents", req.body.amount);
+
       data.append("payment_methods", config.payment.onlineCard_id);
       data.append("payment_methods", config.payment.mobileWallet_id);
+      
       data.append("email", req.student.email);
       data.append("is_live", config.payment.is_live_mode);
+
       data.append(
         "full_name",
         `${req.student.firstName} ${req.student.lastName}`
       );
       data.append("phone_number", "+20" + req.student.phoneNum || "");
       data.append("redirection_url", config.payment.redirection_url);
+
+    
 
       // Configure axios request with data and headers
       const response = await axios.post(
@@ -52,6 +58,7 @@ class Payment {
         }
       );
 
+
       // Send success response
       myHelper.resHandler(
         res,
@@ -61,10 +68,18 @@ class Payment {
         "Payment link created successfully"
       );
     } catch (error) {
+
+      if (error.response) {
+        console.error("API error:", error.response.status, error.response.data);
+      } else {
+        console.error("Error:", error.message);
+      }
       // Send error response
       myHelper.resHandler(res, 500, false, error, error.message);
     }
   };
+
+
 
   static getAuthTokenForPayOut = async () => {
     try {
@@ -172,8 +187,8 @@ class Payment {
         true,
         response.data,
         "Transaction received and validated successfully. Dispatched for being processed by the bank with the transaction ID" +
-          response.data.transaction_id +
-          " NOTE: Transactions on bank take 2 Working Days to get final status"
+        response.data.transaction_id +
+        " NOTE: Transactions on bank take 2 Working Days to get final status"
       );
     } catch (error) {
       // Send error response
@@ -612,8 +627,8 @@ class Payment {
           true,
           response.data,
           "Transaction received and validated successfully. Dispatched for being processed by the bank with the transaction ID" +
-            response.data.transaction_id +
-            " NOTE: Transactions on bank take 2 Working Days to get final status"
+          response.data.transaction_id +
+          " NOTE: Transactions on bank take 2 Working Days to get final status"
         );
       }
 
