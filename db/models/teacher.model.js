@@ -159,6 +159,38 @@ const teacherSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
+    sessionsInfo: [
+      {
+        sessionName: {
+          type: String,
+          trim: true,
+          required: true
+        },
+        sessionStart: {
+          type: Date,
+          required: true
+        },
+        sessionEnd: {
+          type: Date,
+          required: true
+        },
+        durationHours: {
+          type: Number,
+          required: true,
+          set: function (val) {
+            return Math.round(val * 100) / 100;
+          }
+        }
+      }
+    ],
+
+    totalTeachingHours: {
+      type: Number,
+      default: 0,
+      set: function (val) {
+        return Math.round(val * 100) / 100;
+      }
+    }
   },
   {
     timestamps: true,

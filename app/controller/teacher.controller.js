@@ -372,7 +372,6 @@ class Teacher {
   static endMeeting = async (req, res) => {
     try {
       const session = SessionMap.getSession(req.body.session);
-      let durationInHours;
 
       const transfer = await studentAndTeacherController.transferBalance(
         session.studentId,
@@ -387,17 +386,46 @@ class Teacher {
       const result = SessionMap.deleteSession(req.body.session);
 
       if (result.session) {
-        
-        durationInHours = myHelper.calculateDiffTime(result.session.sessionStart);
 
+        await this.updateTeacherSessionInfo(result.session.teacherId, result.session);
 
         await this.changeTeacherStatus(result.session.teacherId);
       }
 
 
-      myHelper.resHandler(res, 200, true, {sessionTimeInHours: durationInHours}, "Session ended successfully");
+      myHelper.resHandler(res, 200, true,"", "Session ended successfully");
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
+    }
+  };
+
+  static updateTeacherSessionInfo = async (teacherId, sessionData) => {
+    try {
+      const teacher = await teacherModel.findById(teacherId);
+
+      if (!teacher) {
+        throw new Error("Teacher not found");
+      }
+
+      const durationHours = myHelper.calculateDiffTime(sessionData.sessionStart);
+
+      const newSession = {
+        sessionName: sessionData.sessionPassword,
+        sessionStart: sessionData.sessionStart,
+        sessionEnd: new Date(),
+        durationHours: durationHours,
+      };
+
+      teacher.sessionsInfo.push(newSession);
+
+      teacher.totalTeachingHours += durationHours;
+
+      await teacher.save();
+
+      return teacher;
+    } catch (error) {
+      console.error("Error updating teacher session info:", error);
+      throw error;
     }
   };
   static changeTeacherStatus = async (teacherId) => {
