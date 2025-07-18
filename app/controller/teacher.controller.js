@@ -198,9 +198,8 @@ class Teacher {
           {
             ...req.body,
             profileImage: req.file
-              ? `${req.protocol}://${req.get("host")}/uploads/${
-                  req.file.filename
-                }`
+              ? `${req.protocol}://${req.get("host")}/uploads/${req.file.filename
+              }`
               : null,
           },
           { new: true }
@@ -285,6 +284,8 @@ class Teacher {
         { _id: teacherId },
         { requestsFromStudents: { $elemMatch: { studentID: studentId } } }
       );
+
+      console.log(object);
 
       // Check if a matching request was found
       if (
@@ -371,6 +372,7 @@ class Teacher {
   static endMeeting = async (req, res) => {
     try {
       const session = SessionMap.getSession(req.body.session);
+      let durationInHours;
 
       const transfer = await studentAndTeacherController.transferBalance(
         session.studentId,
@@ -381,11 +383,19 @@ class Teacher {
       if (!transfer) {
         return myHelper.resHandler(res, 404, false, null, "Transfer failed");
       }
+
       const result = SessionMap.deleteSession(req.body.session);
 
-      if (result.session)
+      if (result.session) {
+        
+        durationInHours = myHelper.calculateDiffTime(result.session.sessionStart);
+
+
         await this.changeTeacherStatus(result.session.teacherId);
-      myHelper.resHandler(res, 200, true, "", "Sessions ended successfully");
+      }
+
+
+      myHelper.resHandler(res, 200, true, {sessionTimeInHours: durationInHours}, "Session ended successfully");
     } catch (e) {
       myHelper.resHandler(res, 500, false, e, e.message);
     }

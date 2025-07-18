@@ -61,5 +61,13 @@ class MyHelper {
   static checkIsObjectId = (id) => {
     return /^[0-9a-fA-F]{24}$/.test(id);
   };
+
+  static calculateDiffTime = (sessionStart) => {
+    const startTime = new Date(sessionStart);
+    const endTime = new Date();
+    const diffInMilliseconds = endTime - startTime;
+    const diffInHours = diffInMilliseconds / (1000 * 60 * 60); 
+    return diffInHours;
+  };
 }
 module.exports = MyHelper;

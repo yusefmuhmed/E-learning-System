@@ -170,7 +170,7 @@ class Student_Teacher {
       const sessionInfo = req.body.sessionInfo;
 
       if (!studentId || !teacherId || !className || !subjectName) {
-        myHelper.resHandler(
+        return myHelper.resHandler(
           res,
           404,
           false,
@@ -187,7 +187,7 @@ class Student_Teacher {
       ) {
         const match = await this.checkStudentBalance(studentId, teacherId);
         if (!match) {
-          myHelper.resHandler(
+          return myHelper.resHandler(
             res,
             404,
             false,
@@ -229,9 +229,11 @@ class Student_Teacher {
           },
           { new: true }
         );
+
+        console.log(teacherId);
       }
 
-      myHelper.resHandler(
+      return myHelper.resHandler(
         res,
         200,
         true,
@@ -239,7 +241,7 @@ class Student_Teacher {
         "Connect Sent successfully to the teacher"
       );
     } catch (e) {
-      myHelper.resHandler(res, 500, false, e, e.message);
+      return myHelper.resHandler(res, 500, false, e, e.message);
     }
   };
 
