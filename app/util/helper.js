@@ -66,8 +66,9 @@ class MyHelper {
     const startTime = new Date(sessionStart);
     const endTime = new Date();
     const diffInMilliseconds = endTime - startTime;
-    const diffInHours = diffInMilliseconds / (1000 * 60 * 60); 
-    return diffInHours;
+    const diffInHours = diffInMilliseconds / (1000 * 60 * 60);
+    return parseFloat(diffInHours.toFixed(2)); // round to 2 decimal places
   };
+
 }
 module.exports = MyHelper;

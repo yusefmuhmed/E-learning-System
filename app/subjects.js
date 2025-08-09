@@ -1,65 +1,72 @@
 module.exports = {
   getSubjects: async (locale) => {
+    let subjectsAr;
+    let subjectsEn;
+    let subjects;
+    subjectsAr = [
+      "لغة عربية", // Arabic Language
+      "رياضيات", // Mathematics
+      "علوم", // Science
+      "دراسات اجتماعية", // Social Studies
+      "لغة إنجليزية", // English Language
+      "تربية إسلامية", // Islamic Education
+      "تربية وطنية", // National Education
+      "تربية فنية", // Art Education
+      "الفيزياء", // Physics
+      "الكيمياء", // Chemistry
+      "الأحياء", // Biology
+      "الجغرافيا", // Geography
+      "التاريخ", // History
+      "الفلسفة", // Philosophy
+      "الاقتصاد", // Economics
+      "التكنولوجيا", // Technology
+      "الدراسات الاجتماعية", // Social Sciences
+      "اللغة الفرنسية", // French Language
+      "اللغة الألمانية", // German Language
+      "اللغة الإسبانية", // Spanish Language
+      "اللغة الإيطالية", // Italian Language
+      "الحاسب الآلي",
+    ];
+
+
+    subjectsEn = [
+      "Arabic",
+      "Mathematics",
+      "Science",
+      "Social Studies",
+      "English",
+      "Islamic",
+      "National Education",
+      "Art Education",
+      "Physics",
+      "Chemistry",
+      "Biology",
+      "Geography",
+      "History",
+      "Philosophy",
+      "Economics",
+      "Technology",
+      "Social Sciences",
+      "French",
+      "German",
+      "Spanish",
+      "Italian",
+      "ICT",
+    ];
+
+
     if (locale === "ar") {
-      const subjects = [
-        "لغة عربية", // Arabic Language
-        "رياضيات", // Mathematics
-        "علوم", // Science
-        "دراسات اجتماعية", // Social Studies
-        "لغة إنجليزية", // English Language
-        "تربية إسلامية", // Islamic Education
-        "تربية وطنية", // National Education
-        "تربية فنية", // Art Education
-        "الفيزياء", // Physics
-        "الكيمياء", // Chemistry
-        "الأحياء", // Biology
-        "الجغرافيا", // Geography
-        "التاريخ", // History
-        "الفلسفة", // Philosophy
-        "الاقتصاد", // Economics
-        "التكنولوجيا", // Technology
-        "العلوم الاجتماعية", // Social Sciences
-        "اللغة الفرنسية", // French Language
-        "اللغة الألمانية", // German Language
-        "اللغة الإسبانية", // Spanish Language
-        "اللغة الإيطالية", // Italian Language
-        "ICT",
-      ];
-
-      return subjects;
+      return subjectsAr;
+    } else if (locale === "en") {
+      return subjectsEn;
     } else {
-      const subjects = [
-        "Arabic",
-        "Mathematics",
-        "Science",
-        "Social Studies",
-        "English",
-        "Islamic",
-        "National Education",
-        "Art Education",
-        "Physics",
-        "Chemistry",
-        "Biology",
-        "Geography",
-        "History",
-        "Philosophy",
-        "Economics",
-        "Technology",
-        "Social Sciences",
-        "French",
-        "German",
-        "Spanish",
-        "Italian",
-        "ICT",
-      ];
-
+      subjects = [...subjectsAr, ...subjectsEn];
       return subjects;
     }
   },
 
   getClasses: async (locale) => {
-    if (locale === "ar") {
-      const classes = [
+    const classesAR = [
         "تأسيس KG",
         "الاول الابتدائي",
         "الثاني الابتدائي",
@@ -75,9 +82,7 @@ module.exports = {
         "الثالث الثانوي",
       ];
 
-      return classes;
-    } else {
-      const classes = [
+      const classesEN = [
         "KG Foundation",
         "First Primary",
         "Second Primary",
@@ -104,8 +109,12 @@ module.exports = {
         "Grade 11",
         "Grade 12",
       ];
-
-      return classes;
+    if (locale === "ar") {
+      return classesAR;
+    } else if( locale === "en") {
+      return classesEN;
+    } else {
+      return [...classesAR, ...classesEN];
     }
   },
 };
