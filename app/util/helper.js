@@ -1,5 +1,8 @@
-const nodemailer = require("nodemailer");
+const sgMail = require('@sendgrid/mail');
 const otpGenerator = require("otp-generator");
+
+// Set your SendGrid API key (use environment variable for security)
+sgMail.setApiKey(process.env.SENDGRID_API_KEY || 'YOUR_SENDGRID_API_KEY_HERE');
 
 class MyHelper {
   static resHandler = (res, statusCode, apiStatus, data, message) => {
@@ -19,42 +22,54 @@ class MyHelper {
         specialChars: false,
       });
 
-      const transporter = nodemailer.createTransport({
-        host: "smtp-mail.outlook.com",
-        port: 587,
-        secure: false,
-        auth: {
-          user: "TamerGomaa_71@outlook.com",
-          pass: "explain@1234",
-        },
-        tls: {
-          rejectUnauthorized: false,
-        },
-      });
-
-      const mailOptions = {
-        from: "TamerGomaa_71@outlook.com",
-        to: mail,
-        subject: "Password Reset OTP",
+      // SendGrid email configuration
+      const msg = {
+        to: mail, // Recipient email
+        from: process.env.VERIFIED_SENDER_EMAIL,
+        subject: 'Password Reset OTP',
         text: `Your OTP for password reset is: ${otp}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #333;">Password Reset OTP</h2>
+            <p>Hello,</p>
+            <p>You requested a password reset. Your OTP code is:</p>
+            <div style="background-color: #f0f0f0; padding: 20px; text-align: center; font-size: 24px; font-weight: bold; letter-spacing: 3px; margin: 20px 0;">
+              ${otp}
+            </div>
+            <p><strong>Note:</strong> This OTP is valid for a limited time only.</p>
+            <p>If you didn't request this password reset, please ignore this email.</p>
+            <hr style="margin-top: 30px;">
+            <p style="font-size: 12px; color: #666;">This is an automated email, please do not reply.</p>
+          </div>
+        `
       };
 
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.error("Error sending email:", error);
+      // Send email using SendGrid
+      sgMail
+        .send(msg)
+        .then((response) => {
+          console.log('✅ Email sent successfully!');
+          console.log('Status Code:', response[0].statusCode);
+          resolve({
+            apiStatus: true,
+            data: {
+              messageId: response[0].headers['x-message-id'],
+              statusCode: response[0].statusCode
+            },
+            otp: otp,
+          });
+        })
+        .catch((error) => {
+          console.error('❌ Error sending email:', error.message);
+          if (error.response) {
+            console.error('SendGrid Error Details:', error.response.body);
+          }
           reject({
             apiStatus: false,
             data: null,
-            message: "Error sending email",
+            message: "Error sending email: " + error.message,
           });
-        } else {
-          resolve({
-            apiStatus: true,
-            data: info.response,
-            otp: otp,
-          });
-        }
-      });
+        });
     });
   };
 
@@ -67,8 +82,21 @@ class MyHelper {
     const endTime = new Date();
     const diffInMilliseconds = endTime - startTime;
     const diffInHours = diffInMilliseconds / (1000 * 60 * 60);
-    return parseFloat(diffInHours.toFixed(2)); // round to 2 decimal places
+    return parseFloat(diffInHours.toFixed(2));
   };
 
+  // Test function to verify SendGrid is working
+  static testSendGrid = async (testEmail) => {
+    try {
+      console.log('🧪 Testing SendGrid configuration...');
+      const result = await MyHelper.emailHandler(testEmail);
+      console.log('✅ SendGrid test successful!', result);
+      return result;
+    } catch (error) {
+      console.error('❌ SendGrid test failed:', error);
+      return error;
+    }
+  };
 }
+
 module.exports = MyHelper;

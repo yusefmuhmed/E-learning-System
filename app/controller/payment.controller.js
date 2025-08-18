@@ -33,7 +33,7 @@ class Payment {
 
       data.append("payment_methods", config.payment.onlineCard_id);
       data.append("payment_methods", config.payment.mobileWallet_id);
-      
+
       data.append("email", req.student.email);
       data.append("is_live", config.payment.is_live_mode);
 
@@ -44,7 +44,7 @@ class Payment {
       data.append("phone_number", "+20" + req.student.phoneNum || "");
       data.append("redirection_url", config.payment.redirection_url);
 
-    
+
 
       // Configure axios request with data and headers
       const response = await axios.post(
@@ -86,8 +86,10 @@ class Payment {
       // Get the base URL based on environment
       const baseURL =
         config.payment.env === "staging"
-          ? config.payment.payoutEnv
-          : config.payment.production;
+          ? config.payment.payoutEnvStagging
+          : config.payment.payoutEnvProduction;
+
+      // const url = config.payment.payoutEnv;
 
       // Prepare the form data
       const formData = new URLSearchParams();
@@ -98,6 +100,8 @@ class Payment {
       formData.append("grant_type", "password");
 
       // Make the API call
+
+
       const response = await axios.post(
         `https://${baseURL}o/token/`,
         formData,
@@ -109,6 +113,7 @@ class Payment {
         }
       );
 
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error(
@@ -123,8 +128,14 @@ class Payment {
     try {
       const token = await this.getAuthTokenForPayOut();
 
+      const baseURL =
+        config.payment.env === "staging"
+          ? config.payment.payoutEnvStagging
+          : config.payment.payoutEnvProduction;
+
+
       const response = await axios.post(
-        `https://${config.payment.payoutEnv}disburse/`,
+        `https://${baseURL}disburse/`,
         {
           amount: req.body.amount,
           msisdn: req.body.mobileNumber,
@@ -136,6 +147,8 @@ class Payment {
           },
         }
       );
+
+
 
       if (response.data.disbursement_status === "successful") {
         await this.decreaseTeacherBalance(req.params.id, req.body.amount);
@@ -159,8 +172,13 @@ class Payment {
     try {
       const token = await this.getAuthTokenForPayOut();
 
+            const baseURL =
+        config.payment.env === "staging"
+          ? config.payment.payoutEnvStagging
+          : config.payment.payoutEnvProduction;
+
       const response = await axios.post(
-        `https://${config.payment.payoutEnv}disburse/`,
+        `https://${baseURL}disburse/`,
         {
           issuer: "bank_card",
           amount: req.body.amount,
@@ -175,6 +193,8 @@ class Payment {
           },
         }
       );
+
+      console.log(response);
 
       if (response.data.disbursement_status === "pending") {
         await this.decreaseTeacherBalance(req.params.id, req.body.amount);
@@ -460,6 +480,10 @@ class Payment {
 
       if (!teacher) {
         throw new Error("Teacher not found");
+      }
+
+      if (amount > teacher.balance) {
+        throw new Error("Insufficent balance");
       }
 
       teacher.balance -= amount;
