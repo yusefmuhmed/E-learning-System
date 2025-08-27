@@ -116,6 +116,7 @@ class Payment {
       console.log(response.data);
       return response.data;
     } catch (error) {
+      console.log(error.data);
       console.error(
         "Error getting auth token:",
         error.response?.data || error.message
@@ -148,6 +149,8 @@ class Payment {
         }
       );
 
+      
+
 
 
       if (response.data.disbursement_status === "successful") {
@@ -163,6 +166,7 @@ class Payment {
         response.data.status_description
       );
     } catch (error) {
+      console.log(error.message);
       // Send error response
       myHelper.resHandler(res, 500, false, error, error.message);
     }

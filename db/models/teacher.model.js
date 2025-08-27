@@ -180,10 +180,14 @@ const teacherSchema = mongoose.Schema(
           set: function (val) {
             return Math.round(val * 100) / 100;
           }
-        }
+        },
+
       }
     ],
-
+    isAccountEnabled: {
+      type: Boolean,
+      default: false
+    },
     totalTeachingHours: {
       type: Number,
       default: 0,
@@ -204,6 +208,12 @@ teacherSchema.pre("save", async function () {
 });
 teacherSchema.statics.loginTeacher = async (username, password) => {
   const teacherData = await Teacher.findOne({ username });
+
+  if (!teacherData.isAccountEnabled) {
+    throw new Error("Account is not enabled. Please contact admin.");
+  }
+
+
   if (!teacherData) throw new Error("invalid username");
   const validatePassword = await bcryptjs.compare(
     password,

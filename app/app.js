@@ -3,8 +3,10 @@ module.exports = (app) => {
   const studentRoutes = require("../routes/student.routes");
   const globalConfigRoutes = require("../routes/globalConfig.routes");
   const paymentRoutes = require("../routes/payment.routes");
+  const adminRoutes = require("../routes/admin.routes");
 
   app.use("/api/teacher/", teacherRoutes);
+  app.use("/api/admin/", adminRoutes);
   app.use("/api/student/", studentRoutes);
   app.use("/api/globalConfig/", globalConfigRoutes);
   app.use("/api/payment/", paymentRoutes);

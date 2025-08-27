@@ -48,8 +48,6 @@ class MyHelper {
       sgMail
         .send(msg)
         .then((response) => {
-          console.log('✅ Email sent successfully!');
-          console.log('Status Code:', response[0].statusCode);
           resolve({
             apiStatus: true,
             data: {
@@ -72,6 +70,64 @@ class MyHelper {
         });
     });
   };
+
+  static accountStatusEmail = (mail, isEnabled) => {
+    return new Promise((resolve, reject) => {
+      const subject = isEnabled
+        ? "Your Account Has Been Enabled"
+        : "Your Account Has Been Disabled";
+
+      const message = isEnabled
+        ? `
+        <h2 style="color: #333;">Account Enabled</h2>
+        <p>Hello,</p>
+        <p>We’re happy to inform you that your account has been <strong>enabled</strong>. You can now log in and access the platform.</p>
+        <p>Welcome back!</p>
+      `
+        : `
+        <h2 style="color: #333;">Account Disabled</h2>
+        <p>Hello,</p>
+        <p>We’re writing to let you know that your account has been <strong>disabled</strong>. Please contact support for more information.</p>
+      `;
+
+      const msg = {
+        to: mail,
+        from: process.env.VERIFIED_SENDER_EMAIL,
+        subject,
+        html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          ${message}
+          <hr style="margin-top: 30px;">
+          <p style="font-size: 12px; color: #666;">This is an automated email, please do not reply.</p>
+        </div>
+      `,
+      };
+
+      sgMail
+        .send(msg)
+        .then((response) => {
+          resolve({
+            apiStatus: true,
+            data: {
+              messageId: response[0].headers["x-message-id"],
+              statusCode: response[0].statusCode,
+            },
+          });
+        })
+        .catch((error) => {
+          console.error("❌ Error sending email:", error.message);
+          if (error.response) {
+            console.error("SendGrid Error Details:", error.response.body);
+          }
+          reject({
+            apiStatus: false,
+            data: null,
+            message: "Error sending email: " + error.message,
+          });
+        });
+    });
+  };
+
 
   static checkIsObjectId = (id) => {
     return /^[0-9a-fA-F]{24}$/.test(id);
