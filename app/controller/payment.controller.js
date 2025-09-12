@@ -99,9 +99,6 @@ class Payment {
       formData.append("password", config.payment.password_payout);
       formData.append("grant_type", "password");
 
-      // Make the API call
-
-
       const response = await axios.post(
         `https://${baseURL}o/token/`,
         formData,
@@ -150,8 +147,8 @@ class Payment {
       );
 
       
-
-
+      
+console.log(response);
 
       if (response.data.disbursement_status === "successful") {
         await this.decreaseTeacherBalance(req.params.id, req.body.amount);
@@ -198,11 +195,13 @@ class Payment {
         }
       );
 
-      console.log(response);
 
-      if (response.data.disbursement_status === "pending") {
+      if (response.data.disbursement_status === "successful") {
         await this.decreaseTeacherBalance(req.params.id, req.body.amount);
       }
+
+      
+      console.log(response.data);
 
       // Send success response
       myHelper.resHandler(
@@ -630,8 +629,13 @@ class Payment {
     try {
       const token = await this.getAuthTokenForPayOut();
 
+       const baseURL =
+        config.payment.env === "staging"
+          ? config.payment.payoutEnvStagging
+          : config.payment.payoutEnvProduction;
+
       const response = await axios.post(
-        `https://${config.payment.payoutEnv}disburse/`,
+        `https://${baseURL}disburse/`,
         {
           issuer: "bank_card",
           amount: req.body.amount,

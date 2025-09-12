@@ -61,10 +61,10 @@ adminSchema.pre("save", async function () {
 });
 adminSchema.statics.loginAdmin = async (username, password) => {
     const adminData = await Admin.findOne({ username });
-    if (!adminData) throw new Error("Invalid username");
+    if (!adminData) throw new Error("Invalid username or password");
 
     const validatePassword = await bcryptjs.compare(password, adminData.password);
-    if (!validatePassword) throw new Error("Invalid password");
+    if (!validatePassword) throw new Error("Invalid username or password");
 
     return adminData;
 };

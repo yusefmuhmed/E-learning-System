@@ -123,8 +123,6 @@ class Admin {
         }
     };
 
-
-
     static login = async (req, res) => {
         try {
             console.log("test login")
@@ -132,10 +130,8 @@ class Admin {
                 req.body.username,
                 req.body.password
             );
-            console.log(adminData);
             const token = await adminData.generateToken();
 
-            console.log(token);
             myHelper.resHandler(res, 200, true, { adminData, token }, "Login Successfully");
         } catch (e) {
             myHelper.resHandler(res, 500, false, e, e.message);
@@ -153,6 +149,50 @@ class Admin {
             myHelper.resHandler(res, 500, false, e, e.message);
         }
     };
+
+    static getAllTeachers = async (req, res) => {
+        try {
+            const page = parseInt(req.query.page) || 1;  // default page 1
+            const limit = parseInt(req.query.limit) || 10; // default limit 10
+            const skip = (page - 1) * limit;
+
+            // 1. Get paginated teachers
+            const teachers = await teacherModel.find()
+                .skip(skip)
+                .limit(limit);
+
+            // 2. Get total count
+            const totalTeachers = await teacherModel.countDocuments();
+
+
+            myHelper.resHandler(res, 200, true, {
+                page,
+                limit,
+                totalTeachers,
+                totalPages: Math.ceil(totalTeachers / limit),
+                teachers
+            }, "Data is fetched Successfully")
+        } catch (e) {
+
+        }
+    };
+
+    static getTeacherDetails = async (req, res) => {
+        const { teachedId } = req.params;
+
+        if (!teachedId) throw new Error("Invalid Input");
+
+        try {
+            const isExist = await teacherModel.findOne({ _id: teachedId });
+
+            if (!isExist) throw new Error("Teacher is not found");
+
+            myHelper.resHandler(res, 200, true, isExist, "Data is Fetched Successfully");
+        } catch (e) {
+            myHelper.resHandler(res, 500, false, e, e.message);
+        }
+    }
+
 }
 
 module.exports = Admin;
