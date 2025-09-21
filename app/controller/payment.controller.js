@@ -27,6 +27,8 @@ class Payment {
     try {
       const token = await this.getAuthToken();
 
+      console.log(token);
+
       let data = new FormData();
 
       data.append("amount_cents", req.body.amount);
@@ -575,6 +577,7 @@ console.log(response);
 
       // Save payment history if the payment was successful
       if (success === true) {
+        console.log(req.body.obj.order.shipping_data)
         const studentMail = req.body.obj.order.shipping_data.email;
         const paymentHistory = new paymentHistoryModel({
           studentMail,
