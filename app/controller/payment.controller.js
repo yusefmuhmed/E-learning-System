@@ -23,65 +23,170 @@ class Payment {
     }
   };
 
-  static createPaymentLink = async (req, res) => {
-    try {
-      const token = await this.getAuthToken();
+  // static createPaymentLink = async (req, res) => {
+  //   try {
+  //     const token = await this.getAuthToken();
 
-      console.log(token);
+  //     console.log(token);
 
-      let data = new FormData();
+  //     let data = new FormData();
 
-      data.append("amount_cents", req.body.amount);
+  //     data.append("amount_cents", req.body.amount);
 
-      data.append("payment_methods", config.payment.onlineCard_id);
-      data.append("payment_methods", config.payment.mobileWallet_id);
+  //     data.append("payment_methods", config.payment.onlineCard_id);
+  //     data.append("payment_methods", config.payment.mobileWallet_id);
 
-      data.append("email", req.student.email);
-      data.append("is_live", config.payment.is_live_mode);
+  //     data.append("email", req.student.email);
+  //     data.append("is_live", config.payment.is_live_mode);
 
-      data.append(
-        "full_name",
-        `${req.student.firstName} ${req.student.lastName}`
-      );
-      data.append("phone_number", "+20" + req.student.phoneNum || "");
-      data.append("redirection_url", config.payment.redirection_url);
+  //     data.append(
+  //       "full_name",
+  //       `${req.student.firstName} ${req.student.lastName}`
+  //     );
+  //     data.append("phone_number", "+20" + req.student.phoneNum || "");
+  //     data.append("redirection_url", config.payment.redirection_url);
+
+      
+
+  //     // Configure axios request with data and headers
+  //     const response = await axios.post(
+  //       "https://accept.paymob.com/api/ecommerce/payment-links",
+  //       data,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //         maxBodyLength: Infinity,
+  //       }
+  //     );
 
 
+  //     // Send success response
+  //     myHelper.resHandler(
+  //       res,
+  //       200,
+  //       true,
+  //       response.data,
+  //       "Payment link created successfully"
+  //     );
+  //   } catch (error) {
 
-      // Configure axios request with data and headers
-      const response = await axios.post(
-        "https://accept.paymob.com/api/ecommerce/payment-links",
-        data,
+  //     if (error.response) {
+  //       console.error("API error:", error.response.status, error.response.data);
+  //     } else {
+  //       console.error("Error:", error.message);
+  //     }
+  //     // Send error response
+  //     myHelper.resHandler(res, 500, false, error, error.message);
+  //   }
+  // };
+
+// static createPaymentLink = async (req, res) => {
+//   try {
+//     const token = await this.getAuthToken();
+
+    
+//     const payload = {
+//       auth_token: token,
+//       product_name: "fees",
+//       amount_cents: req.body.amount,
+//       currency: "EGP",
+//       inventory: "1",
+//       delivery_needed: "false",
+//       integrations: [
+//         config.payment.onlineCard_id,
+//         config.payment.mobileWallet_id,
+//       ],
+//       allow_quantity_edit: "false",
+//       product_description: "Fees Payment",
+//     };
+
+//     const response = await axios.post(
+//       "https://accept.paymob.com/api/ecommerce/products",
+//       payload,
+//       {
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     );
+
+//     myHelper.resHandler(
+//       res,
+//       200,
+//       true,
+//       response.data,
+//       "Product created successfully"
+//     );
+//   } catch (error) {
+//     if (error.response) {
+//       console.error("API error:", error.response.status, error.response.data);
+//     } else {
+//       console.error("Error:", error.message);
+//     }
+//     myHelper.resHandler(res, 500, false, error, error.message);
+//   }
+// };
+
+
+static createPaymentLink  = async (req, res) => {
+  try {
+    const token = await this.getAuthToken();
+
+    const shipping_data = {
+      first_name: req.student.firstName || "",
+      last_name: req.student.lastName || "",
+      phone_number: "+20" + (req.student.phoneNum || ""),
+      email: req.student.email || "",
+    };
+
+    const payload = {
+      auth_token: token,
+      api_source: "INVOICE",
+      amount_cents: req.body.amount, // e.g. "4000"
+      currency: "EGP",
+      shipping_data,
+      integrations: [
+        config.payment.onlineCard_id,
+        config.payment.mobileWallet_id,
+      ],
+      items: [
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          maxBodyLength: Infinity,
-        }
-      );
+          name: "Balance",
+          amount_cents: req.body.amount, // same amount or per-item amount
+          quantity: "1",
+          description: "Balance Recharge",
+        },
+      ],
+      delivery_needed: "false",
+    };
 
-
-      // Send success response
-      myHelper.resHandler(
-        res,
-        200,
-        true,
-        response.data,
-        "Payment link created successfully"
-      );
-    } catch (error) {
-
-      if (error.response) {
-        console.error("API error:", error.response.status, error.response.data);
-      } else {
-        console.error("Error:", error.message);
+    const response = await axios.post(
+      "https://accept.paymob.com/api/ecommerce/orders",
+      payload,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
-      // Send error response
-      myHelper.resHandler(res, 500, false, error, error.message);
+    );
+
+    myHelper.resHandler(
+      res,
+      200,
+      true,
+      response.data,
+      "Order created successfully"
+    );
+  } catch (error) {
+    if (error.response) {
+      console.error("API error:", error.response.status, error.response.data);
+    } else {
+      console.error("Error:", error.message);
     }
-  };
-
-
+    myHelper.resHandler(res, 500, false, error, error.message);
+  }
+};
 
   static getAuthTokenForPayOut = async () => {
     try {
