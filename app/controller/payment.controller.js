@@ -155,7 +155,7 @@ static createPaymentLink  = async (req, res) => {
           name: "Balance",
           amount_cents: req.body.amount, // same amount or per-item amount
           quantity: "1",
-          description: "شحن الرصيد",
+          description: "Balance Recharge",
         },
       ],
       delivery_needed: "false",
