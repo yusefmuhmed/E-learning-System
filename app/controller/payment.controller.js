@@ -610,7 +610,7 @@ console.log(response);
     try {
       const hmac = req.query.hmac;
 
-      const { obj: paymobData } = req.body;
+      const { obj: paymobData } = req.query;
 
       if (!paymobData) {
         console.log("Paymob Data not found for this request");
